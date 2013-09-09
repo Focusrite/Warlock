@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-09-05T21:41:53</date>
+  <millis>1378410113267</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.state.GameState</class>
+      <method>setInstance</method>
+      <line>16</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>create</method>
+      <line>85</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>50</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-09-05T21:42:14</date>
+  <millis>1378410134133</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>153</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>135</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>51</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-09-05T23:04:53</date>
+  <millis>1378415093189</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.object.character.Hero</class>
+      <method>updateMovement</method>
+      <line>100</line>
+    </frame>
+    <frame>
+      <class>warlock.object.character.Hero</class>
+      <method>update</method>
+      <line>106</line>
+    </frame>
+    <frame>
+      <class>warlock.level.Level</class>
+      <method>update</method>
+      <line>30</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>update</method>
+      <line>25</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>152</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>134</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>49</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-09-05T23:05:54</date>
+  <millis>1378415154704</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.object.character.Hero</class>
+      <method>updateMovement</method>
+      <line>100</line>
+    </frame>
+    <frame>
+      <class>warlock.object.character.Hero</class>
+      <method>update</method>
+      <line>106</line>
+    </frame>
+    <frame>
+      <class>warlock.level.Level</class>
+      <method>update</method>
+      <line>30</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>update</method>
+      <line>25</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>152</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>134</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>49</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-09-05T23:07:34</date>
+  <millis>1378415254866</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.object.character.Hero</class>
+      <method>render</method>
+      <line>118</line>
+    </frame>
+    <frame>
+      <class>warlock.level.Level</class>
+      <method>render</method>
+      <line>36</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>render</method>
+      <line>30</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>render</method>
+      <line>112</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>135</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>49</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-09-09T12:24:21</date>
+  <millis>1378722261974</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.UnsupportedOperationException: Not supported yet.</message>
+  <exception>
+    <message>java.lang.UnsupportedOperationException: Not supported yet.</message>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>handleInput</method>
+      <line>41</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>handleInput</method>
+      <line>108</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>155</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>137</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>53</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-09-09T14:15:07</date>
+  <millis>1378728907746</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.object.character.Hero</class>
+      <method>attrVal</method>
+      <line>55</line>
+    </frame>
+    <frame>
+      <class>warlock.object.character.Hero</class>
+      <method>steer</method>
+      <line>120</line>
+    </frame>
+    <frame>
+      <class>warlock.object.character.Hero</class>
+      <method>handleInput</method>
+      <line>115</line>
+    </frame>
+    <frame>
+      <class>warlock.level.Level</class>
+      <method>handleInput</method>
+      <line>23</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>handleInput</method>
+      <line>41</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>handleInput</method>
+      <line>108</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>155</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>137</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>53</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
