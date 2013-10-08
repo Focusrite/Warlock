@@ -12,10 +12,10 @@ import java.util.Objects;
  */
 public class Attribute {
    private AttributeType attrType;
-   private int baseValue;  //Base
-   private int value;      //Current
+   private double baseValue;  //Base
+   private double value;      //Current
 
-   public Attribute(AttributeType attrType, int value) {
+   public Attribute(AttributeType attrType, double value) {
       this.attrType = attrType;
       this.baseValue = value;
       this.value = value;
@@ -29,7 +29,7 @@ public class Attribute {
       return getAttributeType().getTag();
    }
 
-   public int getBaseValue() {
+   public double getBaseValue() {
       return baseValue;
    }
 
@@ -37,7 +37,7 @@ public class Attribute {
       this.baseValue = baseValue;
    }
 
-   public int getValue() {
+   public double getValue() {
       return value;
    }
 
@@ -45,17 +45,14 @@ public class Attribute {
       this.value = value;
    }
 
-   public void modValue(int dv){
+   public void modValue(double dv){
       this.value = this.value + dv;
    }
 
-   @Override
-   public int hashCode() {
-      int hash = 7;
-      hash = 89 * hash + Objects.hashCode(this.attrType);
-      hash = 89 * hash + this.baseValue;
-      hash = 89 * hash + this.value;
-      return hash;
+   public Attribute(AttributeType attrType, double baseValue, double value) {
+      this.attrType = attrType;
+      this.baseValue = baseValue;
+      this.value = value;
    }
 
    @Override

@@ -15,7 +15,6 @@ public class Vector {
     */
    private double x = 0;
    private double y = 0;
-
    private double angle = 0;
    private double length = 0;
 
@@ -25,6 +24,7 @@ public class Vector {
    public double getX() {
       return x;
    }
+
    public void setX(double x) {
       this.x = x;
       this.updatePolar();
@@ -35,6 +35,12 @@ public class Vector {
    }
 
    public void setY(double y) {
+      this.y = y;
+      this.updatePolar();
+   }
+
+   public void setCoordinates(double x, double y) {
+      this.x = x;
       this.y = y;
       this.updatePolar();
    }
@@ -51,81 +57,97 @@ public class Vector {
       this.length = length;
       this.updateCartesian();
    }
+
    public Vector scale(double c) {
       Vector t = new Vector(this.getLength(), this.getAngle());
       t.setLength(t.getLength() * c);
       return t;
    }
 
-   public void setAngle(double angle) {
+   public final void setAngle(double angle) {
+      angle = (angle) % (2 * Math.PI);
+      angle = (angle >= 0) ? angle : (2*Math.PI) + angle;
       this.angle = angle;
       this.updateCartesian();
    }
 
-   public void rotate(double d)
-   {
+   public void rotate(double d) {
       setAngle(this.angle + d);
    }
 
    /**
-    * Constructor for class Vector, takes cartesian polar coordinates. Use static method create if values
-    * on cartesian form are desired instead.
+    * Constructor for class Vector, takes polar coordinates. Use static method create if
+    * values on cartesian form are desired instead.
     *
-    * @param x
-    * @param y
+    * @param length length
+    * @param angle angle in radians
+    * @return resulting Vector
     */
-   public Vector(double len, double ang) {
-      this.length = len;
-      this.angle = ang;
+   public Vector(double length, double angle) {
+      this.length = length;
+      setAngle(angle);
       this.updateCartesian();
    }
 
    /**
     * Empty constructor
     */
-   public Vector(){ }
+   public Vector() { }
 
    /**
-    * Functions simiar to the constructor but takes the values in polar form instead
-    * @param angle in radians
-    * @param length
+    * Functions simiar to the constructor but takes the values in cartesian form instead
+    *
+    * @param x
+    * @param y
     * @return resulting Vector
     */
-   public static Vector create(double x, double y){
+   public static Vector create(double x, double y) {
       Vector v = new Vector();
-      v.x = x;
-      v.y = y;
-      v.updatePolar();
+      v.setCoordinates(x, y);
       return v;
    }
 
    /**
     * Private function updating polar values when changing in cartesian form
     */
-   public void updatePolar() {
-      length = Math.sqrt(x*x + y*y);
-      angle = Math.atan2(x, y);
+   public final void updatePolar() {
+      length = Math.sqrt((x * x) + (y * y));
+      angle = Math.atan2(y, x);
+      if (angle < 0) {
+         angle = (2 * Math.PI) + angle;
+      }
    }
 
    /**
     * Private function updating cartesian values when changing in polar form
     */
-   public void updateCartesian() {
+   public final void updateCartesian() {
       x = Math.cos(angle) * length;
       y = Math.sin(angle) * length;
    }
 
    /**
     * Add a vector to this and return result
-    * @param v Vector to add
-    * $return Vector
+    *
+    * @param v Vector to add $return Vector
     */
-   public Vector add(Vector v){
-      Vector t = new Vector(v.getLength(), v.getAngle());
-      t.x = t.x + v.x;
-      t.y = t.y + v.y;
-      t.updatePolar();
-      return t;
+   public Vector add(Vector v) {
+      return create(x + v.x, y + v.y);
    }
 
+   public Vector subtract(Vector v) {
+      return create(x - v.x, y - v.y);
+   }
+
+   public double distance(Vector v) {
+      return subtract(v).getLength();
+   }
+
+   public double dotProduct(Vector v) {
+      return (x * v.x) + (y * v.y);
+   }
+
+   public double angleBetween(Vector v) {
+      return (getLength() - v.getLength()) % Math.PI;
+   }
 }

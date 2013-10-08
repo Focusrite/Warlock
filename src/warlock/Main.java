@@ -4,8 +4,6 @@
  */
 package warlock;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.util.glu.GLU.*;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -16,22 +14,25 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import warlock.font.FontHandler;
 import warlock.graphic.Graphic;
+import warlock.graphic.OpenGL3Graphics;
 import warlock.input.InputHandler;
+import warlock.object.character.AttributeHandler;
 import warlock.state.GameState;
 import warlock.state.PlayState;
 import warlock.time.Misc;
 
-
 public class Main {
+
    public static int DISPLAY_WIDTH = 800;
    public static int DISPLAY_HEIGHT = 600;
+   public static int FPS = 60;
    public static String HEADER_NAME = "Warlock";
-
    private long lastUpdate;
-
+   private long lastFPS;
+   private int fps = 0;
    public static final Logger LOGGER = Logger.getLogger(Main.class.getName());
-
    //Handlers and similar
    private Graphic graphic;
    private InputHandler input;
@@ -39,7 +40,8 @@ public class Main {
    static {
       try {
          LOGGER.addHandler(new FileHandler("errors.log", true));
-      } catch (IOException ex) {
+      }
+      catch (IOException ex) {
          LOGGER.log(Level.WARNING, ex.toString(), ex);
       }
    }
@@ -51,9 +53,11 @@ public class Main {
          main = new Main();
          main.create();
          main.run();
-      } catch (Exception ex) {
+      }
+      catch (Exception ex) {
          LOGGER.log(Level.SEVERE, ex.toString(), ex);
-      } finally {
+      }
+      finally {
          if (main != null) {
             main.destroy();
          }
@@ -63,6 +67,7 @@ public class Main {
    public Main() {
       //dostuff
       lastUpdate = Misc.millitime();
+      lastFPS = lastUpdate;
    }
 
    public void create() throws LWJGLException {
@@ -70,7 +75,6 @@ public class Main {
       Display.setDisplayMode(new DisplayMode(DISPLAY_WIDTH, DISPLAY_HEIGHT));
 
       Display.setFullscreen(false);
-      Display.setTitle(HEADER_NAME);
       Display.create();
 
       //Input
@@ -78,15 +82,16 @@ public class Main {
       Mouse.create();
       input = new InputHandler();
 
-      //OpenGL
-      initGL();
-      resizeGL();
-
       //Graphic
-      graphic = new Graphic();
+      graphic = new OpenGL3Graphics(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+
+      //OpenGL
+      init();
+      resize();
 
       //Game
       GameState.setInstance(new PlayState());
+      graphic.setCamera(GameState.getInstance().getCamera());
    }
 
    public void destroy() {
@@ -96,39 +101,40 @@ public class Main {
       Display.destroy();
    }
 
-   public void initGL() {
-      //2D Initialization
-      glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-      glDisable(GL_DEPTH_TEST);
-      glDisable(GL_LIGHTING);
+   public void init() {
+      //Init handlers
+      HandleLoader.register(AttributeHandler.class);
+      HandleLoader.register(FontHandler.class);
+      HandleLoader.initAll();
+      graphic.init();
+
+   }
+
+   /**
+    * Calculate the FPS and set it in the title bar
+    */
+   public void updateFPS() {
+      if (Misc.millitime() - lastFPS > 1000) {
+         Display.setTitle( HEADER_NAME + " [FPS: " + fps + "]" );
+         fps = 0; //reset the FPS counter
+         lastFPS += 1000; //add one second
+      }
+      fps++;
    }
 
    public void handleInput(double dt) {
-      input.readKeyboard();
-      GameState.getInstance().handleInput(dt, input);
-      input.clean();
+      input.readKeyboard(); //Update status of keys for every keypress
+      GameState.getInstance().handleInput(input);
    }
 
    public void render() {
-      glClear(GL_COLOR_BUFFER_BIT);
-      glLoadIdentity();
-
+      graphic.preRender();
       //Draw stuff!
       GameState.getInstance().render(graphic);
    }
 
-   public void resizeGL() {
-      //2D Scene
-      glViewport(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-
-      glMatrixMode(GL_PROJECTION);
-      glLoadIdentity();
-      gluOrtho2D(0.0f, DISPLAY_WIDTH, 0.0f, DISPLAY_HEIGHT);
-      glPushMatrix();
-
-      glMatrixMode(GL_MODELVIEW);
-      glLoadIdentity();
-      glPushMatrix();
+   public void resize() {
+      graphic.resize();
    }
 
    public void run() {
@@ -136,22 +142,27 @@ public class Main {
          if (Display.isVisible()) {
             update();
             render();
-         } else {
+         }
+         else {
             if (Display.isDirty()) {
                render();
             }
             try {
                Thread.sleep(100);
-            } catch (InterruptedException ex) {
+            }
+            catch (InterruptedException ex) {
             }
          }
          Display.update();
-         Display.sync(60);
+         Display.sync(FPS);
       }
    }
 
    public void update() {
-      double dt = Misc.secondsBetween(lastUpdate, Misc.millitime());
+      updateFPS();
+      long curTime = Misc.millitime();
+      double dt = Misc.secondsBetween(lastUpdate, curTime);
+      lastUpdate = curTime;
       handleInput(dt);
       GameState.getInstance().update(dt);
    }

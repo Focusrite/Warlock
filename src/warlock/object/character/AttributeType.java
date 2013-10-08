@@ -27,11 +27,17 @@ public class AttributeType {
    private String tooltip;
    private String tag;
    private String iconPath;
+   private double defaultValue;
 
-   public AttributeType(String id, String name, String tooltip) {
+   public double getDefaultValue() {
+      return defaultValue;
+   }
+
+   public AttributeType(String id, String name, String tooltip, double defaultValue) {
       this.tag = id;
       this.name = name;
       this.tooltip = tooltip;
+      this.defaultValue = defaultValue;
    }
 
    public String getName() {

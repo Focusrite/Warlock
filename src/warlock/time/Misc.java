@@ -17,6 +17,10 @@ public class Misc {
       return Misc.millitime() + (s * 1000);
    }
 
+   public static long relativetime(double s) {
+      return Misc.millitime() + (int)(s * 1000);
+   }
+
    public static double secondsBetween(long before, long after) {
       return ((after - before) / 1000.0);
    }

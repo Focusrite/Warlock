@@ -8,11 +8,16 @@ package warlock.object.character;
  *
  * @author Focusrite
  */
-class StatusEffectType {
-   private int magnitude;
+public class StatusEffectType {
+   private double magnitude;
    private AttributeType affectedType;
    private String iconPath;
    private boolean showIcon = false;
+
+   public StatusEffectType(double magnitude, AttributeType affectedType) {
+      this.magnitude = magnitude;
+      this.affectedType = affectedType;
+   }
 
    public boolean isShowIcon() {
       return showIcon;
@@ -34,11 +39,11 @@ class StatusEffectType {
       this.affectedType = affectedType;
    }
 
-   public int getMagnitude() {
+   public double getMagnitude() {
       return magnitude;
    }
 
-   public void setMagnitude(int magnitude) {
+   public void setMagnitude(double magnitude) {
       this.magnitude = magnitude;
    }
 

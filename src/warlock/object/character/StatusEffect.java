@@ -5,6 +5,7 @@
 package warlock.object.character;
 
 import java.util.Objects;
+import warlock.player.Player;
 import warlock.time.Misc;
 
 /**
@@ -15,8 +16,8 @@ public class StatusEffect {
 
    private Attribute affectedAttr;
    private StatusEffectType type;
-   private int magnitude;
-   private Hero inflicter;
+   private double magnitude;
+   private Player inflicter;
    private long timestamp;
    //Time
    private boolean temporary;
@@ -37,7 +38,7 @@ public class StatusEffect {
       return affectedAttr;
    }
 
-   public int getMagnitude() {
+   public double getMagnitude() {
       return magnitude;
    }
 
@@ -46,11 +47,11 @@ public class StatusEffect {
       return this;
    }
 
-   public Hero getInflicter() {
+   public Player getInflicter() {
       return inflicter;
    }
 
-   public StatusEffect setInflicter(Hero inflicter) {
+   public StatusEffect setInflicter(Player inflicter) {
       this.inflicter = inflicter;
       return this;
    }
@@ -94,15 +95,16 @@ public class StatusEffect {
    @Override
    public int hashCode() {
       int hash = 5;
-      hash = 47 * hash + Objects.hashCode(this.affectedAttr);
-      hash = 47 * hash + Objects.hashCode(this.type);
-      hash = 47 * hash + this.magnitude;
-      hash = 47 * hash + Objects.hashCode(this.inflicter);
-      hash = 47 * hash + (int) (this.timestamp ^ (this.timestamp >>> 32));
-      hash = 47 * hash + (this.temporary ? 1 : 0);
-      hash = 47 * hash + (int) (this.exprStamp ^ (this.exprStamp >>> 32));
+      hash = 97 * hash + Objects.hashCode(this.affectedAttr);
+      hash = 97 * hash + Objects.hashCode(this.type);
+      hash = 97 * hash + (int) (Double.doubleToLongBits(this.magnitude) ^ (Double.doubleToLongBits(this.magnitude) >>> 32));
+      hash = 97 * hash + Objects.hashCode(this.inflicter);
+      hash = 97 * hash + (int) (this.timestamp ^ (this.timestamp >>> 32));
+      hash = 97 * hash + (this.temporary ? 1 : 0);
+      hash = 97 * hash + (int) (this.exprStamp ^ (this.exprStamp >>> 32));
       return hash;
    }
+
 
    @Override
    public boolean equals(Object obj) {

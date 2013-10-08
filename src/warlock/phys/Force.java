@@ -39,18 +39,25 @@ public class Force extends Vector {
 
 
    public Force add(Force f) {
-      double aDif = Math.abs((this.getAngle() - f.getAngle()) % Math.PI);
-      double iScale = 1 / (aDif * getInertia());
+//      double aDif = Math.abs((this.getAngle() - f.getAngle()) % Math.PI);
+//      double iScale = 1 / (aDif * getInertia());
 
       Vector t = new Vector(f.getLength(), f.getAngle());
-      return this.add(t.scale(iScale));
+      return this.add(t);
+   }
+
+   @Override
+   public Force scale(double c) {
+      Force t = new Force(this.getLength(), this.getAngle(), this.getInertia());
+      t.setLength(t.getLength() * c);
+      return t;
    }
 
    @Override
    public Force add(Vector v){
       Force t = new Force(v);
-      t.setX(t.getX() + v.getX());
-      t.setY(t.getY() + v.getY());
+      t.setX(getX() + v.getX());
+      t.setY(getY() + v.getY());
       t.updatePolar();
       return t;
    }

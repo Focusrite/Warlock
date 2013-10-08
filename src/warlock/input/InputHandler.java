@@ -4,11 +4,11 @@
  */
 package warlock.input;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import warlock.phys.Vector;
+import warlock.Main;
 
 /**
  *
@@ -16,11 +16,12 @@ import warlock.phys.Vector;
  */
 public class InputHandler {
 
-   ArrayList<Keypress> keyBuffer = new ArrayList<Keypress>();
+   Map<Integer, Boolean> keyBuffer = new HashMap<>();
 
    public void readKeyboard() {
       while (Keyboard.next()) {
-         keyBuffer.add(new Keypress(Keyboard.getEventKey(), Keyboard.getEventKeyState()));
+         int key = Keyboard.getEventKey();
+         keyBuffer.put(new Integer(key), Keyboard.getEventKeyState());
       }
    }
 
@@ -28,16 +29,35 @@ public class InputHandler {
       return Keyboard.getEventKeyState();
    }
 
+   public boolean keyHeld(int key) {
+      return (keyBuffer.containsKey(new Integer(key)) && keyBuffer.get(key).booleanValue());
+   }
 
    public void clean() {
       keyBuffer.clear();
    }
 
    public double getMouseAngle() {
-      return Math.atan2(Display.getWidth() - Mouse.getX(), Display.getHeight() - Mouse.getY());
+      return Math.atan2((double) (Mouse.getX() - (Main.DISPLAY_WIDTH / 2)), (double) (Mouse.getY() - (Main.DISPLAY_HEIGHT / 2)));
+   }
+
+   public int getMouseX() {
+      return Mouse.getX();
+   }
+
+   public int getMouseY() {
+      return Mouse.getY();
    }
 
    public boolean isMouseDown(int mb) {
       return Mouse.isButtonDown(mb);
+   }
+
+   public int windowWidth() {
+      return Main.DISPLAY_WIDTH;
+   }
+
+   public int windowHeight() {
+      return Main.DISPLAY_HEIGHT;
    }
 }
