@@ -4,13 +4,14 @@
  */
 package warlock.font;
 
-import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
-import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.opengl.Texture;
+import org.w3c.dom.Document;
 import warlock.Handle;
 import warlock.resource.ResourceManager;
 import warlock.graphic.Color;
+import warlock.graphic.Graphic;
 
 /**
  *
@@ -19,28 +20,29 @@ import warlock.graphic.Color;
 public class FontHandler implements Handle {
 
    private static final boolean ANTIALIASING = false;
-   private static Map<String, SlickFont> fonts = new HashMap<>();
+   private static Map<String, Font> fonts = new HashMap<>();
 
    public static void init() {
-      //load("Times New Roman", 16);
+      load("Visitor", "fonts/visitor.png", "fonts/visitor.xml");
+      load("Avantgarde", "fonts/avantgarde.png", "fonts/avantgarde.xml");
    }
 
-   public static void load(String name, int size) {
-      Font awtFont = new Font(name, Font.PLAIN, size);
-      SlickFont f = new SlickFont(new TrueTypeFont(awtFont, ANTIALIASING), name);
-      fonts.put(name, f);
+   public static void load(String name, String textureResource, String xmlResource) {
+      ResourceManager.loadTextureResource(textureResource, "PNG", "font-" + name);
+      Texture tex = ResourceManager.getTexture("font-" + name);
+      Document xml = ResourceManager.loadXMLResource(xmlResource);
+
+      fonts.put(name, new Font(tex, xml));
    }
 
-   public static void load(String name, String resource, int size) {
-      Font awtFont = ResourceManager.loadFontResource(resource);
-      awtFont = awtFont.deriveFont(24f); // set font size
-      SlickFont f = new SlickFont(new TrueTypeFont(awtFont, ANTIALIASING), name);
-      fonts.put(name, f);
-   }
-
-   public static void drawFont(String name, float x, float y, String text, Color color) {
+   public static void drawFont(Graphic g, String name, int x, int y, int z, String text, int size, Color color, boolean centered) {
       try {
-         fonts.get(name).draw(x, y, text, color);
+         if (centered) {
+            fonts.get(name).drawCentered(g, x, y, z, text, size, color);
+         }
+         else {
+            fonts.get(name).draw(g, x, y, z, text, size, color);
+         }
       }
       catch (Exception e) {
          throw new IllegalArgumentException("No font of name " + name, e);

@@ -17,4 +17,8 @@ public class ExtraMath {
    public static Random getRandom() {
       return rand;
    }
+
+   public static double randomDouble(double low, double high) {
+      return low + getRandom().nextDouble() * (high - low);
+   }
 }

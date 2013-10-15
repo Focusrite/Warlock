@@ -4,7 +4,9 @@
  */
 package warlock.graphic;
 
+import org.newdawn.slick.opengl.Texture;
 import warlock.camera.Camera;
+import warlock.font.Font;
 
 /**
  *
@@ -69,5 +71,10 @@ public abstract class Graphic {
    public abstract void drawCircle(int x, int y, int z, int r, Color color);
    public abstract void drawTriangle(int x, int y, int w, int h, double rot, Color color);
    public abstract void drawTriangle(int x, int y, int z, int w, int h, double rot, Color color);
-   public abstract void drawText(String name, int x, int y, String text, Color color);
+   public abstract void drawText(String font, int x, int y, int z, String text, int size, Color color);
+   public abstract void drawText(String font, int x, int y, int z, String text, int size, Color color, boolean centered);
+   public abstract void drawCharacter(char c, Font f, int x, int y, int z, int size, Color color);
+   public abstract void drawTexture(Texture texture, int x, int y, int z, int w, int h, double rot, Color tint);
+   public abstract void drawTexture(Texture texture, int x, int y, int z, int w, int h, double rot);
+   public abstract void drawTexture(Texture texture, int x, int y, int w, int h, double rot);
 }

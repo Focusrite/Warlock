@@ -39,5 +39,7 @@ public class AttributeHandler implements Handle {
          "Your hero's movementspeed. This is the top speed you can move at.", 100));
       add(new AttributeType("tr", "Turnrate",
          "Your hero's turnrate. Higher value makes you turn faster, helps for dodging projectiles.", 5));
+      add(new AttributeType("shield", "Shield",
+         "Sheild, reflects incoming missiles", 0));
    }
 }

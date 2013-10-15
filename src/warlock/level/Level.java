@@ -5,12 +5,15 @@
 package warlock.level;
 
 import java.util.ArrayList;
+import warlock.ExtraMath;
 import warlock.camera.Camera;
 import warlock.constant.Direction;
 import warlock.graphic.Color;
 import warlock.graphic.Graphic;
 import warlock.object.LevelObject;
+import warlock.object.character.Warlock;
 import warlock.object.particle.ParticleHandler;
+import warlock.object.projectile.Projectile;
 import warlock.phys.Vector;
 import warlock.player.Player;
 
@@ -21,17 +24,16 @@ import warlock.player.Player;
 public class Level {
 
    private ArrayList<LevelObject> objects = new ArrayList<>();
+   private ArrayList<LevelObject> warlocks = new ArrayList<>();
    private ArrayList<LevelObject> removingObjects = new ArrayList<>();
    private double scrollX = 0.0;
    private double scrollY = 0.0;
    private Camera camera;
-   private Vector levelSize;
    private Vector groundSize;
 
    public Level(Camera camera) {
       this.camera = camera;
-      this.levelSize = Vector.create(512, 512);
-      this.groundSize = Vector.create(800, 800);
+      this.groundSize = Vector.create(700, 700);
       ParticleHandler.clear();
    }
 
@@ -39,9 +41,9 @@ public class Level {
    }
 
    public void addObjectRandomPosition(LevelObject o, Player owner) {
-      o.setPosition(50, 50);
+      o.setPosition((ExtraMath.getRandom().nextDouble() - 0.5) * 0.9 * groundSize.getX(),
+         (ExtraMath.getRandom().nextDouble() - 0.5) * 0.9 * groundSize.getY());
       addObject(o, owner);
-      //Remake when proper level implemented to give random valid position on level
    }
 
    public GroundType getGroundTypeAt(double x, double y) {
@@ -58,10 +60,16 @@ public class Level {
       if (owner != null) {
          o.setOwningPlayer(owner);
       }
+      if (o instanceof Warlock) {
+         warlocks.add(o);
+      }
    }
 
    public void removeObject(LevelObject o) {
       removingObjects.add(o);
+      if (o instanceof Warlock) {
+         warlocks.remove(o);
+      }
    }
 
    public void update(double dt) {
@@ -80,8 +88,8 @@ public class Level {
 
    private void collisionCheck() {
       for (int i = 0; i < objects.size(); i++) {
-         for (int j = i+1; j < objects.size(); j++) {
-            if(objects.get(i).collides(objects.get(j))) {
+         for (int j = i + 1; j < objects.size(); j++) {
+            if (objects.get(i).collides(objects.get(j))) {
                objects.get(i).handleCollision(objects.get(j));
                objects.get(j).handleCollision(objects.get(i));
             }
@@ -122,10 +130,54 @@ public class Level {
       double dy = scrollY;
 
       camera.move((float) (dx * dt), (float) (dy * dt));
+      //Constrain to level
+      if (camera.getLookAtX() > groundSize.getX() / 2 - camera.getWidth() / 2) {
+         camera.setX((float) groundSize.getX() / 2 - camera.getWidth() / 2);
+      }
+      else if (camera.getLookAtX() < -groundSize.getX() / 2 - camera.getWidth() / 2) {
+         camera.setX((float) -groundSize.getX() / 2 - camera.getWidth() / 2);
+      }
+
+      if (camera.getLookAtY() > groundSize.getY() / 2 - camera.getHeight() / 2) {
+         camera.setY((float) groundSize.getY() / 2 - camera.getHeight() / 2);
+      }
+      else if (camera.getLookAtY() < -groundSize.getY() / 2 - camera.getHeight() / 2) {
+         camera.setY((float) -groundSize.getY() / 2 - camera.getHeight() / 2);
+      }
    }
 
    public void centerCameraOn(LevelObject obj) {
       camera.reset();
       camera.move((float) obj.getX() - (camera.getWidth() / 2), (float) obj.getY() - (camera.getHeight() / 2));
+   }
+
+   public Warlock getClosestWarlock(Warlock self) {
+      Warlock target = null;
+      double minDistance = 1000000;
+      for (int i = 0; i < warlocks.size(); i++) {
+         if (warlocks.get(i) instanceof Warlock && warlocks.get(i).getOwningPlayer() != self.getOwningPlayer()
+            && self.getPosition().distance(warlocks.get(i).getPosition()) < minDistance) {
+            target = (Warlock) warlocks.get(i);
+            minDistance = warlocks.get(i).getPosition().distance(self.getPosition());
+         }
+      }
+      return target;
+   }
+
+   public Projectile getClosestProjectile(Warlock self) {
+      Projectile target = null;
+      double minDistance = 1000000;
+      for (int i = 0; i < objects.size(); i++) {
+         if (objects.get(i) instanceof Projectile && objects.get(i).getOwningPlayer() != self.getOwningPlayer()
+            && self.getPosition().distance(objects.get(i).getPosition()) < minDistance) {
+            target = (Projectile) objects.get(i);
+            minDistance = objects.get(i).getPosition().distance(self.getPosition());
+         }
+      }
+      return target;
+   }
+
+   public int getWarlocksLeft() {
+      return warlocks.size();
    }
 }

@@ -19,8 +19,10 @@ import warlock.graphic.Graphic;
 import warlock.graphic.OpenGL3Graphics;
 import warlock.input.InputHandler;
 import warlock.object.character.AttributeHandler;
+import warlock.resource.ResourceManager;
+import warlock.shop.ShopHandler;
 import warlock.state.GameState;
-import warlock.state.PlayState;
+import warlock.state.MenuState;
 import warlock.time.Misc;
 
 public class Main {
@@ -73,6 +75,7 @@ public class Main {
    public void create() throws LWJGLException {
       //Display
       Display.setDisplayMode(new DisplayMode(DISPLAY_WIDTH, DISPLAY_HEIGHT));
+      Display.setVSyncEnabled(true);
 
       Display.setFullscreen(false);
       Display.create();
@@ -90,7 +93,7 @@ public class Main {
       resize();
 
       //Game
-      GameState.setInstance(new PlayState());
+      GameState.setInstance(new MenuState());
       graphic.setCamera(GameState.getInstance().getCamera());
    }
 
@@ -103,8 +106,10 @@ public class Main {
 
    public void init() {
       //Init handlers
+      HandleLoader.register(ResourceManager.class);
       HandleLoader.register(AttributeHandler.class);
       HandleLoader.register(FontHandler.class);
+      HandleLoader.register(ShopHandler.class);
       HandleLoader.initAll();
       graphic.init();
 
@@ -138,7 +143,7 @@ public class Main {
    }
 
    public void run() {
-      while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+      while (!Display.isCloseRequested() && !GameState.getInstance().isExitRequested()) {
          if (Display.isVisible()) {
             update();
             render();
@@ -163,7 +168,7 @@ public class Main {
       long curTime = Misc.millitime();
       double dt = Misc.secondsBetween(lastUpdate, curTime);
       lastUpdate = curTime;
-      handleInput(dt);
       GameState.getInstance().update(dt);
+      handleInput(dt);
    }
 }

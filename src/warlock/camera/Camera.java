@@ -47,19 +47,28 @@ public class Camera {
       lookAt = new Vector3f(EYE_X, EYE_Y, LOOKAT_Z);
       cameraPosition = new Vector3f(EYE_X, EYE_Y, EYE_Z);
       tilt = new Vector3f(0.0f, 1.0f, 0.0f);
+      buildViewMatrix();
+      buildProjectionMatrix();
    }
 
    public void move(float dx, float dy, float dz) {
       lookAt.x += dx;
-//      if(lookAt.x < LOWER_BOUND_X) lookAt.x = LOWER_BOUND_X;
-//      if(lookAt.x > UPPER_BOUND_X) lookAt.x = UPPER_BOUND_X;
       lookAt.y += dy;
-//      if(lookAt.x < LOWER_BOUND_Y) lookAt.x = LOWER_BOUND_Y;
-//      if(lookAt.x > UPPER_BOUND_Y) lookAt.x = UPPER_BOUND_Y;
-      //lookAt.z += dz;
       cameraPosition.x = lookAt.x;
       cameraPosition.y = lookAt.y;
       cameraPosition.z += dz;
+      buildViewMatrix(); //Update view matrix
+   }
+
+   public void setX(float x) {
+      this.lookAt.x = x;
+      this.cameraPosition.x = x;
+      buildViewMatrix(); //Update view matrix
+   }
+
+   public void setY(float y) {
+      this.lookAt.y = y;
+      this.cameraPosition.y = y;
       buildViewMatrix(); //Update view matrix
    }
 

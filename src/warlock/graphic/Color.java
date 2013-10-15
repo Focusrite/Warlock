@@ -12,17 +12,36 @@ import warlock.ExtraMath;
  */
 public class Color {
 
+   public static final Color BLACK = new Color(0, 0, 0);
+   public static final Color WHITE = new Color(255, 255, 255);
+   public static final Color LIGHT_GREY = new Color(200, 200, 200);
+   public static final Color GREY = new Color(150, 150, 150);
+   public static final Color DARK_GREY = new Color(100, 100, 100);
+   public static final Color GOLD = new Color(255, 204, 0);
    public static final Color RED = new Color(255, 0, 0);
    public static final Color WINE_RED = new Color(150, 50, 50);
    public static final Color BLUE = new Color(0, 0, 255);
    public static final Color SKY_BLUE = new Color(0, 128, 255);
-   int r, g, b, a;
+   public static final Color SLIME_GREEN = new Color(0, 255, 0);
+   public static final Color GREEN = new Color(0, 170, 0);
+   public static final Color GREENISH = new Color(50, 220, 114);
+   public static final Color PURPLE = new Color(162, 0, 255);
+   public static final Color PINK = new Color(255, 0, 247);
+   public static final Color DARK_GREEN = new Color(0, 128, 0);
+   public static final Color NONE = new Color(0, 0, 0, 0);
+   public static final Color YELLOW = new Color(255, 255, 0);
+   public static final Color ORANGE = new Color(255, 198, 64);
+   public int r, g, b, a;
 
    public Color(int r, int g, int b, int a) {
       this.r = r % 256;
       this.g = g % 256;
       this.b = b % 256;
       this.a = a % 256;
+   }
+
+   public Color(Color color) {
+      this(color.r, color.g, color.b);
    }
 
    public Color(int r, int g, int b) {
@@ -42,7 +61,8 @@ public class Color {
       return new Color(r, g, b, a);
    }
 
-   public org.newdawn.slick.Color toSlick() {
-      return new org.newdawn.slick.Color(r, g, b, a);
+   @Override
+   public String toString() {
+      return "|" + String.format("%03d", r) + String.format("%03d", g) + String.format("%03d", b);
    }
 }

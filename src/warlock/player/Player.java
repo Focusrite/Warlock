@@ -18,10 +18,26 @@ import warlock.spell.SpellShortcut;
  * @author Focusrite
  */
 public class Player implements Comparable<Player> {
+   public static final Color[] PRIMARY_COLORS = {
+      Color.RED,
+      Color.BLUE,
+      Color.GREEN,
+      Color.YELLOW,
+      Color.PURPLE
+   };
+   public static final Color[] SECONDARY_COLORS = {
+      Color.WINE_RED,
+      Color.SKY_BLUE,
+      Color.GREENISH,
+      Color.ORANGE,
+      Color.PINK
+   };
 
    private int playerId;
    private int gold = 10;
    private int score = 0;
+   private int killingblows = 0;
+   private String name;
    private double scrollSpeed = 300.0f;
    private Warlock warlock;
    private Color primaryColor;
@@ -32,6 +48,15 @@ public class Player implements Comparable<Player> {
       this.playerId = playerId;
       this.primaryColor = primary;
       this.secondaryColor = secondary;
+      this.name = "Player " + playerId;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
    }
 
    public Color getPrimaryColor() {
@@ -44,6 +69,14 @@ public class Player implements Comparable<Player> {
 
    public Color getSecondaryColor() {
       return secondaryColor;
+   }
+
+   public int getKillingblows() {
+      return killingblows;
+   }
+
+   public void setKillingblows(int killingblows) {
+      this.killingblows = killingblows;
    }
 
    public void setSecondaryColor(Color secondaryColor) {
@@ -148,12 +181,22 @@ public class Player implements Comparable<Player> {
       handleScrolling(input);
 
       if (input.isMouseDown(0)) {
-         Vector direction = windowToLevelXY(input.getMouseX(), input.getMouseY()).
-            subtract(getWarlock().getPosition()); //the directional vector from position to mouseclick
-         getWarlock().castSpell(SpellShortcut.MB, direction.getAngle());
+         getWarlock().castSpell(SpellShortcut.MB, windowToLevelXY(input.getMouseX(), input.getMouseY()));
       }
       if (input.isMouseDown(1)) {
          getWarlock().setMoveTo(windowToLevelXY(input.getMouseX(), input.getMouseY()));
+      }
+      if (input.keyHeld(Keyboard.KEY_Q)) {
+         getWarlock().castSpell(SpellShortcut.Q, windowToLevelXY(input.getMouseX(), input.getMouseY()));
+      }
+      if (input.keyHeld(Keyboard.KEY_E)) {
+         getWarlock().castSpell(SpellShortcut.E, windowToLevelXY(input.getMouseX(), input.getMouseY()));
+      }
+      if (input.keyHeld(Keyboard.KEY_R)) {
+         getWarlock().castSpell(SpellShortcut.R, windowToLevelXY(input.getMouseX(), input.getMouseY()));
+      }
+      if (input.keyHeld(Keyboard.KEY_SPACE)) {
+         getWarlock().castSpell(SpellShortcut.SPC, windowToLevelXY(input.getMouseX(), input.getMouseY()));
       }
    }
 
@@ -162,6 +205,11 @@ public class Player implements Comparable<Player> {
 
    @Override
    public int compareTo(Player t) {
-      return getScore() - t.getScore();
+      return t.getScore() - getScore();
+   }
+
+   @Override
+   public String toString() {
+      return name;
    }
 }

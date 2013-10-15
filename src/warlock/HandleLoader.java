@@ -32,7 +32,8 @@ public class HandleLoader {
             m.invoke(null);
          }
          catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e.getCause().toString());
+            e.getCause().printStackTrace();
          }
       }
    }

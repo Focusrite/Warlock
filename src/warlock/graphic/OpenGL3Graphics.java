@@ -14,6 +14,8 @@ import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.opengl.Texture;
 import warlock.camera.Camera;
+import warlock.font.Font;
+import warlock.font.FontDefinition;
 import warlock.font.FontHandler;
 
 /**
@@ -21,14 +23,12 @@ import warlock.font.FontHandler;
  * @author Focusrite
  */
 public class OpenGL3Graphics extends Graphic {
+
    private static final int SHADERMODE_COLOR = 0;
    private static final int SHADERMODE_TEXTURE = 1;
-
    private Map<String, VertexDefination> vertexDefinations = new HashMap<>();
    private static final int CIRCLE_DENSITY = 12;
    private static final float Z_ELEVATION = 0.01f;
-   //Texture
-   private int textureId;
    //Shader handles
    private ShaderProgram shader;
    private int mvpId;
@@ -178,17 +178,23 @@ public class OpenGL3Graphics extends Graphic {
       createVertexDefinations();
 
       //2D Initialization
+      glEnable(GL_TEXTURE_2D);
       glEnable(GL_DEPTH_TEST);
-      glEnable(GL_BLEND);
+      glDisable(GL_LIGHTING);
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+      glEnable(GL_BLEND);
+      glClearColor(0.1f, 0.1f, 0.1f, 0.0f);
 
       //Init shaders, obviously load in a better way
       loadShaders("shaders/vertexshader.glsl", "shaders/fragmentshader.glsl");
    }
 
    private void bindTexture(Texture tex) {
+      glBindTexture(GL_TEXTURE_2D, tex.getTextureID());
+   }
 
+   private void unbindTexture() {
+      glBindTexture(GL_TEXTURE_2D, 0);
    }
 
    private void createVertexDefinations() {
@@ -199,27 +205,29 @@ public class OpenGL3Graphics extends Graphic {
          -1.0f, -1.0f, 0.0f //lower left
       };
       float uv[] = {
-         0.0f, 1.0f,
-         1.0f, 1.0f,
          0.0f, 0.0f,
-      };
+         1.0f, 0.0f,
+         0.0f, 1.0f};
       VertexDefination triangle = new VertexDefination(vertices, uv, GL_TRIANGLES);
       vertexDefinations.put("triangle", triangle);
 
       //Rectangle
       vertices = new float[]{
-         -1.0f, -1.0f, 0.0f,
          -1.0f, 1.0f, 0.0f,
-         1.0f, -1.0f, 0.0f,
-         1.0f, 1.0f, 0.0f
-      };
+         1.0f, 1.0f, 0.0f,
+         -1.0f, -1.0f, 0.0f,
+         -1.0f, -1.0f, 0.0f,
+         1.0f, 1.0f, 0.0f,
+         1.0f, -1.0f, 0.0f,};
       uv = new float[]{
          0.0f, 0.0f,
+         1.0f, 0.0f,
+         0.0f, 1.0f,
          0.0f, 1.0f,
          1.0f, 0.0f,
-         1.0f, 1.0f,
+         1.0f, 1.0f
       };
-      VertexDefination rectangle = new VertexDefination(vertices, uv, GL_TRIANGLE_STRIP);
+      VertexDefination rectangle = new VertexDefination(vertices, uv, GL_TRIANGLES); //Because textures are fucked with triangle_strip
       vertexDefinations.put("rectangle", rectangle);
 
       //Circle
@@ -242,7 +250,7 @@ public class OpenGL3Graphics extends Graphic {
          vertices[i * 3 + 1] = y;
          vertices[i * 3 + 2] = 0.0f;
          uv[i * 2] = (x / 2) + uv[0]; //Clamp to [0,1]
-         uv[i * 2 +1] = (y / 2) + uv[1]; //Clamp to [0,1]
+         uv[i * 2 + 1] = (y / 2) + uv[1]; //Clamp to [0,1]
 
       }
       VertexDefination circle = new VertexDefination(vertices, uv, GL_TRIANGLE_FAN);
@@ -253,15 +261,7 @@ public class OpenGL3Graphics extends Graphic {
    public void resize() {
       //2D Scene
       glViewport(0, 0, getScreenWidth(), getScreenHeight());
-
       glMatrixMode(GL_PROJECTION);
-      //glLoadIdentity();
-      //gluOrtho2D(0.0f, getScreenWidth(), 0.0f, getScreenHeight());
-      //glPushMatrix();
-
-      //glMatrixMode(GL_MODELVIEW);
-      //glLoadIdentity();
-      //glPushMatrix();
    }
 
    private void setShaderMode(int mode) {
@@ -286,11 +286,51 @@ public class OpenGL3Graphics extends Graphic {
       shader.init(vertexPath, fragmentPath);
       mvpId = glGetUniformLocation(shader.getProgramId(), "MVP");
       colorId = glGetUniformLocation(shader.getProgramId(), "color");
-      //shaderModeId = glGetUniformLocation(shader.getProgramId(), "shaderMode");
+      shaderModeId = glGetUniformLocation(shader.getProgramId(), "shaderMode");
    }
 
    @Override
-   public void drawText(String name, int x, int y, String text, Color color) {
-      FontHandler.drawFont(name, x, y, text, color);
+   public void drawText(String font, int x, int y, int z, String text, int size, Color color) {
+      drawText(font, x, y, z, text, size, color, false);
+   }
+
+   @Override
+   public void drawText(String font, int x, int y, int z, String text, int size, Color color, boolean centered) {
+      FontHandler.drawFont(this, font, x, y, z, text, size, color, centered);
+   }
+
+   @Override
+   public void drawCharacter(char c, Font f, int x, int y, int z, int size, Color color) {
+      FontDefinition def = f.getDefinition(c);
+      setShaderMode(SHADERMODE_TEXTURE);
+      float sizeFactor = size / (f.getSize() * 2.0f);
+      bindTexture(f.getTexture());
+      bindColor(color);
+      Matrix4f mvp = buildMVPMatrix(buildModelMatrix(
+         new Vector3f(x + (def.getWidth() / 2), y  - def.getOffset() - (def.getHeight() / 2), //def.getHeight() - size
+         Z_ELEVATION * z), 0, //Pos
+         new Vector3f(def.getWidth() * sizeFactor, def.getHeight() * sizeFactor, 1)), getCamera()); //Size
+      drawDefination(def.getDefinition(), mvp);
+      unbindTexture();
+      setShaderMode(SHADERMODE_COLOR);
+   }
+
+   @Override
+   public void drawTexture(Texture texture, int x, int y, int z, int w, int h, double rot, Color tint) {
+      setShaderMode(SHADERMODE_TEXTURE);
+      bindTexture(texture);
+      drawRectangle(x, y, z, w, h, rot, tint);
+      unbindTexture();
+      setShaderMode(SHADERMODE_COLOR);
+   }
+
+   @Override
+   public void drawTexture(Texture texture, int x, int y, int z, int w, int h, double rot) {
+      drawTexture(texture, x, y, z, w, h, rot, Color.WHITE);
+   }
+
+   @Override
+   public void drawTexture(Texture texture, int x, int y, int w, int h, double rot) {
+      drawTexture(texture, x, y, 0, w, h, rot);
    }
 }

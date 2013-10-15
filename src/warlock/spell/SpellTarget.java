@@ -9,5 +9,5 @@ package warlock.spell;
  * @author Focusrite
  */
 public enum SpellTarget {
-   TARGET, GROUND, SELF
+   GROUND, SELF
 }

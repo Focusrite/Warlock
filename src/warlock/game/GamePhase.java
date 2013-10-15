@@ -7,6 +7,7 @@ package warlock.game;
 import warlock.graphic.Graphic;
 import warlock.hud.Hud;
 import warlock.input.InputHandler;
+import warlock.player.Player;
 
 /**
  *
@@ -39,6 +40,7 @@ public abstract class GamePhase {
    public abstract void render(Graphic g);
    public abstract void update(double dt);
    public abstract void init();
+   public void notifyDeath(Player p, Player killer) {}
    public void handleInput(InputHandler input) {}
    //overidable terminate action for cleanup
    public void terminate() { }

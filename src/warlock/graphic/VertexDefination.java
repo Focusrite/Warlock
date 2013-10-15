@@ -28,7 +28,7 @@ public class VertexDefination {
    private static final int VERTEX_SIZE = 3;
    private static final int UV_SIZE = 2;
 
-   public VertexDefination(float[] vertices, float[] uv, int drawMethod) {
+   public VertexDefination(float[] vertices, float[] uv, int drawMethod) {//float[] uv
       assert vertices.length % VERTEX_SIZE == 0 && vertices.length % VERTEX_SIZE == uv.length % UV_SIZE;
       //this.vertices = new Vertex[vertices.length % VERTEX_SIZE];
       this.drawMethod = drawMethod;
@@ -43,7 +43,7 @@ public class VertexDefination {
       //Color buffer
       uvBuffer = BufferUtils.createFloatBuffer(uv.length);
       for (int i = 0; i < uv.length; i++) {
-         positionBuffer.put(uv[i]);
+         uvBuffer.put(uv[i]);
       }
       uvBuffer.flip();
 
@@ -60,10 +60,10 @@ public class VertexDefination {
       vertexPositionBufferId = GL15.glGenBuffers();
       GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexPositionBufferId);
       GL15.glBufferData(GL15.GL_ARRAY_BUFFER, positionBuffer, GL15.GL_STATIC_DRAW);
-      //Color buffer
-      //vertexUVBufferId = GL15.glGenBuffers();
-      //GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexUVBufferId);
-      //GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexUVBufferId, GL15.GL_STATIC_DRAW);
+      //UV buffer
+      vertexUVBufferId = GL15.glGenBuffers();
+      GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexUVBufferId);
+      GL15.glBufferData(GL15.GL_ARRAY_BUFFER, uvBuffer, GL15.GL_STATIC_DRAW);
       //unbind
       GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
    }
@@ -73,15 +73,15 @@ public class VertexDefination {
       GL30.glBindVertexArray(vertexArrayId);
       //Enable attrib array for shader
       GL20.glEnableVertexAttribArray(0); //Position at 0
-      //GL20.glEnableVertexAttribArray(1); //UV at 1
+      GL20.glEnableVertexAttribArray(1); //UV at 1
 
       //Bind position to 0
       GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexPositionBufferId);
       GL20.glVertexAttribPointer(0, VERTEX_SIZE, GL11.GL_FLOAT, false, 0, 0);
 
       //Bind UV to 1
-      //GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexUVBufferId);
-      //GL20.glVertexAttribPointer(1, UV_SIZE, GL11.GL_FLOAT, false, 0, 0);
+      GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vertexUVBufferId);
+      GL20.glVertexAttribPointer(1, UV_SIZE, GL11.GL_FLOAT, false, 0, 0);
 
       //Unbind
       GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
@@ -110,12 +110,12 @@ public class VertexDefination {
    public void bindDefiniaton() {
       GL30.glBindVertexArray(vertexArrayId);
       GL20.glEnableVertexAttribArray(0); // VertexPosition
-      //GL20.glEnableVertexAttribArray(1); // VertexUV
+      GL20.glEnableVertexAttribArray(1); // VertexUV
    }
 
    public void unbind() {
       GL20.glDisableVertexAttribArray(0);
-      //GL20.glDisableVertexAttribArray(1);
+      GL20.glDisableVertexAttribArray(1);
       GL30.glBindVertexArray(0);
    }
 }

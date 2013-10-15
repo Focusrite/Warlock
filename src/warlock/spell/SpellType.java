@@ -8,5 +8,6 @@ package warlock.spell;
  *
  * @author Focusrite
  */
-public class SpellType {
+public enum SpellType {
+   PROJECTILE, OFFENSIVE, ESCAPE, DEFENSIVE
 }

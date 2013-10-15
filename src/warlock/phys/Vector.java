@@ -18,6 +18,30 @@ public class Vector {
    private double angle = 0;
    private double length = 0;
 
+   @Override
+   public int hashCode() {
+      int hash = 7;
+      return hash;
+   }
+
+   @Override
+   public boolean equals(Object obj) {
+      if (obj == null) {
+         return false;
+      }
+      if (getClass() != obj.getClass()) {
+         return false;
+      }
+      final Vector other = (Vector) obj;
+      if (Double.doubleToLongBits(this.x) != Double.doubleToLongBits(other.x)) {
+         return false;
+      }
+      if (Double.doubleToLongBits(this.y) != Double.doubleToLongBits(other.y)) {
+         return false;
+      }
+      return true;
+   }
+
    /*
     * Getters and setters
     */
@@ -66,7 +90,7 @@ public class Vector {
 
    public final void setAngle(double angle) {
       angle = (angle) % (2 * Math.PI);
-      angle = (angle >= 0) ? angle : (2*Math.PI) + angle;
+      angle = (angle >= 0) ? angle : (2 * Math.PI) + angle;
       this.angle = angle;
       this.updateCartesian();
    }
@@ -76,8 +100,8 @@ public class Vector {
    }
 
    /**
-    * Constructor for class Vector, takes polar coordinates. Use static method create if
-    * values on cartesian form are desired instead.
+    * Constructor for class Vector, takes polar coordinates. Use static method create if values on
+    * cartesian form are desired instead.
     *
     * @param length length
     * @param angle angle in radians
@@ -92,7 +116,12 @@ public class Vector {
    /**
     * Empty constructor
     */
-   public Vector() { }
+   public Vector() {
+   }
+
+   public Vector(Vector v) {
+      this(v.length, v.angle);
+   }
 
    /**
     * Functions simiar to the constructor but takes the values in cartesian form instead
@@ -148,6 +177,6 @@ public class Vector {
    }
 
    public double angleBetween(Vector v) {
-      return (getLength() - v.getLength()) % Math.PI;
+      return (getAngle() - v.getAngle()) % Math.PI;
    }
 }

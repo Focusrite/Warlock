@@ -16,6 +16,7 @@ import warlock.input.InputHandler;
  */
 public abstract class GameState {
    private static GameState instance;
+   private static boolean exitRequested = false;
    private Camera camera;
 
    public Camera getCamera() {
@@ -39,6 +40,14 @@ public abstract class GameState {
       g.setCamera(cam);
       g.init();
       return g;
+   }
+
+   public void exit() {
+      exitRequested = true;
+   }
+
+   public boolean isExitRequested() {
+      return exitRequested;
    }
 
    public static GameState getInstance() {

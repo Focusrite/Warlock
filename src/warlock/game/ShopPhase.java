@@ -8,40 +8,51 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import warlock.graphic.Graphic;
+import warlock.hud.ShopHud;
+import warlock.input.InputHandler;
+import warlock.shop.Shop;
 
 /**
  *
  * @author Focusrite
  */
 public class ShopPhase extends GamePhase {
-   private static final int SHOPTIME = 20*1000; //20 seconds in milliseconds
-   private Timer shoptime;
+   public static final int SHOPTIME = 15; //15 seconds
+   private Shop shop;
+   private ShopHud hud;
 
    public ShopPhase(final Game owner) {
       super(owner);
-      this.shoptime = new Timer(SHOPTIME, new ActionListener() {
-         @Override
-         public void actionPerformed(ActionEvent ae) {
-            owner.setPhase(new PlayPhase(getOwner()));
-            //add transition
-         }
-      });
-      this.shoptime.setRepeats(false);
-      this.shoptime.start();
    }
 
    @Override
    public void render(Graphic g) {
-      throw new UnsupportedOperationException("Not supported yet.");
+      hud.render(g);
    }
 
    @Override
    public void update(double dt) {
-      throw new UnsupportedOperationException("Not supported yet.");
+      hud.update(dt);
    }
 
    @Override
    public void init() {
-      throw new UnsupportedOperationException("Not supported yet.");
+      Timer t = new Timer(SHOPTIME*1000, new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent ae) {
+            getOwner().setPhase(new PlayPhase(getOwner()));
+            //add transition
+         }
+      });
+      t.setRepeats(false);
+      t.start();
+      shop = new Shop(getOwner().getPlayer());
+      hud = new ShopHud(shop, getOwner().getScoreTable(), getOwner().getFirstTo());
+      getOwner().getCamera().reset();
+   }
+
+   @Override
+   public void handleInput(InputHandler input) {
+      hud.handleInput(input);
    }
 }

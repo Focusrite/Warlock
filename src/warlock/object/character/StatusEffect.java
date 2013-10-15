@@ -22,6 +22,7 @@ public class StatusEffect {
    //Time
    private boolean temporary;
    private long exprStamp;
+   private boolean manualExpired;
 
    public StatusEffect(Attribute affectedAttr, StatusEffectType type) {
       this.affectedAttr = affectedAttr;
@@ -36,6 +37,10 @@ public class StatusEffect {
 
    public Attribute getAttr() {
       return affectedAttr;
+   }
+
+   public void forceExpiration() {
+      manualExpired = true;
    }
 
    public double getMagnitude() {
@@ -79,7 +84,7 @@ public class StatusEffect {
    }
 
    public boolean hasExpired() {
-      return getTimeLeft() < 0;
+      return getTimeLeft() < 0 || manualExpired;
    }
 
    public void onset() {

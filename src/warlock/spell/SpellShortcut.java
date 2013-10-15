@@ -9,5 +9,5 @@ package warlock.spell;
  * @author Focusrite
  */
 public enum SpellShortcut {
-   MB, Q, W, E, R
+   MB, Q, E, R, SPC
 }
