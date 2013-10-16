@@ -14,7 +14,7 @@ import warlock.phys.Vector;
  */
 public class Lightning extends Spell {
    private static final double range[] = {300, 300, 350, 350, 400};
-   private static final double knockback[] = {200, 250, 300, 350, 400};
+   private static final double knockback[] = {400, 450, 500, 550, 600};
    private static final double cooldown[] = {10, 10, 10, 10, 10};
    private static final double speed[] = {300, 300, 300, 300, 300};
 

@@ -21,13 +21,14 @@ import warlock.phys.Force;
 import warlock.phys.Vector;
 import warlock.player.Player;
 import warlock.resource.ResourceManager;
+import warlock.spell.Explosion;
 import warlock.spell.Fireball;
 import warlock.spell.Spell;
 import warlock.spell.SpellShortcut;
 import warlock.time.Misc;
 
 /**
- *       ////////////// TODO: TWEAK MOVEMENT //////////////
+ *
  *
  * @author Focusrite
  */
@@ -40,7 +41,7 @@ public class Warlock extends LevelObject {
    private static final int HPBAR_OFFSET = 25;
    private static final int HPBAR_WIDTH = 35;
    private static final int HPBAR_HEIGHT = 5;
-   private static double FRICTION = 0.98;
+   private static double FRICTION = 200;
    private double lavaCounter = 0.0f;
    private Map<String, Attribute> attributes = new HashMap<>();
    private Map<SpellShortcut, Spell> spells = new EnumMap<>(SpellShortcut.class);
@@ -56,6 +57,7 @@ public class Warlock extends LevelObject {
       dead = false;
       facingAngle = 0;
       addSpell(SpellShortcut.MB, new Fireball(this));
+      addSpell(SpellShortcut.R, new Explosion(this));
       init();
    }
 
@@ -73,6 +75,7 @@ public class Warlock extends LevelObject {
 
    public void cure() {
       dead = false;
+      statusEffects = new ArrayList<>();
       this.momentum = new Force();
       this.moveTo = null;
       for (int i = 0; i < this.attributes.size(); i++) {
@@ -140,13 +143,21 @@ public class Warlock extends LevelObject {
       return facingAngle;
    }
 
-   public void inflictStatusEffect(StatusEffectType type, double secondsLasting, Player inflicter) {
+   public void inflictStatusEffect(StatusEffectType type, double secondsLasting, Player inflicter,
+      StatusEffectListener listener) {
+
       StatusEffect effect = StatusEffect.newInstance(this.attr(type.getAffectedTag()), type);
       effect.setInflicter(inflicter).setTemporary((secondsLasting > 0)).
          setExprStamp((secondsLasting > 0) ? Misc.relativetime(secondsLasting) : 0);
 
       effect.onset(); //"start" status effect
+      if(listener != null) {
+         effect.addListener(listener);
+      }
       statusEffects.add(effect);
+   }
+   public void inflictStatusEffect(StatusEffectType type, double secondsLasting, Player inflicter) {
+      inflictStatusEffect(type, secondsLasting, inflicter, null);
    }
 
    public void inflictStatusEffect(StatusEffectType type, Player inflicter) {
@@ -185,7 +196,7 @@ public class Warlock extends LevelObject {
    }
 
    public void steer(double dt) {
-      if (this.moveTo == null) {
+      if (this.moveTo == null || isStunned()) {
          return;
       }
       Vector directionVector = this.moveTo.subtract(getPosition());
@@ -221,7 +232,7 @@ public class Warlock extends LevelObject {
             setMomentum(new Force(0, 0));
          }
          else {
-            setMomentum(getMomentum().scale(Warlock.FRICTION));
+            setMomentum(getMomentum().add(new Vector(Warlock.FRICTION * dt, getMomentum().getAngle() - Math.PI)));
          }
       }
    }
@@ -290,6 +301,9 @@ public class Warlock extends LevelObject {
    }
 
    public void castSpell(SpellShortcut shorcut, Vector castingPoint) {
+      if(isStunned()) {
+         return;
+      }
       Spell spell = this.spells.get(shorcut);
       if (spell != null && spell.canCast()) {
          spell.preCast();
@@ -333,7 +347,7 @@ public class Warlock extends LevelObject {
    @Override
    public void render(Graphic g) {
       //draw hero
-      g.drawRectangle((int) getPosition().getX(), (int) getPosition().getY(), ZLayers.OBJECT,
+      g.drawRectangle((int) getPosition().getX(), (int) getPosition().getY(), ZLayers.ON_GROUND,
          WARLOCK_SIZE, WARLOCK_SIZE, getFacingAngle(), getOwningPlayer().getPrimaryColor());
       drawHPbar(g, (int) getPosition().getX(), (int) getPosition().getY() + HPBAR_OFFSET, ZLayers.ABOVE_LEVEL, HPBAR_WIDTH, HPBAR_HEIGHT);
       if(attrVal("shield") > 0) {
@@ -392,5 +406,9 @@ public class Warlock extends LevelObject {
 
    public Warlock getClosestWarlock() {
       return getLevel().getClosestWarlock(this);
+   }
+
+   private boolean isStunned() {
+      return attrVal("stun") != 0;
    }
 }

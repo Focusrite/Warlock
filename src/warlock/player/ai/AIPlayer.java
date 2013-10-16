@@ -83,7 +83,7 @@ public class AIPlayer extends Player {
                      return (ExtraMath.getRandom().nextInt(1) == 0) ? -1 : 1;
                   }
                   else {
-                     return t.getGoldCost() - t1.getGoldCost();
+                     return t1.getGoldCost() - t.getGoldCost();
                   }
                }
             });

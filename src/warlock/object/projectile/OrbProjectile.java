@@ -50,6 +50,9 @@ public class OrbProjectile extends Projectile {
          return;
       }
       Warlock closest = getLevel().getClosestWarlock(getOwningPlayer().getWarlock());
+      if(closest == null) {
+         return;
+      }
       Vector v = closest.getPosition().subtract(getPosition());
       double dAngle = v.angleBetween(getHeading());
       dAngle = (Math.abs(dAngle) > RADIANS_PER_SECONDS) ? (dAngle >= 0)

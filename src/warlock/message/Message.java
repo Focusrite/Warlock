@@ -37,6 +37,11 @@ public class Message {
      "%s won the round!",
      "All hail %s, winner of the round!"
    };
+   public static final String[] DENIED = {
+     "%s denied himself!",
+     "%s is playing Pudge, denied!",
+     "%s is no fun, denied himself!"
+   };
 
    public Message(String message, double lifetime) {
       this.message = message;

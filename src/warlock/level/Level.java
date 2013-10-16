@@ -24,16 +24,16 @@ import warlock.player.Player;
 public class Level {
 
    private ArrayList<LevelObject> objects = new ArrayList<>();
-   private ArrayList<LevelObject> warlocks = new ArrayList<>();
+   private ArrayList<Warlock> warlocks = new ArrayList<>();
    private ArrayList<LevelObject> removingObjects = new ArrayList<>();
    private double scrollX = 0.0;
    private double scrollY = 0.0;
    private Camera camera;
    private Vector groundSize;
 
-   public Level(Camera camera) {
+   public Level(Camera camera, int size) {
       this.camera = camera;
-      this.groundSize = Vector.create(700, 700);
+      this.groundSize = Vector.create(size, size);
       ParticleHandler.clear();
    }
 
@@ -61,7 +61,7 @@ public class Level {
          o.setOwningPlayer(owner);
       }
       if (o instanceof Warlock) {
-         warlocks.add(o);
+         warlocks.add((Warlock)o);
       }
    }
 
@@ -155,7 +155,7 @@ public class Level {
       Warlock target = null;
       double minDistance = 1000000;
       for (int i = 0; i < warlocks.size(); i++) {
-         if (warlocks.get(i) instanceof Warlock && warlocks.get(i).getOwningPlayer() != self.getOwningPlayer()
+         if (warlocks.get(i).getOwningPlayer() != self.getOwningPlayer()
             && self.getPosition().distance(warlocks.get(i).getPosition()) < minDistance) {
             target = (Warlock) warlocks.get(i);
             minDistance = warlocks.get(i).getPosition().distance(self.getPosition());
@@ -180,4 +180,17 @@ public class Level {
    public int getWarlocksLeft() {
       return warlocks.size();
    }
+
+   public ArrayList<Warlock> getWarlocksInDistance(Vector position, Warlock self, double radius) {
+      ArrayList<Warlock> inDistance = new ArrayList<>();
+      for (int i = 0; i < warlocks.size(); i++) {
+         if(warlocks.get(i).getOwningPlayer() != self.getOwningPlayer() &&
+            position.distance(warlocks.get(i).getPosition()) <= radius) {
+            inDistance.add(warlocks.get(i));
+         }
+      }
+      return inDistance;
+   }
+
+   
 }

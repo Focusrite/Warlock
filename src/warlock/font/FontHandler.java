@@ -9,22 +9,19 @@ import java.util.Map;
 import org.newdawn.slick.opengl.Texture;
 import org.w3c.dom.Document;
 import warlock.Handle;
-import warlock.resource.ResourceManager;
 import warlock.graphic.Color;
 import warlock.graphic.Graphic;
+import warlock.resource.ResourceManager;
 
 /**
  *
  * @author Focusrite
  */
 public class FontHandler implements Handle {
-
-   private static final boolean ANTIALIASING = false;
    private static Map<String, Font> fonts = new HashMap<>();
 
    public static void init() {
       load("Visitor", "fonts/visitor.png", "fonts/visitor.xml");
-      load("Avantgarde", "fonts/avantgarde.png", "fonts/avantgarde.xml");
    }
 
    public static void load(String name, String textureResource, String xmlResource) {

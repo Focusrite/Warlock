@@ -17,12 +17,13 @@ import warlock.shop.Shop;
  * @author Focusrite
  */
 public class ShopPhase extends GamePhase {
-   public static final int SHOPTIME = 15; //15 seconds
    private Shop shop;
    private ShopHud hud;
+   private int shopTime;
 
-   public ShopPhase(final Game owner) {
+   public ShopPhase(final Game owner, int shopTime) {
       super(owner);
+      this.shopTime = shopTime;
    }
 
    @Override
@@ -37,7 +38,7 @@ public class ShopPhase extends GamePhase {
 
    @Override
    public void init() {
-      Timer t = new Timer(SHOPTIME*1000, new ActionListener() {
+      Timer t = new Timer((int)(shopTime*1000), new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent ae) {
             getOwner().setPhase(new PlayPhase(getOwner()));
@@ -47,7 +48,7 @@ public class ShopPhase extends GamePhase {
       t.setRepeats(false);
       t.start();
       shop = new Shop(getOwner().getPlayer());
-      hud = new ShopHud(shop, getOwner().getScoreTable(), getOwner().getFirstTo());
+      hud = new ShopHud(shop, getOwner().getScoreTable(), getOwner().getFirstTo(), shopTime);
       getOwner().getCamera().reset();
    }
 

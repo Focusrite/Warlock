@@ -14,6 +14,9 @@ import warlock.game.ShopPhase;
 import warlock.graphic.Color;
 import warlock.graphic.Graphic;
 import warlock.hud.interactables.Interactable;
+import warlock.hud.interactables.InteractableInfo;
+import warlock.hud.interactables.InteractableListener;
+import warlock.hud.interactables.InteractableListenerSlim;
 import warlock.hud.interactables.InteractableTextureButton;
 import warlock.input.InputHandler;
 import warlock.player.Player;
@@ -61,42 +64,72 @@ public class ShopHud extends Hud {
    private double timeLeft;
    private int firstTo;
    private Shop shop;
+   private InteractableTextureButton buyButton;
    private ArrayList<Interactable> interactables = new ArrayList<>();
    private ArrayList<Player> scoretable;
 
-   public ShopHud(Shop shop, ArrayList<Player> scoretable, int firstTo) {
+   public ShopHud(Shop shop, ArrayList<Player> scoretable, int firstTo, int shopTime) {
       super(shop.getShoppingPlayer());
       this.shop = shop;
       this.firstTo = firstTo;
       this.scoretable = scoretable;
+      timeLeft = shopTime;
       init();
    }
 
    private void init() {
-      timeLeft = ShopPhase.SHOPTIME;
+      //Buy button
+      InteractableTextureButton buy = new InteractableTextureButton(
+         Display.getWidth() - BUY_OFFSETX,
+         Display.getHeight() - (INFO_AREA_OFFSETY + (INFO_AREA_HEIGHT / 2) - BUY_OFFSETY),
+         BUY_WIDTH, BUY_HEIGHT,
+         "ui-buy", Color.LIGHT_GREY, Color.WHITE);
+      buyButton = buy;
+      interactables.add(buy);
+      buy.addListener(new InteractableListenerSlim() {
+         @Override
+         public void clicked(InteractableInfo source) {
+            shop.clicked(source);
+            buyButton.setDisabled(!shop.getCurrentlySelected().canPurchase(shop.getShoppingPlayer()));
+         }
+      });
+      initShopIcons();
+   }
+
+   private void initShopIcons() {
+      //Shop icons
       Iterator<ShopColumn> columnIter = shop.getColumnIterator();
       int x = SHOP_OFFSETX;
-      int y = Display.getHeight() - SHOP_OFFSETY - SHOP_COLUMN_NAME_HEIGHT; //Ugly way
+      int y = Display.getHeight() - SHOP_OFFSETY - SHOP_COLUMN_NAME_HEIGHT;
       while (columnIter.hasNext()) {
          Iterator<ShopItem> rowIter = columnIter.next().iterator();
          while (rowIter.hasNext()) {
-            ShopItemSpell item = (ShopItemSpell) rowIter.next();
+            final ShopItemSpell item = (ShopItemSpell) rowIter.next();
             Interactable i = new InteractableTextureButton(x, y, SHOP_ICON_SIZE, SHOP_ICON_SIZE,
                item.getItem().getSpellIcon(), Color.LIGHT_GREY, Color.WHITE);
-            i.addListener(item);
+            i.addListener(new InteractableListener() {
+               @Override
+               public void clicked(InteractableInfo source) {
+                  buyButton.setDisabled(!item.canPurchase(shop.getShoppingPlayer()));
+                  item.clicked(source);
+               }
+
+               @Override
+               public void mouseEntered(InteractableInfo source) {
+                  item.mouseEntered(source);
+               }
+
+               @Override
+               public void mouseExited(InteractableInfo source) {
+                  item.mouseExited(source);
+               }
+            });
             interactables.add(i);
             y -= (SHOP_ICON_SIZE + SHOP_ROW_PADDING);
          }
          x += SHOP_ICON_SIZE + SHOP_COLUMN_PADDING;
          y = Display.getHeight() - SHOP_OFFSETY - SHOP_COLUMN_NAME_HEIGHT;
       }
-      InteractableTextureButton buy = new InteractableTextureButton(
-         Display.getWidth() - BUY_OFFSETX,
-         Display.getHeight() - (INFO_AREA_OFFSETY + (INFO_AREA_HEIGHT / 2) - BUY_OFFSETY),
-         BUY_WIDTH, BUY_HEIGHT,
-         "ui-buy", Color.LIGHT_GREY, Color.WHITE);
-      interactables.add(buy);
-      buy.addListener(shop);
    }
 
    @Override
@@ -156,7 +189,7 @@ public class ShopHud extends Hud {
       int x = SHOP_OFFSETX;
       Iterator<ShopColumn> columnIter = shop.getColumnIterator();
       while (columnIter.hasNext()) {
-         g.drawText("Visitor", x, Display.getHeight() - SHOP_OFFSETY + SHOP_ICON_SIZE, ZLayers.GUI,
+         g.drawText(Font.STYLE_NORMAL, x, Display.getHeight() - SHOP_OFFSETY + SHOP_ICON_SIZE, ZLayers.GUI,
             columnIter.next().getName(), Font.SIZE_NORMAL, Color.WHITE);
          x += SHOP_ICON_SIZE + SHOP_COLUMN_PADDING;
       }

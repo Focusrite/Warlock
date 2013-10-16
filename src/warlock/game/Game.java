@@ -33,7 +33,11 @@ public class Game implements DeathListener {
    private GamePhase phase;
    private GamePhase temporaryPhase;
    private Camera camera;
+   private boolean lastPhaseChange = false;
    private int firstTo;
+   private int startingGold;
+   private int groundSize;
+   private int shopTime;
 
    public Player getPlayer() {
       return player;
@@ -45,6 +49,10 @@ public class Game implements DeathListener {
 
    public Camera getCamera() {
       return camera;
+   }
+
+   public void noFurtherPhaseChanges() {
+      lastPhaseChange = true;
    }
 
    public Iterator<Player> getPlayersIterator() {
@@ -61,6 +69,9 @@ public class Game implements DeathListener {
    }
 
    private void readFromLobby(Lobby lobby) {
+      startingGold = lobby.getStartingGold();
+      groundSize = lobby.getGroundSize();
+      shopTime = lobby.getShopTime();
       if (lobby.getSelfPlayer() == null) {
          setPlayer(new ObserverPlayer());
       }
@@ -70,6 +81,7 @@ public class Game implements DeathListener {
       for (int i = 0; i < lobby.getLobbyList().length; i++) {
          if (lobby.getLobbyList()[i] != null) {
             addPlayer(lobby.getLobbyList()[i]);
+            lobby.getLobbyList()[i].setGold(startingGold);
          }
       }
       setFirstTo(lobby.getFirstTo());
@@ -88,7 +100,7 @@ public class Game implements DeathListener {
          setPhase(new PlayPhase(this));
       }
       else {
-         setPhase(new ShopPhase(this));
+         setPhase(new ShopPhase(this, getShopTime()));
       }
    }
 
@@ -97,6 +109,9 @@ public class Game implements DeathListener {
    }
 
    public final void setPhase(GamePhase phase) {
+      if(lastPhaseChange) {
+         return;
+      }
       temporaryPhase = phase;
       if (this.phase == null) {
          changedPhase();
@@ -181,10 +196,20 @@ public class Game implements DeathListener {
       if(scoretable.get(0).getScore() >= firstTo && scoretable.size() > 1 &&
          scoretable.get(0).getScore() != scoretable.get(1).getScore()) {
          setPhase(new GameOverPhase(this, scoretable));
+         noFurtherPhaseChanges();
       }
    }
 
    boolean isObservermode() {
       return getPlayer() instanceof ObserverPlayer;
    }
+
+   public int getGroundSize() {
+      return groundSize;
+   }
+
+   public int getShopTime() {
+      return shopTime;
+   }
+
 }

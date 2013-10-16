@@ -45,7 +45,7 @@ public class PlayPhase extends GamePhase {
 
    @Override
    public void init() {
-      this.activeLevel = new Level(getOwner().getCamera());
+      this.activeLevel = new Level(getOwner().getCamera(), getOwner().getGroundSize());
       Iterator<Player> it = getOwner().getPlayersIterator();
       while (it.hasNext()) {
          Player p = it.next();
@@ -84,13 +84,16 @@ public class PlayPhase extends GamePhase {
 
    @Override
    public void notifyDeath(Player p, Player killer) {
-      if (killer != null) {
+      if (killer != null && p != killer) {
          killer.setKillingblows(killer.getKillingblows() + 1);
          killer.modifyGold(POINTS_FOR_KILL);
          getOwner().modifyScore(killer, POINTS_FOR_KILL);
          addMessage(Message.randomMessage(Message.KILLED_MESSAGES,
             p.getPrimaryColor().toString() + p + "|",
             killer.getPrimaryColor().toString() + killer + "|"));
+      }
+      else if(killer != null) {
+         addMessage(Message.randomMessage(Message.DENIED, p.getPrimaryColor().toString() + p + "|"));
       }
       else {
          addMessage(Message.randomMessage(Message.BURNED_MESSAGES,
@@ -127,7 +130,7 @@ public class PlayPhase extends GamePhase {
                getOwner().setPhase(new PlayPhase(getOwner()));
             }
             else {
-               getOwner().setPhase(new ShopPhase(getOwner()));
+               getOwner().setPhase(new ShopPhase(getOwner(), getOwner().getShopTime()));
             }
          }
       });

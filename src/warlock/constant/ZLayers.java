@@ -13,10 +13,11 @@ package warlock.constant;
 public class ZLayers {
    public static final int BELOW_LEVEL = 0;
    public static final int LEVEL = 1;
-   public static final int OBJECT = 2;
-   public static final int ABOVE_LEVEL = 3;
-   public static final int GUI_BACKGROUND = 4;
-   public static final int GUI = 5;
-   public static final int GUI_FOREGROUND = 6;
-   public static final int OVERLAY = 7;
+   public static final int ON_GROUND = 2;
+   public static final int OBJECT = 3;
+   public static final int ABOVE_LEVEL = 4;
+   public static final int GUI_BACKGROUND = 5;
+   public static final int GUI = 6;
+   public static final int GUI_FOREGROUND = 7;
+   public static final int OVERLAY = 8;
 }

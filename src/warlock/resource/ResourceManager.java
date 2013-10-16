@@ -34,6 +34,7 @@ public class ResourceManager implements Handle {
       loadTextureResource("images/spell-lightning.png", "PNG", "spell-lightning");
       loadTextureResource("images/spell-orb.png", "PNG", "spell-orb");
       loadTextureResource("images/spell-shield.png", "PNG", "spell-shield");
+      loadTextureResource("images/spell-explosion.png", "PNG", "spell-explosion");
 
       //FX
       loadTextureResource("images/fx-shield.png", "PNG", "fx-shield");

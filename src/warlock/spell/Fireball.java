@@ -16,7 +16,7 @@ public class Fireball extends Spell {
 
    private static final double damage[] = {10, 15, 15, 20, 20};
    private static final double range[] = {250, 250, 300, 300, 350};
-   private static final double knockback[] = {200, 200, 250, 250, 300};
+   private static final double knockback[] = {300, 300, 350, 350, 400};
    private static final double cooldown[] = {2, 2, 2, 2, 2};
    private static final double speed[] = {100, 100, 100, 100, 100};
 

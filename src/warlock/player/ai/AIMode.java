@@ -17,13 +17,14 @@ import warlock.spell.SpellType;
  * @author Focusrite
  */
 public abstract class AIMode {
+
    private static final double DEFAULT_MODE_TIME = 1;
    private static final double DEFENSIVE_MIN_DISTANCE = 45;
-
+   private static final int AOE_MIN_IN_RADIUS = 1;
    private Warlock warlock;
    private AIPlayer player;
    private double minModeTime;
-   private double[] spellDelay;
+   private double[] spellDelay; //To add some variation, don't always shoot "on cooldown"
 
    public AIMode(AIPlayer player) {
       this.player = player;
@@ -33,7 +34,7 @@ public abstract class AIMode {
    }
 
    public void updateCooldowns(double dt) {
-      for(int i = 0; i < spellDelay.length; i++) {
+      for (int i = 0; i < spellDelay.length; i++) {
          spellDelay[i] -= dt;
       }
    }
@@ -57,8 +58,8 @@ public abstract class AIMode {
    public abstract void execute(double dt);
 
    /**
-    * Calulates the angle it takes for a spell projectile moving at speed s to hit A moving at V velocity
-    * when B fires it. It's a standard square equation (ax^2 + bx + c = 0)
+    * Calulates the angle it takes for a spell projectile moving at speed s to hit A moving at V
+    * velocity when B fires it. It's a standard square equation (ax^2 + bx + c = 0)
     *
     * Assumes constant V
     *
@@ -87,31 +88,44 @@ public abstract class AIMode {
 
    void useSpells() {
       int i = 0;
-      for(SpellShortcut shortcut : SpellShortcut.values()) {
-         if(getWarlock().getSpell(shortcut) == null) {
+      for (SpellShortcut shortcut : SpellShortcut.values()) {
+         if (getWarlock().getSpell(shortcut) == null) {
             continue;
          }
-         if(spellDelay[i] <= 0 && getWarlock().getSpell(shortcut).getType() == SpellType.PROJECTILE) {
+         if (spellDelay[i] <= 0 && getWarlock().getSpell(shortcut).getType() == SpellType.PROJECTILE) {
             //Cast projectiles at enemies
             getWarlock().castSpell(shortcut, targetToHit(getWarlock().getClosestWarlock(), shortcut));
             spellDelay[i] = getWarlock().getSpell(shortcut).getCooldown() + ExtraMath.randomDouble(0, 0.5);
          }
-         else if(spellDelay[i] <= 0 && getWarlock().getSpell(shortcut).getType() == SpellType.DEFENSIVE) {
+         else if (spellDelay[i] <= 0 && getWarlock().getSpell(shortcut).getType() == SpellType.DEFENSIVE) {
             //Defensive spells, use when projectile near
             Projectile closest = getWarlock().getLevel().getClosestProjectile(getWarlock());
-            if(closest == null || closest.getPosition().distance(getWarlock().getPosition()) > DEFENSIVE_MIN_DISTANCE) {
+            if (closest == null || closest.getPosition().distance(getWarlock().getPosition()) > DEFENSIVE_MIN_DISTANCE) {
                continue;
             }
             getWarlock().castSpell(shortcut, null);
             spellDelay[i] = getWarlock().getSpell(shortcut).getCooldown() + ExtraMath.randomDouble(0, 0.2);
          }
-         else if(spellDelay[i] <= 0 && getWarlock().getSpell(shortcut).getType() == SpellType.ESCAPE) {
-            //Escape spells, use when on lava
-            if(getWarlock().getGroundType() != GroundType.LAVA) {
-               continue;
+         else if (spellDelay[i] <= 0 && getWarlock().getSpell(shortcut).getType() == SpellType.ESCAPE) {
+            if (getWarlock().getGroundType() != GroundType.LAVA) {
+               continue;//Escape spells, use when on lava
             }
             getWarlock().castSpell(shortcut, new Vector(0, 0));
             spellDelay[i] = getWarlock().getSpell(shortcut).getCooldown() + ExtraMath.randomDouble(0, 0.2);
+         }
+         else if (spellDelay[i] <= 0 && getWarlock().getSpell(shortcut).getType() == SpellType.AOE) {
+            Warlock w = getWarlock().getClosestWarlock();
+            if (w == null || w.getPosition().distance(getWarlock().getPosition()) >=
+               getWarlock().getSpell(shortcut).getLevelData("Range") +
+               getWarlock().getSpell(shortcut).getLevelData("Radius") / 2) {
+               continue; //Only use if in range (Radius contributes to range)
+            }
+            if(getWarlock().getLevel().getWarlocksInDistance(w.getPosition(), getWarlock(),
+               getWarlock().getSpell(shortcut).getLevelData("Radius")).size() < AOE_MIN_IN_RADIUS) {
+               continue; //If less than AOE_MIN_IN_RADIUS are in radius, don't cast
+            }
+            getWarlock().castSpell(shortcut, w.getPosition());
+            spellDelay[i] = getWarlock().getSpell(shortcut).getCooldown() + ExtraMath.randomDouble(0, 1);
          }
          i++;
       }

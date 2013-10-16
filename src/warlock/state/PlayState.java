@@ -36,8 +36,8 @@ public class PlayState extends GameState {
    @Override
    public void init() {
       this.game = new Game(getCamera(), lobby);
-      quitButton = new InteractableTextureButton(QUITBUTTON_WIDTH + 1,
-         Display.getHeight() - QUITBUTTON_HEIGHT - 1, QUITBUTTON_WIDTH, QUITBUTTON_HEIGHT, "ui-quit",
+      quitButton = new InteractableTextureButton(1, Display.getHeight() - QUITBUTTON_HEIGHT - 1,
+         QUITBUTTON_WIDTH, QUITBUTTON_HEIGHT, "ui-quit",
          Color.LIGHT_GREY, Color.WHITE);
       quitButton.addListener(new InteractableListenerSlim() {
          @Override
@@ -60,7 +60,9 @@ public class PlayState extends GameState {
    @Override
    public void render(Graphic g) {
       if (menu) {
+         g.setScreenCoordinates(true);
          quitButton.render(g);
+         g.setScreenCoordinates(false);
       }
       this.game.render(g);
    }
@@ -73,5 +75,6 @@ public class PlayState extends GameState {
    public void handleInput(InputHandler input) {
       menu = input.keyHeld(Keyboard.KEY_ESCAPE);
       this.game.handleInput(input);
+      quitButton.handleInput(input);
    }
 }

@@ -4,6 +4,7 @@
  */
 package warlock.object.character;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import warlock.player.Player;
 import warlock.time.Misc;
@@ -13,7 +14,7 @@ import warlock.time.Misc;
  * @author Focusrite
  */
 public class StatusEffect {
-
+   private ArrayList<StatusEffectListener> listeners = new ArrayList<>();
    private Attribute affectedAttr;
    private StatusEffectType type;
    private double magnitude;
@@ -94,6 +95,17 @@ public class StatusEffect {
    public void expire() {
       if (this.hasExpired()) {
          this.getAttr().modValue(this.getMagnitude());
+         notifyExpired();
+      }
+   }
+
+   public void addListener(StatusEffectListener listener) {
+      listeners.add(listener);
+   }
+
+   private void notifyExpired() {
+      for(int i = 0; i < listeners.size(); i++) {
+         listeners.get(i).expired();
       }
    }
 

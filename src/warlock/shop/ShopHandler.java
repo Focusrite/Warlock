@@ -7,6 +7,7 @@ package warlock.shop;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import warlock.Handle;
+import warlock.spell.Explosion;
 import warlock.spell.Fireball;
 import warlock.spell.Lightning;
 import warlock.spell.Seekerorb;
@@ -26,6 +27,7 @@ public class ShopHandler implements Handle {
       addItem(new ShopItemSpell(new Lightning(null), 10));
       addItem(new ShopItemSpell(new Seekerorb(null), 15));
       addItem(new ShopItemSpell(new Shield(null), 12));
+      addItem(new ShopItemSpell(new Explosion(null), 1));
    }
 
    public static void addItem(ShopItem item) {

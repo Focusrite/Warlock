@@ -40,6 +40,8 @@ public class AttributeHandler implements Handle {
       add(new AttributeType("tr", "Turnrate",
          "Your hero's turnrate. Higher value makes you turn faster, helps for dodging projectiles.", 5));
       add(new AttributeType("shield", "Shield",
-         "Sheild, reflects incoming missiles", 0));
+         "Shield, reflects incoming missiles", 0));
+      add(new AttributeType("stun", "Stunned",
+         "You are stunned", 0));
    }
 }

@@ -13927,3 +13927,328 @@ ERROR: error(#273) 2 compilation errors.  No code generated
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-10-16T15:35:18</date>
+  <millis>1381930518954</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.object.character.StatusEffect</class>
+      <method>addListener</method>
+      <line>103</line>
+    </frame>
+    <frame>
+      <class>warlock.object.character.Warlock</class>
+      <method>inflictStatusEffect</method>
+      <line>154</line>
+    </frame>
+    <frame>
+      <class>warlock.spell.Explosion</class>
+      <method>cast</method>
+      <line>45</line>
+    </frame>
+    <frame>
+      <class>warlock.object.character.Warlock</class>
+      <method>castSpell</method>
+      <line>310</line>
+    </frame>
+    <frame>
+      <class>warlock.player.Player</class>
+      <method>handleInput</method>
+      <line>196</line>
+    </frame>
+    <frame>
+      <class>warlock.game.PlayPhase</class>
+      <method>handleInput</method>
+      <line>82</line>
+    </frame>
+    <frame>
+      <class>warlock.game.Game</class>
+      <method>handleInput</method>
+      <line>174</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>handleInput</method>
+      <line>77</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>handleInput</method>
+      <line>132</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>172</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>148</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>57</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-10-16T17:59:17</date>
+  <millis>1381939157260</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.object.projectile.OrbProjectile</class>
+      <method>steer</method>
+      <line>53</line>
+    </frame>
+    <frame>
+      <class>warlock.object.projectile.OrbProjectile</class>
+      <method>update</method>
+      <line>35</line>
+    </frame>
+    <frame>
+      <class>warlock.level.Level</class>
+      <method>update</method>
+      <line>79</line>
+    </frame>
+    <frame>
+      <class>warlock.game.PlayPhase</class>
+      <method>update</method>
+      <line>73</line>
+    </frame>
+    <frame>
+      <class>warlock.game.Game</class>
+      <method>update</method>
+      <line>162</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>update</method>
+      <line>57</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>171</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>148</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>57</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>

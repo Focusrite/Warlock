@@ -66,6 +66,5 @@ public class Teleport extends Spell {
             getOwner().getOwningPlayer().getSecondaryColor(),
             1, (Math.PI * i) / 18, 0.1, 70, 20, 0.3, 0.1);
       }
-
    }
 }

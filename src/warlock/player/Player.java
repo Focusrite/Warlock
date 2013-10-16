@@ -34,9 +34,9 @@ public class Player implements Comparable<Player> {
    };
 
    private int playerId;
-   private int gold = 10;
-   private int score = 0;
-   private int killingblows = 0;
+   private int gold;
+   private int score;
+   private int killingblows;
    private String name;
    private double scrollSpeed = 300.0f;
    private Warlock warlock;

@@ -40,6 +40,10 @@ public abstract class ShopItem implements InteractableListener {
       p.modifyGold(-goldCost);
    }
 
+   public boolean canPurchase(Player p) {
+      return p.getGold() >= goldCost;
+   }
+
    @Override
    public void clicked(InteractableInfo info) {
       shopOwner.clicksItem(this);

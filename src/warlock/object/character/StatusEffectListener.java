@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package warlock.spell;
+package warlock.object.character;
 
 /**
  *
  * @author Focusrite
  */
-public enum SpellType {
-   PROJECTILE, AOE, ESCAPE, DEFENSIVE
+public interface StatusEffectListener {
+   public void expired();
 }

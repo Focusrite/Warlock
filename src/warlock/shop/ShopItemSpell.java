@@ -35,7 +35,7 @@ public class ShopItemSpell extends ShopItem {
          w.addSpell(item.getShortcut(), item.clone());
       }
       else if (w.knowsSpell(item) && w.getSpell(item.getShortcut()).getSpellLevel() < item.getMaxLevel()) {
-         w.getSpell(SpellShortcut.MB).levelUp();
+         w.getSpell(item.getShortcut()).levelUp();
          item.levelUp();
       }
       else{
@@ -43,6 +43,12 @@ public class ShopItemSpell extends ShopItem {
       }
       makePurchase(purchaser);
       return true;
+   }
+
+   @Override
+   public boolean canPurchase(Player p) {
+      Warlock w = p.getWarlock();
+      return super.canPurchase(p) && (w.canLearn(item) || (w.knowsSpell(item) && w.getSpell(item.getShortcut()).getSpellLevel() < item.getMaxLevel()));
    }
 
    @Override

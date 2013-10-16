@@ -16,9 +16,9 @@ import warlock.player.Player;
  * @author Focusrite
  */
 public class GameOverPhase extends GamePhase {
-   private static final int TEXT_OFFSETY = 50;
+   private static final int TEXT_OFFSETY = 100;
 
-   private static final int SCORETABLE_OFFSETY = 500;
+   private static final int SCORETABLE_OFFSETY = 400;
    private static final int SCORETABLE_LINEHEIGHT = 20;
 
    private ArrayList<Player> scoretable;
@@ -33,8 +33,8 @@ public class GameOverPhase extends GamePhase {
       g.setScreenCoordinates(true);
       g.drawRectangle(g.getScreenWidth() / 2, g.getScreenHeight() / 2, ZLayers.BELOW_LEVEL,
          g.getScreenWidth(), g.getScreenHeight(), 0, Color.BLACK);
-      g.drawText("Visitor", g.getScreenWidth() / 2, g.getScreenHeight() - TEXT_OFFSETY, ZLayers.GUI,
-         scoretable.get(0).getName() + " won!", Font.SIZE_BIG, Color.WHITE, true); //The winner
+      g.drawText(Font.STYLE_NORMAL, g.getScreenWidth() / 2, g.getScreenHeight() - TEXT_OFFSETY, ZLayers.GUI,
+         scoretable.get(0).getPrimaryColor() + scoretable.get(0).getName() + "| won!", Font.SIZE_BIG, Color.WHITE, true); //The winner
       renderScoretable(g);
       g.setScreenCoordinates(false);
    }
@@ -54,6 +54,9 @@ public class GameOverPhase extends GamePhase {
             placement++;
          }
       }
+      y -= SCORETABLE_LINEHEIGHT * 2;
+      g.drawText(Font.STYLE_NORMAL, x, y, ZLayers.GUI, "Hold ESC and press quit to return to menu",
+         Font.SIZE_NORMAL, Color.WHITE, true);
    }
 
    @Override

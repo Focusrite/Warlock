@@ -31,18 +31,32 @@ public class Lobby {
 
    private static final int MAX_PLAYERS = Player.PRIMARY_COLORS.length;
    private static final int MIN_FIRST_TO = 20;
-   private static final int MAX_FIRST_TO = 200;
+   private static final int MAX_FIRST_TO = 100;
+
+   private static final int MIN_STARTING_GOLD = 0;
+   private static final int MAX_STARTING_GOLD = 30;
+
+   private static final int MIN_GROUND_SIZE = 200;
+   private static final int MAX_GROUND_SIZE = 1000;
+
+   private static final int MIN_SHOP_TIME = 5;
+   private static final int MAX_SHOP_TIME = 30;
+
    private static final int FIRST_ROW_OFFSETX = 10;
-   private static final int FIRST_TO_STEP = 5;
-   private static final int FIRST_TO_OFFSETY = 20;
-   private static final int FIRST_TO_WIDTH = 80;
-   private static final int FIRST_TO_HEIGHT = FIRST_TO_WIDTH / 4;
+   private static final int STEPSIZE_SMALL = 5;
+   private static final int STEPSIZE_BIG = 100;
+
+   private static final int SETTINGS_OFFSETY = 20;
+   private static final int SETTING_WIDTH = 84;
+   private static final int SETTING_HEIGHT = SETTING_WIDTH / 4;
+   private static final int SETTING_ROW_HEIGHT = SETTING_HEIGHT + 5;
+
    private static final int LOBBY_LINEHEIGHT = 20;
    private static final int LOBBY_PADDING = 5;
    private static final int LOBBY_OFFSETY = 50;
    private static final int LOBBY_WIDTH = 300;
    private static final int PLAY_OFFSETX = 10;
-   private static final int PLAY_OFFSETY = FIRST_TO_OFFSETY;
+   private static final int PLAY_OFFSETY = SETTINGS_OFFSETY;
    private static final int PLAY_WIDTH = 64;
    private static final int PLAY_HEIGHT = 25;
    private static final String EMPTY_SLOT = " Empty slot";
@@ -53,6 +67,9 @@ public class Lobby {
    private ArrayList<Interactable> interactables = new ArrayList<>();
    private Player selfPlayer;
    private int firstTo = 50;
+   private int startingGold = 10;
+   private int groundSize = 700;
+   private int shopTime = 15;
 
    public Lobby() {
       status = LobbyStatus.HOST;
@@ -71,52 +88,92 @@ public class Lobby {
       return firstTo;
    }
 
+   public int getShopTime() {
+      return shopTime;
+   }
+
+   
+
    public void addInteractable(Interactable i) {
       interactables.add(i);
    }
 
    private void init() {
-      //First to
-      InteractableIntCounter counter = new InteractableIntCounter(firstTo, MIN_FIRST_TO, MAX_FIRST_TO, FIRST_TO_STEP,
-         FIRST_ROW_OFFSETX, FIRST_TO_OFFSETY, FIRST_TO_WIDTH, FIRST_TO_HEIGHT);
-      counter.addListener(new InteractableListener() {
-         @Override
-         public void clicked(InteractableInfo source) {
-            firstTo = ((InteractableIntCounter) source.getSource()).getValue();
-         }
-
-         @Override
-         public void mouseEntered(InteractableInfo source) {
-         }
-
-         @Override
-         public void mouseExited(InteractableInfo source) {
-         }
-      });
-      addInteractable(counter);
-      addInteractable(new InteractableTextField(FIRST_ROW_OFFSETX + FIRST_TO_WIDTH * 2 - 5, FIRST_TO_OFFSETY,
-         ZLayers.GUI, FIRST_TO_HEIGHT, "Win at score", Font.SIZE_NORMAL, Color.NONE, Color.WHITE, true));
+      initSettings();
 
       //Play
       final Lobby self = this;
       Interactable play = new InteractableTextureButton(Display.getWidth() - PLAY_OFFSETX - PLAY_WIDTH, PLAY_OFFSETY,
          PLAY_WIDTH, PLAY_HEIGHT, "ui-play", Color.LIGHT_GREY, Color.WHITE);
-      play.addListener(new InteractableListener() {
+      play.addListener(new InteractableListenerSlim() {
          @Override
          public void clicked(InteractableInfo info) {
             GameState.setInstance(new PlayState(self));
          }
-
-         @Override
-         public void mouseEntered(InteractableInfo info) {
-         }
-
-         @Override
-         public void mouseExited(InteractableInfo info) {
-         }
       });
       addInteractable(play);
       initPlayerList();
+   }
+
+   private void initSettings() {
+      int x = FIRST_ROW_OFFSETX;
+      int y = SETTINGS_OFFSETY;
+      //First to -----------------------------------------------------------------------------------
+      InteractableIntCounter winAtCounter = new InteractableIntCounter(firstTo, MIN_FIRST_TO, MAX_FIRST_TO,
+         STEPSIZE_SMALL, x, y, SETTING_WIDTH, SETTING_HEIGHT);
+      winAtCounter.addListener(new InteractableListenerSlim() {
+         @Override
+         public void clicked(InteractableInfo source) {
+            firstTo = ((InteractableIntCounter) source.getSource()).getValue();
+         }
+      });
+      addInteractable(winAtCounter);
+      addInteractable(new InteractableTextField(x + SETTING_WIDTH + 5, y, SETTING_WIDTH,
+         SETTING_HEIGHT, "Score to win", Font.SIZE_NORMAL, Color.NONE, Color.WHITE, false));
+
+      y += SETTING_ROW_HEIGHT;
+      //Starting gold ------------------------------------------------------------------------------
+      InteractableIntCounter startingGoldCounter = new InteractableIntCounter(startingGold,
+         MIN_STARTING_GOLD, MAX_STARTING_GOLD, STEPSIZE_SMALL, x, y, SETTING_WIDTH, SETTING_HEIGHT);
+      startingGoldCounter.addListener(new InteractableListenerSlim() {
+         @Override
+         public void clicked(InteractableInfo source) {
+            startingGold = ((InteractableIntCounter) source.getSource()).getValue();
+         }
+      });
+      addInteractable(startingGoldCounter);
+      addInteractable(new InteractableTextField(x + SETTING_WIDTH + 5, y, SETTING_WIDTH,
+         SETTING_HEIGHT, "Starting gold", Font.SIZE_NORMAL, Color.NONE, Color.WHITE, false));
+
+      y += SETTING_ROW_HEIGHT;
+      //Level size ---------------------------------------------------------------------------------
+      InteractableIntCounter sizeCounter = new InteractableIntCounter(groundSize,
+         MIN_GROUND_SIZE, MAX_GROUND_SIZE, STEPSIZE_BIG, x, y, SETTING_WIDTH, SETTING_HEIGHT);
+      sizeCounter.addListener(new InteractableListenerSlim() {
+         @Override
+         public void clicked(InteractableInfo source) {
+            groundSize = ((InteractableIntCounter) source.getSource()).getValue();
+         }
+      });
+      addInteractable(sizeCounter);
+      addInteractable(new InteractableTextField(x + SETTING_WIDTH + 5, y, SETTING_WIDTH,
+         SETTING_HEIGHT, "Level size", Font.SIZE_NORMAL, Color.NONE, Color.WHITE, false));
+
+      y += SETTING_ROW_HEIGHT;
+      //Starting gold ------------------------------------------------------------------------------
+      InteractableIntCounter shoptimeCounter = new InteractableIntCounter(shopTime,
+         MIN_SHOP_TIME, MAX_SHOP_TIME, STEPSIZE_SMALL, x, y, SETTING_WIDTH, SETTING_HEIGHT);
+      shoptimeCounter.addListener(new InteractableListenerSlim() {
+         @Override
+         public void clicked(InteractableInfo source) {
+            shopTime = ((InteractableIntCounter) source.getSource()).getValue();
+         }
+      });
+      addInteractable(shoptimeCounter);
+      addInteractable(new InteractableTextField(x + SETTING_WIDTH + 5, y, SETTING_WIDTH,
+         SETTING_HEIGHT, "Shoptime (s)", Font.SIZE_NORMAL, Color.NONE, Color.WHITE, false));
+
+
    }
 
    private void initPlayerList() {
@@ -211,5 +268,13 @@ public class Lobby {
       for (int i = 0; i < interactables.size(); i++) {
          interactables.get(i).handleInput(input);
       }
+   }
+
+   public int getStartingGold() {
+      return startingGold;
+   }
+
+   public int getGroundSize() {
+      return groundSize;
    }
 }
