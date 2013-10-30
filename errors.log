@@ -14252,3 +14252,274 @@ ERROR: error(#273) 2 compilation errors.  No code generated
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-10-30T18:29:59</date>
+  <millis>1383154199012</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.hud.ShopHud$1</class>
+      <method>clicked</method>
+      <line>105</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.interactable.Interactable</class>
+      <method>notifyClicked</method>
+      <line>83</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.interactable.Interactable</class>
+      <method>handleInput</method>
+      <line>159</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.ShopHud</class>
+      <method>handleInput</method>
+      <line>172</line>
+    </frame>
+    <frame>
+      <class>warlock.game.ShopPhase</class>
+      <method>handleInput</method>
+      <line>81</line>
+    </frame>
+    <frame>
+      <class>warlock.game.Game</class>
+      <method>handleInput</method>
+      <line>271</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>handleInput</method>
+      <line>74</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>handleInput</method>
+      <line>150</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>204</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>176</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>63</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-10-30T18:30:50</date>
+  <millis>1383154250244</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.hud.ShopHud$1</class>
+      <method>clicked</method>
+      <line>105</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.interactable.Interactable</class>
+      <method>notifyClicked</method>
+      <line>83</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.interactable.Interactable</class>
+      <method>handleInput</method>
+      <line>159</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.ShopHud</class>
+      <method>handleInput</method>
+      <line>172</line>
+    </frame>
+    <frame>
+      <class>warlock.game.ShopPhase</class>
+      <method>handleInput</method>
+      <line>81</line>
+    </frame>
+    <frame>
+      <class>warlock.game.Game</class>
+      <method>handleInput</method>
+      <line>271</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>handleInput</method>
+      <line>74</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>handleInput</method>
+      <line>150</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>204</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>176</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>63</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2013-10-30T18:31:17</date>
+  <millis>1383154277611</millis>
+  <sequence>0</sequence>
+  <logger>warlock.Main</logger>
+  <level>SEVERE</level>
+  <class>warlock.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>java.lang.NullPointerException</message>
+  <exception>
+    <message>java.lang.NullPointerException</message>
+    <frame>
+      <class>warlock.hud.ShopHud$1</class>
+      <method>clicked</method>
+      <line>105</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.interactable.Interactable</class>
+      <method>notifyClicked</method>
+      <line>83</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.interactable.Interactable</class>
+      <method>handleInput</method>
+      <line>159</line>
+    </frame>
+    <frame>
+      <class>warlock.hud.ShopHud</class>
+      <method>handleInput</method>
+      <line>172</line>
+    </frame>
+    <frame>
+      <class>warlock.game.ShopPhase</class>
+      <method>handleInput</method>
+      <line>81</line>
+    </frame>
+    <frame>
+      <class>warlock.game.Game</class>
+      <method>handleInput</method>
+      <line>271</line>
+    </frame>
+    <frame>
+      <class>warlock.state.PlayState</class>
+      <method>handleInput</method>
+      <line>74</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>handleInput</method>
+      <line>150</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>update</method>
+      <line>204</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>run</method>
+      <line>176</line>
+    </frame>
+    <frame>
+      <class>warlock.Main</class>
+      <method>main</method>
+      <line>63</line>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>

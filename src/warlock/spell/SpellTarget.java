@@ -1,13 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.SpellTarget.java
+ *
+ * The target type of the spell. Was meant for AI, however, proved redundant and could be refractored
+ * away.
  */
 package warlock.spell;
 
-/**
- *
- * @author Focusrite
- */
 public enum SpellTarget {
    GROUND, SELF
 }

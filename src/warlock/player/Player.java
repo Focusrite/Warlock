@@ -1,6 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.player.Player.java
+ *
+ * A player participating in the game. Contains info relevant to the player such as gold available,
+ * what warlock he is controlling, etc. Also provides methods for actually handling these things,
+ * for example actually control the warlock he owns.
  */
 package warlock.player;
 
@@ -9,14 +12,10 @@ import warlock.camera.Camera;
 import warlock.graphic.Color;
 import warlock.input.InputHandler;
 import warlock.level.Level;
-import warlock.object.character.Warlock;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 import warlock.spell.SpellShortcut;
 
-/**
- *
- * @author Focusrite
- */
 public class Player implements Comparable<Player> {
    public static final Color[] PRIMARY_COLORS = {
       Color.RED,
@@ -43,6 +42,12 @@ public class Player implements Comparable<Player> {
    private Color primaryColor;
    private Color secondaryColor;
 
+   /**
+    * Create a new playing player
+    * @param playerId
+    * @param primary
+    * @param secondary
+    */
    public Player(int playerId, Color primary, Color secondary) {
       this.warlock = new Warlock();
       this.playerId = playerId;
@@ -51,36 +56,60 @@ public class Player implements Comparable<Player> {
       this.name = "Player " + playerId;
    }
 
+   /**
+    * @return the name of the player
+    */
    public String getName() {
       return name;
    }
 
+   /**
+    * @param name new name
+    */
    public void setName(String name) {
       this.name = name;
    }
 
+   /**
+    * @return the primary color
+    */
    public Color getPrimaryColor() {
       return primaryColor;
    }
 
+   /**
+    * @param primaryColor new primary color
+    */
    public void setPrimaryColor(Color primaryColor) {
       this.primaryColor = primaryColor;
    }
 
+   /**
+    * @return secondary color
+    */
    public Color getSecondaryColor() {
       return secondaryColor;
    }
 
+   /**
+    * @param secondaryColor new secondary color
+    */
+   public void setSecondaryColor(Color secondaryColor) {
+      this.secondaryColor = secondaryColor;
+   }
+
+   /**
+    * @return the amount of killing blows this player has done
+    */
    public int getKillingblows() {
       return killingblows;
    }
 
+   /**
+    * @param killingblows new amount of killing blows
+    */
    public void setKillingblows(int killingblows) {
       this.killingblows = killingblows;
-   }
-
-   public void setSecondaryColor(Color secondaryColor) {
-      this.secondaryColor = secondaryColor;
    }
 
    @Override
@@ -105,52 +134,91 @@ public class Player implements Comparable<Player> {
       return true;
    }
 
+   /**
+    * @return the player id in the game/lobby
+    */
    public int getPlayerId() {
       return playerId;
    }
 
+   /**
+    * @return the score
+    */
    public int getScore() {
       return score;
    }
 
+   /**
+    * @param dScore amount to add to current score
+    */
    public void modifyScore(int dScore) {
       this.score += dScore;
    }
 
+   /**
+    * @param score new score value
+    */
    public void setScore(int score) {
       this.score = score;
    }
 
+   /**
+    * @return current gold
+    */
    public int getGold() {
       return gold;
    }
 
+   /**
+    * @param gold new current gold
+    */
    public void setGold(int gold) {
       this.gold = gold;
    }
 
+   /**
+    * @param dGold amount to add to gold
+    */
    public void modifyGold(int dGold) {
       this.gold += dGold;
    }
 
+   /**
+    * @return this player's warlock
+    */
    public Warlock getWarlock() {
       return warlock;
    }
 
+   /**
+    * @param warlock new warlock for this player
+    */
    public void setWarlock(Warlock warlock) {
       this.warlock = warlock;
    }
 
-   //Proxy
+   /**
+    * Proxy
+    * @return the level the warlock is currently on
+    */
    public Level getLevel() {
       return getWarlock().getLevel();
    }
 
-   //Proxy
+   /**
+    * Proxy
+    * @param x
+    * @param y
+    * @return the in-world coordinates of a (x,y) window coordinate
+    */
    private Vector windowToLevelXY(int x, int y) {
       return getLevel().windowToLevelXY(x, y);
    }
 
+   /**
+    * Handle the scrolling of the camera for this player
+    * @param input
+    */
    public void handleScrolling(InputHandler input) {
       int mouseX = input.getMouseX();
       if (mouseX < Camera.SCROLL_ZONE_SIZE && mouseX > 0 || input.keyHeld(Keyboard.KEY_A)) {
@@ -177,6 +245,10 @@ public class Player implements Comparable<Player> {
       }
    }
 
+   /**
+    * Handle the input, it takes care of scrolling the map and cast spells
+    * @param input
+    */
    public void handleInput(InputHandler input) {
       handleScrolling(input);
 
@@ -203,11 +275,19 @@ public class Player implements Comparable<Player> {
    public void update(double dt) {
    }
 
+   /**
+    * Compares the score of two players
+    * @param t
+    * @return boolean true if this is bigger
+    */
    @Override
    public int compareTo(Player t) {
       return t.getScore() - getScore();
    }
 
+   /**
+    * @return name of the player
+    */
    @Override
    public String toString() {
       return name;

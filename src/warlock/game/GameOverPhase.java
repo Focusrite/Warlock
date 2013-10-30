@@ -1,6 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.game.GameOverPhase.java
+ *
+ * Instance of GamePhase. A state annoucning the game is over and displays the final scoreboard.
  */
 package warlock.game;
 
@@ -23,11 +24,21 @@ public class GameOverPhase extends GamePhase {
 
    private ArrayList<Player> scoretable;
 
+   /**
+    * Create a new GameOverPhase
+    *
+    * @param owner
+    * @param scoretable
+    */
    public GameOverPhase(Game owner, ArrayList<Player> scoretable) {
       super(owner);
       this.scoretable = scoretable;
    }
 
+   /**
+    * Render this phase, with text of who won and scoreboard
+    * @param g
+    */
    @Override
    public void render(Graphic g) {
       g.setScreenCoordinates(true);
@@ -39,6 +50,10 @@ public class GameOverPhase extends GamePhase {
       g.setScreenCoordinates(false);
    }
 
+   /**
+    * Render the final scoreboard standings
+    * @param g
+    */
    private void renderScoretable(Graphic g) {
       int x = g.getScreenWidth() / 2;
       int y = SCORETABLE_OFFSETY;
@@ -60,12 +75,8 @@ public class GameOverPhase extends GamePhase {
    }
 
    @Override
-   public void update(double dt) {
-
-   }
+   public void update(double dt) { /*Nothing needs updating*/ }
 
    @Override
-   public void init() {
-
-   }
+   public void init() { /*Nothing needs initializing*/ }
 }

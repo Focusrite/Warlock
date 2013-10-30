@@ -1,22 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.lobby.Lobby.java
+ *
+ * The pre-game lobby which keeps track of the settings set up in it and what players have joined.
+ * Also handles the actual rendering of the lobby too.
  */
 package warlock.lobby;
 
 import java.util.ArrayList;
 import org.lwjgl.opengl.Display;
-import warlock.constant.ZLayers;
 import warlock.font.Font;
 import warlock.graphic.Color;
 import warlock.graphic.Graphic;
-import warlock.hud.interactables.Interactable;
-import warlock.hud.interactables.InteractableInfo;
-import warlock.hud.interactables.InteractableIntCounter;
-import warlock.hud.interactables.InteractableListener;
-import warlock.hud.interactables.InteractableListenerSlim;
-import warlock.hud.interactables.InteractableTextField;
-import warlock.hud.interactables.InteractableTextureButton;
+import warlock.hud.interactable.Interactable;
+import warlock.hud.interactable.InteractableInfo;
+import warlock.hud.interactable.InteractableIntCounter;
+import warlock.hud.interactable.InteractableListenerSlim;
+import warlock.hud.interactable.InteractableTextField;
+import warlock.hud.interactable.InteractableTextureButton;
 import warlock.input.InputHandler;
 import warlock.player.Player;
 import warlock.player.ai.AIPlayer;
@@ -61,7 +61,10 @@ public class Lobby {
    private static final int PLAY_HEIGHT = 25;
    private static final String EMPTY_SLOT = " Empty slot";
 
+   private int currentPlayerId = 0;
+
    private Player[] lobbyList = new Player[MAX_PLAYERS];
+   private ArrayList<Player> observers = new ArrayList<>();
    private InteractableTextureButton[] removeButtons = new InteractableTextureButton[MAX_PLAYERS];
    private LobbyStatus status;
    private ArrayList<Interactable> interactables = new ArrayList<>();
@@ -71,33 +74,54 @@ public class Lobby {
    private int groundSize = 700;
    private int shopTime = 15;
 
+   /**
+    * Create a new lobby
+    */
    public Lobby() {
       status = LobbyStatus.HOST;
       init();
    }
 
+   /**
+    * Get the array of players that's on player slots
+    * @return
+    */
    public Player[] getLobbyList() {
       return lobbyList;
    }
 
+   /**
+    * @return the local player
+    */
    public Player getSelfPlayer() {
       return selfPlayer;
    }
 
+   /**
+    * @return the first to value set (at what score the winner is crowned)
+    */
    public int getFirstTo() {
       return firstTo;
    }
 
+   /**
+    * @return the shop time per round set
+    */
    public int getShopTime() {
       return shopTime;
    }
 
-   
-
+   /**
+    * Add an interactable to the lobby
+    * @param i interactable
+    */
    public void addInteractable(Interactable i) {
       interactables.add(i);
    }
 
+   /**
+    * Initialize the lobby with it's UI.
+    */
    private void init() {
       initSettings();
 
@@ -115,6 +139,9 @@ public class Lobby {
       initPlayerList();
    }
 
+   /**
+    * Initializes the settings part with int counters used to configure the game settings.
+    */
    private void initSettings() {
       int x = FIRST_ROW_OFFSETX;
       int y = SETTINGS_OFFSETY;
@@ -172,10 +199,11 @@ public class Lobby {
       addInteractable(shoptimeCounter);
       addInteractable(new InteractableTextField(x + SETTING_WIDTH + 5, y, SETTING_WIDTH,
          SETTING_HEIGHT, "Shoptime (s)", Font.SIZE_NORMAL, Color.NONE, Color.WHITE, false));
-
-
    }
 
+   /**
+    * Initiializes the list of players and the buttons to join a slot, add computer and clear a slot.
+    */
    private void initPlayerList() {
       int x = FIRST_ROW_OFFSETX;
       int y = Display.getHeight() - LOBBY_OFFSETY;
@@ -249,6 +277,10 @@ public class Lobby {
       }
    }
 
+   /**
+    * Render the Lobby
+    * @param g
+    */
    public void render(Graphic g) {
       g.setScreenCoordinates(true);
 
@@ -258,23 +290,47 @@ public class Lobby {
       g.setScreenCoordinates(false);
    }
 
+   /**
+    * Update interactables
+    * @param dt
+    */
    public void update(double dt) {
       for (int i = 0; i < interactables.size(); i++) {
          interactables.get(i).update(dt);
       }
    }
 
+   /**
+    * Handle the input of all the interactables
+    * @param input
+    */
    public void handleInput(InputHandler input) {
       for (int i = 0; i < interactables.size(); i++) {
          interactables.get(i).handleInput(input);
       }
    }
 
+   /**
+    * @return the starting gold set
+    */
    public int getStartingGold() {
       return startingGold;
    }
 
+   /**
+    * @return the ground size set
+    */
    public int getGroundSize() {
       return groundSize;
+   }
+
+   /**
+    * Add a new player to the lobby as an observer (newly connected)
+    * @return the newly created Player
+    */
+   public Player addPlayerToLobby() {
+      Player p = new Player(currentPlayerId, Color.NONE, Color.NONE);
+      observers.add(p);
+      return p;
    }
 }

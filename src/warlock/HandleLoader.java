@@ -1,28 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.HandleLoader.java
+ *
+ * Automatically loads handles that has been registered to this loader. All handles must implement
+ * the interface "Handle" to use this functionality.
+ *
+ * Implementation of this was inspiered by PHP's autoloader capacity, a nifty way of taking care of
+ * static Handles.
  */
 package warlock;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
-import warlock.object.character.AttributeHandler;
 
-/**
- *
- * @author Focusrite
- */
 public class HandleLoader {
-   //Since static methods in interfaces aren't available in java7
-
    private static ArrayList<Class> handles = new ArrayList<>();
 
-   public static void register() {
-      //Order is relevant
-      register(AttributeHandler.class);
-   }
-
+   /**
+    * Initializes all handles that are registered to this loader. Running it mutliple times will
+    * re-initialize handles.
+    */
    public static void initAll() {
       Iterator<Class> iter = handles.listIterator();
       while (iter.hasNext()) {
@@ -38,12 +35,25 @@ public class HandleLoader {
       }
    }
 
+   /**
+    * Register a class to this loader to be initialized with the initAll method.
+    *
+    * @param c Class
+    */
    public static void register(Class c) {
       if (getMethod(c, "init", null) != null && Handle.class.isAssignableFrom(c)) {
          handles.add(c);
       }
    }
 
+   /**
+    * Private helper method for retrieving a invokable Method.
+    *
+    * @param c
+    * @param name
+    * @param parameterTypes
+    * @return Method if found, else null
+    */
    private static Method getMethod(Class c, String name, Class<?>... parameterTypes) {
       try {
          return c.getMethod(name, parameterTypes);

@@ -1,12 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.Fireball.java
+ *
+ * A projectile spell that fires a self-steering projectile that seeks out the closest target.
  */
 package warlock.spell;
 
-import warlock.object.character.Warlock;
-import warlock.object.projectile.LightningProjectile;
 import warlock.object.projectile.OrbProjectile;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 
 /**
@@ -17,9 +17,13 @@ public class Seekerorb extends Spell {
    private static final double range[] = {600, 700, 700, 800, 800};
    private static final double knockback[] = {50, 50, 100, 100, 150};
    private static final double cooldown[] = {15, 15, 15, 15, 15};
-   private static final double speed[] = {100, 100, 100, 110, 110};
+   private static final double speed[] = {150, 150, 150, 150, 200};
    private static final double damage[] = {10, 12, 15, 17, 20};
 
+   /**
+    * Create a new Explosion spell
+    * @param owner
+    */
    public Seekerorb(Warlock owner) {
       super(owner, "Seeker Orb", SpellTarget.GROUND, SpellShortcut.Q, 5);
       setCooldown(cooldown[0]);
@@ -37,6 +41,10 @@ public class Seekerorb extends Spell {
       rebuildDescription();
    }
 
+   /**
+    * Cast the spell.
+    * @param castVector
+    */
    @Override
    public void cast(Vector castVector) {
       OrbProjectile projectile = new OrbProjectile(castVector.getAngle(),
@@ -48,6 +56,9 @@ public class Seekerorb extends Spell {
       getOwner().getLevel().addObject(projectile, getOwner().getOwningPlayer());
    }
 
+   /**
+    * @return a "copy" of the spell
+    */
    @Override
    public Seekerorb clone() {
       Seekerorb spell = new Seekerorb(null);

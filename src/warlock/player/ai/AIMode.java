@@ -1,21 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.player.ai.AIMode.java
+ *
+ * An abstract class representing what "mode" the AI currently is in. Extended to provide the execute
+ * for mode, ie what to do in each respective mode. AIPlayer uses an instance of this class as a
+ * state object.
+ *
+ * Also contains logic of when to use various spells.
  */
 package warlock.player.ai;
 
 import warlock.ExtraMath;
 import warlock.level.GroundType;
-import warlock.object.character.Warlock;
 import warlock.object.projectile.Projectile;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 import warlock.spell.SpellShortcut;
 import warlock.spell.SpellType;
 
-/**
- *
- * @author Focusrite
- */
 public abstract class AIMode {
 
    private static final double DEFAULT_MODE_TIME = 1;
@@ -26,6 +27,10 @@ public abstract class AIMode {
    private double minModeTime;
    private double[] spellDelay; //To add some variation, don't always shoot "on cooldown"
 
+   /**
+    * Creates a new ai mode.
+    * @param player
+    */
    public AIMode(AIPlayer player) {
       this.player = player;
       this.warlock = player.getWarlock();
@@ -33,24 +38,40 @@ public abstract class AIMode {
       this.spellDelay = new double[SpellShortcut.values().length];
    }
 
+   /**
+    * Update the cooldowns the ai may cast spells at
+    * @param dt
+    */
    public void updateCooldowns(double dt) {
       for (int i = 0; i < spellDelay.length; i++) {
          spellDelay[i] -= dt;
       }
    }
 
+   /**
+    * @return the minimum amount of secodns the ai must be in this mode
+    */
    public double getMinModeTime() {
       return minModeTime;
    }
 
+   /**
+    * @param time new min time this mode must be in, up to a second random time is added
+    */
    void setMinModeTime(double time) {
       minModeTime = time + ExtraMath.randomDouble(0, 1);
    }
 
+   /**
+    * @return the AI player this mode is used for
+    */
    public AIPlayer getPlayer() {
       return player;
    }
 
+   /**
+    * @return the warlock this AI controlls
+    */
    public Warlock getWarlock() {
       return warlock;
    }
@@ -65,7 +86,7 @@ public abstract class AIMode {
     *
     * @param target
     * @param shortcut - must be a projectile spell
-    * @return
+    * @return vector needed to fire at
     */
    private Vector targetToHit(Warlock target, SpellShortcut shortcut) {
       Vector distance = target.getPosition().subtract(getWarlock().getPosition());
@@ -86,6 +107,9 @@ public abstract class AIMode {
       return target.getPosition().add(target.getMovementVector().scale(t));
    }
 
+   /**
+    * Use spells off cooldown that's appropriate to use
+    */
    void useSpells() {
       int i = 0;
       for (SpellShortcut shortcut : SpellShortcut.values()) {
@@ -131,6 +155,9 @@ public abstract class AIMode {
       }
    }
 
+   /**
+    * @return A vector pointing towards the center of the map from the position of the warlock
+    */
    Vector getVectorToCenter() {
       return new Vector().subtract(getWarlock().getPosition());
    }

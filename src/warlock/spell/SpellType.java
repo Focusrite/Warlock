@@ -1,13 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.SpellType.java
+ *
+ * The type of spells available. Doesn't do anything apart from telling the AI how the spell should
+ * be used.
  */
 package warlock.spell;
 
-/**
- *
- * @author Focusrite
- */
 public enum SpellType {
    PROJECTILE, AOE, ESCAPE, DEFENSIVE
 }

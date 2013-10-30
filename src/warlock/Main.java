@@ -1,6 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.Main.java
+ *
+ * The main class of Warlock, runs the game loop and setup of various handlers and similar. Also
+ * creates the main window.
  */
 package warlock;
 
@@ -16,14 +18,14 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import warlock.font.FontHandler;
 import warlock.graphic.Graphic;
-import warlock.graphic.OpenGL3Graphics;
+import warlock.graphic.OpenGL3Graphic;
 import warlock.input.InputHandler;
-import warlock.object.character.AttributeHandler;
-import warlock.resource.ResourceManager;
+import warlock.attribute.AttributeHandler;
+import warlock.resource.ResourceHandler;
 import warlock.shop.ShopHandler;
 import warlock.state.GameState;
 import warlock.state.MenuState;
-import warlock.time.Misc;
+import warlock.time.Time;
 
 public class Main {
 
@@ -39,7 +41,7 @@ public class Main {
    private Graphic graphic;
    private InputHandler input;
 
-   static {
+   static { //Create logger
       try {
          LOGGER.addHandler(new FileHandler("errors.log", true));
       }
@@ -48,6 +50,10 @@ public class Main {
       }
    }
 
+   /**
+    * The main of the project, takes care of pringing to log file.
+    * @param args
+    */
    public static void main(String[] args) {
       Main main = null;
       try {
@@ -68,10 +74,14 @@ public class Main {
 
    public Main() {
       //dostuff
-      lastUpdate = Misc.millitime();
+      lastUpdate = Time.millitime();
       lastFPS = lastUpdate;
    }
 
+   /**
+    * Creates a display window for use and sets up graphic and input handlers.
+    * @throws LWJGLException
+    */
    public void create() throws LWJGLException {
       //Display
       Display.setDisplayMode(new DisplayMode(DISPLAY_WIDTH, DISPLAY_HEIGHT));
@@ -80,15 +90,7 @@ public class Main {
       Display.setFullscreen(false);
       Display.create();
 
-      //Input
-      Keyboard.create();
-      Mouse.create();
-      input = new InputHandler();
-
-      //Graphic
-      graphic = new OpenGL3Graphics(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-
-      //OpenGL
+      //Handles
       init();
       resize();
 
@@ -97,6 +99,9 @@ public class Main {
       graphic.setCamera(GameState.getInstance().getCamera());
    }
 
+   /**
+    * Destructor cleaning up OpenGL things.
+    */
    public void destroy() {
       //Methods already check if created before destroying.
       Mouse.destroy();
@@ -104,22 +109,31 @@ public class Main {
       Display.destroy();
    }
 
-   public void init() {
-      //Init handlers
-      HandleLoader.register(ResourceManager.class);
+   /**
+    * Register handles and initialize them.
+    */
+   public void init() throws LWJGLException {
+      //Input
+      Keyboard.create();
+      Mouse.create();
+      input = new InputHandler();
+      //Graphic
+      graphic = new OpenGL3Graphic(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+      graphic.init();
+
+      //Init static handles
+      HandleLoader.register(ResourceHandler.class);
       HandleLoader.register(AttributeHandler.class);
       HandleLoader.register(FontHandler.class);
       HandleLoader.register(ShopHandler.class);
       HandleLoader.initAll();
-      graphic.init();
-
    }
 
    /**
     * Calculate the FPS and set it in the title bar
     */
    public void updateFPS() {
-      if (Misc.millitime() - lastFPS > 1000) {
+      if (Time.millitime() - lastFPS > 1000) {
          Display.setTitle( HEADER_NAME + " [FPS: " + fps + "]" );
          fps = 0; //reset the FPS counter
          lastFPS += 1000; //add one second
@@ -127,28 +141,42 @@ public class Main {
       fps++;
    }
 
+   /**
+    * The handleInput method that's cascaded down the hierarchy to other classes.
+    * @param dt
+    */
    public void handleInput(double dt) {
       input.readKeyboard(); //Update status of keys for every keypress
       GameState.getInstance().handleInput(input);
    }
 
+   /**
+    * The render method that's cascaded down the hierarchy tree to other classes.
+    */
    public void render() {
       graphic.preRender();
       //Draw stuff!
       GameState.getInstance().render(graphic);
    }
 
+   /**
+    * Resize of the window is done. Need updating to cascade down the hierarchy tree to allow for
+    * different sizes of windows, which currently is not supported.
+    */
    public void resize() {
       graphic.resize();
    }
 
+   /**
+    * The main run loop. Terminates when game state finishes or OS sends close request.
+    */
    public void run() {
       while (!Display.isCloseRequested() && !GameState.getInstance().isExitRequested()) {
          if (Display.isVisible()) {
             update();
             render();
          }
-         else {
+         else { //Less intensive render when display is not in focus to preserve system resources
             if (Display.isDirty()) {
                render();
             }
@@ -159,14 +187,18 @@ public class Main {
             }
          }
          Display.update();
-         Display.sync(FPS);
+         Display.sync(FPS); //Aim to sync to FPS
       }
    }
 
+   /**
+    * The update method that's ran once every frame. Cascaded down to other classes for handling their
+    * own update methods.
+    */
    public void update() {
       updateFPS();
-      long curTime = Misc.millitime();
-      double dt = Misc.secondsBetween(lastUpdate, curTime);
+      long curTime = Time.millitime();
+      double dt = Time.secondsBetween(lastUpdate, curTime);
       lastUpdate = curTime;
       GameState.getInstance().update(dt);
       handleInput(dt);

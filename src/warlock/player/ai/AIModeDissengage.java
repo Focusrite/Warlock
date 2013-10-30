@@ -1,13 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.player.ai.AIModeDissengage.java
+ *
+ * Not implemented yet
  */
 package warlock.player.ai;
 
-/**
- *
- * @author Focusrite
- */
 public class AIModeDissengage {
 
 }

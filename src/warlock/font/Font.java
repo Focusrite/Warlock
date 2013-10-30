@@ -1,6 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.font.Font.java
+ *
+ * A single font. Also handles the setup of the font from an XML document exported using the tool
+ * fontbuilder which generates a bitmap and an xml file from a normal font file.
  */
 package warlock.font;
 
@@ -27,11 +29,22 @@ public class Font {
    private int margin = 1;
    private int size;
 
+   /**
+    * Create a new font from texture and xml document
+    *
+    * @param font
+    * @param xml
+    */
    public Font(Texture font, Document xml) {
       this.texture = font;
       buildFromXML(xml, font);
    }
 
+   /**
+    * Setup the character definations based on a xml document.
+    * @param doc
+    * @param tex
+    */
    private void buildFromXML(Document doc, Texture tex) {
       NodeList charList = doc.getElementsByTagName("Char");
       size = Integer.parseInt(doc.getDocumentElement().getAttribute("size"));
@@ -50,10 +63,28 @@ public class Font {
       }
    }
 
+   /**
+    * The default font size
+    * @return
+    */
    public int getSize() {
       return size;
    }
 
+   /**
+    * Draw a font with some nifty additions such as supporting text coloration parsing and breaklines.
+    * Inline coloration uses the syntax |RRRGGGBBB text | where the text in between the both "|" are
+    * colored with the color RRRGGGBBB where "RRR", "GGG", "BBB" is an integer in range 0-255.
+    * (they're wrapped back around if over 255)
+    *
+    * @param g the graphic handler
+    * @param x of top-left coordinate
+    * @param y of top-left coordinate
+    * @param z
+    * @param text
+    * @param size
+    * @param color
+    */
    public void draw(Graphic g, int x, int y, int z, String text, int size, Color color) {
       int tX = x;
       int tY = y;
@@ -90,11 +121,28 @@ public class Font {
       }
    }
 
+   /**
+    * Same drawing as drawFont but calulates the width of the string before to instead of using x,y
+    * as top left corner have x centered in the middle.
+    *
+    * @param g
+    * @param x
+    * @param y
+    * @param z
+    * @param text
+    * @param size
+    * @param color
+    */
    public void drawCentered(Graphic g, int x, int y, int z, String text, int size, Color color) {
       int length = getStringWidth(text);
       draw(g, x - (length / 2), y, z, text, size, color);
    }
 
+   /**
+    * Calculates the width of a string rendered with this font.
+    * @param text
+    * @return width
+    */
    private int getStringWidth(String text) {
       int result = 0;
       int rowResult = 0;
@@ -122,10 +170,18 @@ public class Font {
       return result;
    }
 
+   /**
+    * @return the texture used for rendering this font
+    */
    public Texture getTexture() {
       return texture;
    }
 
+   /**
+    * Return the definition of a certain character in the fontmap
+    * @param c character
+    * @return FontDefiniton the character has
+    */
    public FontDefinition getDefinition(Character c) {
       try {
          return characters.get(c);

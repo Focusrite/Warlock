@@ -1,21 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.Explosion.java
+ *
+ * An AOE damage around the caster with heavy damage and heavy knockback, however leaves the caster
+ * vurnable for a short period before casting and inflicts damage to the caster too.
  */
 package warlock.spell;
 
 import java.util.ArrayList;
-import warlock.object.character.AttributeHandler;
-import warlock.object.character.StatusEffectListener;
-import warlock.object.character.StatusEffectType;
-import warlock.object.character.Warlock;
+import warlock.attribute.AttributeHandler;
+import warlock.attribute.StatusEffectListener;
+import warlock.attribute.StatusEffectType;
 import warlock.object.particle.ParticleHandler;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 
-/**
- *
- * @author Focusrite
- */
 public class Explosion extends Spell implements StatusEffectListener {
 
    private static final double cooldown[] = {10};
@@ -25,6 +23,10 @@ public class Explosion extends Spell implements StatusEffectListener {
    private static final double knockback[] = {400};
    private static final double onset[] = {1};
 
+   /**
+    * Create a new Explosion spell
+    * @param owner
+    */
    public Explosion(Warlock owner) {
       super(owner, "Explosion", SpellTarget.SELF, SpellShortcut.R, 1);
       setCooldown(cooldown[0]);
@@ -41,18 +43,29 @@ public class Explosion extends Spell implements StatusEffectListener {
       rebuildDescription();
    }
 
+   /**
+    * Cast the spell.
+    * @param castVector
+    */
    @Override
    public void cast(Vector castVector) {
       getOwner().inflictStatusEffect(
          new StatusEffectType(-1, AttributeHandler.get("stun")), onset[getSpellLevel() - 1], null, this);
    }
 
+   /**
+    * @return a "copy" of the spell
+    */
    @Override
    public Explosion clone() {
       Explosion spell = new Explosion(null);
       return spell;
    }
 
+   /**
+    * A StatusEffectListener event that fires when the warlock is no longer stunned and do the actual
+    * spell.
+    */
    @Override
    public void expired() {
       getOwner().inflictStatusEffect(new StatusEffectType(
@@ -74,6 +87,9 @@ public class Explosion extends Spell implements StatusEffectListener {
       explosionFX();
    }
 
+   /**
+    * The fx cast when the spell is cast
+    */
    private void explosionFX() {
       for(int i = 0; i < 36; i++) {
          ParticleHandler.spawn(2, getOwner().getPosition(), ParticleHandler.SIZE_LARGE,

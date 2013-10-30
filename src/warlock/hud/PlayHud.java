@@ -1,6 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.hud.PlayHud.java
+ *
+ * The hud displayed during the PlayPhase if you are a warlock currently fighting. Displays your
+ * hitpoints, score, spells with cooldown and similar.
  */
 package warlock.hud;
 
@@ -10,9 +12,9 @@ import warlock.font.Font;
 import warlock.graphic.Color;
 import warlock.graphic.Graphic;
 import warlock.message.Message;
-import warlock.object.character.Warlock;
+import warlock.object.warlock.Warlock;
 import warlock.player.Player;
-import warlock.resource.ResourceManager;
+import warlock.resource.ResourceHandler;
 import warlock.spell.Spell;
 import warlock.spell.SpellShortcut;
 
@@ -41,10 +43,19 @@ public class PlayHud extends Hud {
    public static final int MESSAGE_TIME = 5;
    private ArrayList<Message> messages = new ArrayList<>();
 
+   /**
+    * Creates a new play hud
+    *
+    * @param player
+    */
    public PlayHud(Player player) {
       super(player);
    }
 
+   /**
+    * Render the play hud with coldowns, hp and general info.
+    * @param g
+    */
    @Override
    public void render(Graphic g) {
       g.setScreenCoordinates(true); //Camera position is of no concern when drawing UI
@@ -56,6 +67,10 @@ public class PlayHud extends Hud {
       g.setScreenCoordinates(false); //Reset
    }
 
+   /**
+    * Render the lower background of the hud
+    * @param g
+    */
    private void renderHudBackground(Graphic g) {
       int x = (g.getScreenWidth() / 2);
       //Main bottom background
@@ -67,6 +82,10 @@ public class PlayHud extends Hud {
       g.drawRectangle(x, BOTTOM_BACKGROUND_SIZE + 1, ZLayers.GUI_BACKGROUND, g.getScreenWidth(), 2, 0, new Color(0, 0, 0));
    }
 
+   /**
+    * Render any messages sent to the hud
+    * @param g
+    */
    private void renderMessages(Graphic g) {
       int y = MESSAGE_OFFSETY;
       for (int i = messages.size() - 1; i >= 0; i--) {
@@ -75,6 +94,10 @@ public class PlayHud extends Hud {
       }
    }
 
+   /**
+    * Renders general info
+    * @param g
+    */
    private void renderInfo(Graphic g) {
       //Gold
       g.drawText(Font.STYLE_NORMAL, g.getScreenWidth() - INFO_X, GOLD_Y, ZLayers.GUI,
@@ -87,6 +110,10 @@ public class PlayHud extends Hud {
          "KILLS: " + getPlayer().getKillingblows(), Font.SIZE_NORMAL, Color.BLACK);
    }
 
+   /**
+    * Renders the hpbar
+    * @param g
+    */
    private void renderHP(Graphic g) {
       int x = g.getScreenWidth() / 2 + HPBAR_XOFFSET;
       Warlock w = getPlayer().getWarlock();
@@ -97,6 +124,10 @@ public class PlayHud extends Hud {
          Font.SIZE_NORMAL, Color.BLACK);
    }
 
+   /**
+    * Renders spells and their cooldowns
+    * @param g
+    */
    private void renderSpells(Graphic g) {
       int x = SPELL_ICON_XOFFSET + (SPELL_ICON_SIZE / 2);
       int y = SPELL_ICON_YOFFSET + (SPELL_ICON_SIZE / 2);
@@ -119,9 +150,16 @@ public class PlayHud extends Hud {
       }
    }
 
+   /**
+    * Render an individual spell with cooldown if it's on it
+    * @param g
+    * @param spell
+    * @param x
+    * @param y
+    */
    private void renderSpell(Graphic g, Spell spell, int x, int y) {
       //Spell icon
-      g.drawTexture(ResourceManager.getTexture(spell.getSpellIcon()), x, y, ZLayers.GUI, SPELL_ICON_SIZE, SPELL_ICON_SIZE, 0);
+      g.drawTexture(ResourceHandler.getTexture(spell.getSpellIcon()), x, y, ZLayers.GUI, SPELL_ICON_SIZE, SPELL_ICON_SIZE, 0);
       //if on cooldown, draw cooldown meter
       if (spell.getCurrentCooldown() > 0) {
          double percentage = spell.getCurrentCooldown() / spell.getCooldown();
@@ -132,6 +170,10 @@ public class PlayHud extends Hud {
       //g.drawText(Font.STYLE_NORMAL, 200, 500, ZLayers.GUI, spell.getDescription(), 14, Color.BLACK);
    }
 
+   /**
+    * Update messages and remove those that has expired
+    * @param dt
+    */
    @Override
    public void update(double dt) {
       for (int i = messages.size() - 1; i >= 0; i--) {
@@ -143,6 +185,10 @@ public class PlayHud extends Hud {
       }
    }
 
+   /**
+    * Append a message to the messages displayed on the hud
+    * @param text
+    */
    public void addMessage(String text) {
       messages.add(new Message(text, MESSAGE_TIME));
    }

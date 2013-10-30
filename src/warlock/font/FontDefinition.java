@@ -1,13 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.font.FontDefinition.java
+ *
+ * A single character from a font. It has it's own vertex definition with the UV values of the
+ * texture that exact character is using.
  */
 package warlock.font;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
-import warlock.graphic.Color;
-import warlock.graphic.Graphic;
 import warlock.graphic.VertexDefination;
 
 /**
@@ -20,22 +20,44 @@ public class FontDefinition {
    private int height;
    private int offset;
 
+   /**
+    * @return width of the definition
+    */
    public int getWidth() {
       return width;
    }
 
+   /**
+    * @return height of the definition
+    */
    public int getHeight() {
       return height;
    }
 
+   /**
+    * @return Offset of the definition in y.
+    */
    public int getOffset() {
       return offset;
    }
 
+   /**
+    * @return the vertexDefinition this font character has
+    */
    public VertexDefination getDefinition() {
       return def;
    }
 
+   /**
+    * Create a new font definition.
+    * 
+    * @param tex
+    * @param x
+    * @param y
+    * @param w
+    * @param h
+    * @param offset
+    */
    public FontDefinition(Texture tex, int x, int y, int w, int h, int offset) {
       this.offset = offset;
       float textureWidth = tex.getImageWidth();

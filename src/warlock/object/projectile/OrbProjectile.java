@@ -7,9 +7,9 @@ package warlock.object.projectile;
 import warlock.constant.ZLayers;
 import warlock.graphic.Graphic;
 import warlock.object.LevelObject;
-import warlock.object.character.AttributeHandler;
-import warlock.object.character.StatusEffectType;
-import warlock.object.character.Warlock;
+import warlock.attribute.AttributeHandler;
+import warlock.attribute.StatusEffectType;
+import warlock.object.warlock.Warlock;
 import warlock.object.particle.ParticleHandler;
 import warlock.phys.Vector;
 
@@ -19,15 +19,27 @@ import warlock.phys.Vector;
  */
 public class OrbProjectile extends Projectile {
 
-   private static final double RADIANS_PER_SECONDS = Math.PI / 5;
+   private static final double RADIANS_PER_SECONDS = Math.PI / 4;
    private static final double timerDefault = 0.1;
    private double particleTimer = 0.0f;
    private boolean dead = false;
 
+   /**
+    * Creates a new orb projectile, cast by using the seekerorb spell
+    * @param angle
+    * @param speed
+    * @param range
+    * @param damage
+    * @param knockback
+    */
    public OrbProjectile(double angle, double speed, double range, int damage, double knockback) {
       super(angle, speed, range, damage, knockback);
    }
 
+   /**
+    * Update position and create particle effect after the projectile
+    * @param dt
+    */
    @Override
    public void update(double dt) {
       checkRemoval(dt);
@@ -45,6 +57,10 @@ public class OrbProjectile extends Projectile {
       setPosition(getPosition().add(getHeading().scale(dt)));
    }
 
+   /**
+    * Guide the orb towards the closest enemy warlock
+    * @param dt
+    */
    private void steer(double dt) {
       if(dead) {
          return;
@@ -60,12 +76,19 @@ public class OrbProjectile extends Projectile {
       getHeading().rotate(dAngle);
    }
 
+   /**
+    * Render the projectile
+    * @param g
+    */
    @Override
    public void render(Graphic g) {
       g.drawCircle((int) getPosition().getX(), (int) getPosition().getY(), ZLayers.OBJECT,
          6, getOwningPlayer().getPrimaryColor());
    }
 
+   /**
+    * The particle effect played when this projectile expires
+    */
    @Override
    public void deathFX() {
       dead = true;
@@ -77,6 +100,9 @@ public class OrbProjectile extends Projectile {
          0.5, 0.3); //Lifetime
    }
 
+   /**
+    * The particle effect that plays when this projectile hits a target
+    */
    @Override
    public void hitFX() {
       ParticleHandler.spawn(50, getPosition(), ParticleHandler.SIZE_LARGE, //Positional and size

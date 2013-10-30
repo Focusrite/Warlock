@@ -1,11 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.Lightning.java
+ *
+ * A fast moving projectile spell with no damage but great knockback.
  */
 package warlock.spell;
 
-import warlock.object.character.Warlock;
 import warlock.object.projectile.LightningProjectile;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 
 /**
@@ -18,6 +19,10 @@ public class Lightning extends Spell {
    private static final double cooldown[] = {10, 10, 10, 10, 10};
    private static final double speed[] = {300, 300, 300, 300, 300};
 
+   /**
+    * Create a new Lightning spell
+    * @param owner
+    */
    public Lightning(Warlock owner) {
       super(owner, "Lightning", SpellTarget.GROUND, SpellShortcut.Q, 5);
       setCooldown(cooldown[0]);
@@ -36,8 +41,10 @@ public class Lightning extends Spell {
       rebuildDescription();
    }
 
-
-
+   /**
+    * Cast the spell.
+    * @param castVector
+    */
    @Override
    public void cast(Vector castVector) {
       LightningProjectile projectile = new LightningProjectile(castVector.getAngle(),
@@ -49,6 +56,9 @@ public class Lightning extends Spell {
       getOwner().getLevel().addObject(projectile, getOwner().getOwningPlayer());
    }
 
+   /**
+    * @return a "copy" of the spell
+    */
    @Override
    public Lightning clone() {
       Lightning spell = new Lightning(null);

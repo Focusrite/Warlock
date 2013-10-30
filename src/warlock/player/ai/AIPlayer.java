@@ -1,7 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.player.ai.AIMode.java
+ *
+ * An extended Player that has AI capabilities. It has a state member, aiMode, which notes what the AI
+ * should actually do, and this class only handles shopping and the changing of states ("thinking").
  */
+
 package warlock.player.ai;
 
 import java.util.ArrayList;
@@ -24,12 +27,22 @@ public class AIPlayer extends Player {
    private AIMode aiMode;
    private double modeTime;
 
+   /**
+    * Create a new AIPlayer.
+    * @param playerId
+    * @param primary
+    * @param secondary
+    */
    public AIPlayer(int playerId, Color primary, Color secondary) {
       super(playerId, primary, secondary);
       setName("Computer " + playerId);
       changeMode(new AIModeFleeing(this));
    }
 
+   /**
+    * Update the player, ie. execute AI actions.
+    * @param dt
+    */
    @Override
    public void update(double dt) {
       if(getLevel().getWarlocksLeft() <= 1) {
@@ -39,14 +52,17 @@ public class AIPlayer extends Player {
       aiMode.execute(dt);
    }
 
+   /**
+    * @return the current ai mode
+    */
    public AIMode getAIMode() {
       return aiMode;
    }
 
-   public void setAIMode(AIMode aiMode) {
-      this.aiMode = aiMode;
-   }
-
+   /**
+    * Do the thinking on what mode the ai should enter
+    * @param dt
+    */
    private void brain(double dt) {
       modeTime += dt;
       if (modeTime < aiMode.getMinModeTime()) {
@@ -61,11 +77,18 @@ public class AIPlayer extends Player {
       }
    }
 
+   /**
+    * Change the mode and reset mode timer
+    * @param newMode
+    */
    private void changeMode(AIMode newMode) {
       modeTime = 0;
       aiMode = newMode;
    }
 
+   /**
+    * Buy stuff! Buys the most pricey item they possibly can first and foremost
+    */
    public void shop() {
       if(ExtraMath.getRandom().nextInt(3) == 0) {
          return; //Sometimes saves up for next round..

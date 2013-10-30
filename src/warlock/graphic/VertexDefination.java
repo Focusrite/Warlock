@@ -1,6 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.graphic.VertexDefination.java
+ *
+ * A class for creating new vertex definations and store them for use in OpenGL. It creates and stores
+ * both the Vertex Buffer Object and the Vertex Array Object for this particular definition.
  */
 package warlock.graphic;
 
@@ -28,6 +30,13 @@ public class VertexDefination {
    private static final int VERTEX_SIZE = 3;
    private static final int UV_SIZE = 2;
 
+   /**
+    * Setup a new vertexdefinition by loading vertice array and uv array into float buffers.
+    *
+    * @param vertices
+    * @param uv
+    * @param drawMethod
+    */
    public VertexDefination(float[] vertices, float[] uv, int drawMethod) {//float[] uv
       assert vertices.length % VERTEX_SIZE == 0 && vertices.length % VERTEX_SIZE == uv.length % UV_SIZE;
       //this.vertices = new Vertex[vertices.length % VERTEX_SIZE];
@@ -50,11 +59,17 @@ public class VertexDefination {
       init(); //sets up VAO and VBO
    }
 
+   /**
+    * Shorthand init
+    */
    private void init() {
       createVBO();
       createVAO();
    }
 
+   /**
+    * Create the VBO using the float buffers
+    */
    private void createVBO() {
       //Position buffer
       vertexPositionBufferId = GL15.glGenBuffers();
@@ -68,6 +83,9 @@ public class VertexDefination {
       GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
    }
 
+   /**
+    * Create the VAO for this definition.
+    */
    private void createVAO() {
       vertexArrayId = GL30.glGenVertexArrays();
       GL30.glBindVertexArray(vertexArrayId);
@@ -87,32 +105,46 @@ public class VertexDefination {
       GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
    }
 
+   /**
+    * @return the VBO id
+    */
    public int getVBO() {
       return vertexPositionBufferId;
    }
 
+   /**
+    * @return the VAO id
+    */
    public int getVAO() {
       return vertexArrayId;
    }
 
+   /**
+    * @return the draw method set for this definition
+    */
    public int getDrawMethod() {
       return drawMethod;
    }
 
-   public FloatBuffer getBuffer() {
-      return positionBuffer;
-   }
-
+   /**
+    * @return the size of this definition (how many vertices)
+    */
    public int getDefinitionSize() {
       return size;
    }
 
+   /**
+    * Bind a this definition to use with OpenGL
+    */
    public void bindDefiniaton() {
       GL30.glBindVertexArray(vertexArrayId);
       GL20.glEnableVertexAttribArray(0); // VertexPosition
       GL20.glEnableVertexAttribArray(1); // VertexUV
    }
 
+   /**
+    * Release this (or any) bound definition.
+    */
    public void unbind() {
       GL20.glDisableVertexAttribArray(0);
       GL20.glDisableVertexAttribArray(1);

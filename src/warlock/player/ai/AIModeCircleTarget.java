@@ -1,17 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.player.ai.AIModeCircleTarget.java
+ *
+ * A mode where the AI atempts to circle a target but still be drawn towards the center.
  */
 package warlock.player.ai;
 
 import warlock.ExtraMath;
-import warlock.object.character.Warlock;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 
-/**
- *
- * @author Focusrite
- */
 public class AIModeCircleTarget extends AIMode {
 
    private static final int RADIUS = 350;
@@ -22,6 +19,11 @@ public class AIModeCircleTarget extends AIMode {
    private double radius;
    private short mod;
 
+   /**
+    * Create a new AIModeCircleTarget
+    * @param player
+    * @param target
+    */
    public AIModeCircleTarget(AIPlayer player, Warlock target) {
       super(player);
       this.target = target;
@@ -32,6 +34,10 @@ public class AIModeCircleTarget extends AIMode {
 
    }
 
+   /**
+    * Execute the actions
+    * @param dt
+    */
    @Override
    public void execute(double dt) {
       reachedLength = (reachedLength + getWarlock().attrVal("ms") * dt * mod) % wholeLength; // add ds * dt

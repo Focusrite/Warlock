@@ -1,6 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.PlayState.java
+ *
+ * The state taking care of the actual gameplay part of the game.
  */
 package warlock.state;
 
@@ -9,16 +10,12 @@ import org.lwjgl.opengl.Display;
 import warlock.game.Game;
 import warlock.graphic.Color;
 import warlock.graphic.Graphic;
-import warlock.hud.interactables.InteractableInfo;
-import warlock.hud.interactables.InteractableListenerSlim;
-import warlock.hud.interactables.InteractableTextureButton;
+import warlock.hud.interactable.InteractableInfo;
+import warlock.hud.interactable.InteractableListenerSlim;
+import warlock.hud.interactable.InteractableTextureButton;
 import warlock.input.InputHandler;
 import warlock.lobby.Lobby;
 
-/**
- *
- * @author Focusrite
- */
 public class PlayState extends GameState {
 
    private static final int QUITBUTTON_WIDTH = 50;
@@ -29,10 +26,17 @@ public class PlayState extends GameState {
    private boolean menu = false;
    private boolean quit = false;
 
+   /**
+    * Create a new PlayState
+    * @param lobby
+    */
    public PlayState(Lobby lobby) {
       this.lobby = lobby;
    }
 
+   /**
+    * Initialize the play state and the "menu" overlay that's displayed when holding ESC.
+    */
    @Override
    public void init() {
       this.game = new Game(getCamera(), lobby);
@@ -48,6 +52,10 @@ public class PlayState extends GameState {
       this.game.init();
    }
 
+   /**
+    * Update the game
+    * @param dt
+    */
    @Override
    public void update(double dt) {
       if (quit) {
@@ -57,6 +65,10 @@ public class PlayState extends GameState {
       this.game.update(dt);
    }
 
+   /**
+    * Render the game
+    * @param g
+    */
    @Override
    public void render(Graphic g) {
       if (menu) {
@@ -71,6 +83,10 @@ public class PlayState extends GameState {
    public void destroy() {
    }
 
+   /**
+    * Handle input of game
+    * @param input
+    */
    @Override
    public void handleInput(InputHandler input) {
       menu = input.keyHeld(Keyboard.KEY_ESCAPE);

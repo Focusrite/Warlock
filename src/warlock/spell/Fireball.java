@@ -1,17 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.Fireball.java
+ *
+ * The normal spell spammed throughout.
  */
 package warlock.spell;
 
-import warlock.object.character.Warlock;
 import warlock.object.projectile.FireballProjectile;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 
-/**
- *
- * @author Focusrite
- */
 public class Fireball extends Spell {
 
    private static final double damage[] = {10, 15, 15, 20, 20};
@@ -20,6 +17,10 @@ public class Fireball extends Spell {
    private static final double cooldown[] = {2, 2, 2, 2, 2};
    private static final double speed[] = {100, 100, 100, 100, 100};
 
+   /**
+    * Create a new Fireball spell
+    * @param owner
+    */
    public Fireball(Warlock owner) {
       super(owner, "Fireball", SpellTarget.GROUND, SpellShortcut.MB, 2);
       setCooldown(cooldown[0]);
@@ -37,6 +38,10 @@ public class Fireball extends Spell {
       rebuildDescription();
    }
 
+   /**
+    * Cast the spell.
+    * @param castVector
+    */
    @Override
    public void cast(Vector castVector) {
       FireballProjectile projectile = new FireballProjectile(castVector.getAngle(),
@@ -48,6 +53,9 @@ public class Fireball extends Spell {
       getOwner().getLevel().addObject(projectile, getOwner().getOwningPlayer());
    }
 
+   /**
+    * @return a "copy" of the spell
+    */
    @Override
    public Fireball clone() {
       Fireball spell = new Fireball(null);

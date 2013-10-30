@@ -1,6 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.game.PlayPhase.java
+ *
+ * Instance of GamePhase. The phase in which the actual game is taking place, where warlocks battle
+ * out for the ultimate prize of becoming the number #1 warlock on the block.
+ *
+ * This round ends when only one warlock is left alive, or there is a winner.
  */
 package warlock.game;
 
@@ -33,6 +37,11 @@ public class PlayPhase extends GamePhase {
    private Level activeLevel;
    private ArrayList<Player> playersAlive = new ArrayList<>();
 
+   /**
+    * Initialize a new play phase and set up the appropriate hud depending on if the player is observing
+    * or playing.
+    * @param owner
+    */
    public PlayPhase(final Game owner) {
       super(owner);
       if (getOwner().getPlayer() instanceof ObserverPlayer) {
@@ -43,13 +52,18 @@ public class PlayPhase extends GamePhase {
       }
    }
 
+   /**
+    * Initialize the play phase.
+    *
+    * Sets up the level and adds the player's warlocks to the level.
+    */
    @Override
    public void init() {
       this.activeLevel = new Level(getOwner().getCamera(), getOwner().getGroundSize());
       Iterator<Player> it = getOwner().getPlayersIterator();
       while (it.hasNext()) {
          Player p = it.next();
-         p.getWarlock().cure(); //full health and no status effects
+         p.getWarlock().cure(); //full health and no status effects for each new round
          this.activeLevel.addObjectRandomPosition(p.getWarlock(), p);
          playersAlive.add(p);
          if(p instanceof AIPlayer) {
@@ -62,12 +76,20 @@ public class PlayPhase extends GamePhase {
       }
    }
 
+   /**
+    * Call hud's and level's render
+    * @param g
+    */
    @Override
    public void render(Graphic g) {
       this.activeLevel.render(g);
       getHud().render(g);
    }
 
+   /**
+    * Update the level, hud and players that are alive
+    * @param dt
+    */
    @Override
    public void update(double dt) {
       this.activeLevel.update(dt);
@@ -77,11 +99,20 @@ public class PlayPhase extends GamePhase {
       }
    }
 
+   /**
+    * Call the local player's handleInput
+    * @param input
+    */
    @Override
    public void handleInput(InputHandler input) {
       getOwner().getPlayer().handleInput(input);
    }
 
+   /**
+    * Award money and update score for kills as well as provide a cool edgy text.
+    * @param p
+    * @param killer
+    */
    @Override
    public void notifyDeath(Player p, Player killer) {
       if (killer != null && p != killer) {
@@ -111,6 +142,9 @@ public class PlayPhase extends GamePhase {
       }
    }
 
+   /**
+    * A round has ended, exit the play phase!
+    */
    private void endRound() {
       Player lastAlive = playersAlive.get(0);
       lastAlive.modifyGold(POINTS_FOR_LAST_REMAINING);
@@ -138,6 +172,9 @@ public class PlayPhase extends GamePhase {
       t.start();
    }
 
+   /**
+    * Reward all players alive when another player's warlock gets iced.
+    */
    private void reward() {
       for (int i = 0; i < playersAlive.size(); i++) {
          playersAlive.get(i).modifyGold(POINTS_FOR_REMAINING);
@@ -145,6 +182,10 @@ public class PlayPhase extends GamePhase {
       }
    }
 
+   /**
+    * Add a message to be displayed to the hud.
+    * @param message
+    */
    private void addMessage(String message) {
       if(getHud() instanceof PlayHud) {
          ((PlayHud)getHud()).addMessage(message);

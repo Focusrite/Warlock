@@ -1,22 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.Teleport.java
+ *
+ * Teleports the caster a short way towards the mouse cursor.
  */
 package warlock.spell;
 
-import warlock.object.character.Warlock;
 import warlock.object.particle.ParticleHandler;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 
-/**
- *
- * @author Focusrite
- */
 public class Teleport extends Spell {
 
    private static final double cooldown[] = {20, 18, 15, 12, 10};
    private static final double range[] = {150, 200, 250, 300, 350};
 
+   /**
+    * Create a new Teleport spell
+    * @param owner
+    */
    public Teleport(Warlock owner) {
       super(owner, "Teleport", SpellTarget.GROUND, SpellShortcut.SPC, 5);
       setCooldown(cooldown[0]);
@@ -35,12 +36,19 @@ public class Teleport extends Spell {
       rebuildDescription();
    }
 
+   /**
+    * Overriden to lower cooldown on level up
+    */
    @Override
    public void levelUp() {
       super.levelUp();
       setCooldown(cooldown[getSpellLevel() - 1]);
    }
 
+   /**
+    * Cast the spell.
+    * @param castVector
+    */
    @Override
    public void cast(Vector castVector) {
       teleportFX(getOwner().getPosition());
@@ -53,12 +61,19 @@ public class Teleport extends Spell {
       teleportFX(castVector);
    }
 
+   /**
+    * @return a "copy" of the spell
+    */
    @Override
    public Teleport clone() {
       Teleport tp = new Teleport(null);
       return tp;
    }
 
+   /**
+    * The teleport fx
+    * @param v
+    */
    private void teleportFX(Vector v) {
       for(int i = 0; i < 36; i++) {
          ParticleHandler.spawn(2, v, ParticleHandler.SIZE_SMALL,

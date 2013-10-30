@@ -1,22 +1,23 @@
+/**
+ * File: warlock.graphic.ShaderProgram.java
+ *
+ * A helper class for loading shaders into OpenGL, adapted and modified version of a tutorial written
+ * by Johannes Schaback aka Schabby.
+ *
+ * @ http://schabby.de/opengl-shader-example/ Last checked 2013-10-17.
+ *
+ */
+
 package warlock.graphic;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import static org.lwjgl.opengl.GL20.*;
-import warlock.resource.ResourceManager;
+import warlock.resource.ResourceHandler;
 
 /**
- * A helper class for loading shaders written by Johannes Schaback aka Schabby
- *
- * @ http://schabby.de/opengl-shader-example/
- *
- * Modified slightly to no longer use depricated methods.
- *
- * @author Schabby
+
  */
 public class ShaderProgram {
    // OpenGL handle that will point to the executable shader program
@@ -41,14 +42,14 @@ public class ShaderProgram {
 
       // validate linking
       if (glGetProgrami(programId, GL_LINK_STATUS) == GL11.GL_FALSE) {
-         throw new RuntimeException("could not link shader. Reason: " + glGetProgramInfoLog(programId, 1000));
+         throw new RuntimeException("Could not link shader. Reason: " + glGetProgramInfoLog(programId, 1000));
       }
 
       // perform general validation that the program is usable
       glValidateProgram(programId);
 
       if (glGetProgrami(programId, GL_VALIDATE_STATUS) == GL11.GL_FALSE) {
-         throw new RuntimeException("could not validate shader. Reason: " + glGetProgramInfoLog(programId, 1000));
+         throw new RuntimeException("Could not validate shader. Reason: " + glGetProgramInfoLog(programId, 1000));
       }
    }
 
@@ -62,11 +63,12 @@ public class ShaderProgram {
       int handle = glCreateShader(shaderType);
 
       if (handle == 0) {
-         throw new RuntimeException("could not created shader of type " + shaderType + " for file " + filename + ". " + glGetProgramInfoLog(programId, 1000));
+         throw new RuntimeException("Could not created shader of type " + shaderType + " for file " +
+            filename + ". " + glGetProgramInfoLog(programId, 1000));
       }
 
       // load code from file into String
-      String code = ResourceManager.loadTextResource(filename);
+      String code = ResourceHandler.loadTextResource(filename);
 
       // upload code to OpenGL and associate code with shader
       glShaderSource(handle, code);
@@ -79,7 +81,8 @@ public class ShaderProgram {
 
       // check whether compilation was successful
       if (shaderStatus == GL11.GL_FALSE) {
-         throw new IllegalStateException("compilation error for shader [" + filename + "]. Reason: " + glGetShaderInfoLog(handle, 1000));
+         throw new IllegalStateException("Compilation error for shader [" + filename + "]. Reason: " +
+            glGetShaderInfoLog(handle, 1000));
       }
 
       return handle;

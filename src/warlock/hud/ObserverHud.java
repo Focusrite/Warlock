@@ -1,6 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.hud.ObserverHud.java
+ *
+ * The hud used when in observer mode, only displays the scoreboard and text message part from
+ * PlayHud.
  */
 package warlock.hud;
 
@@ -32,12 +34,23 @@ public class ObserverHud extends Hud {
    private ArrayList<Player> scoretable;
    private ArrayList<Message> messages = new ArrayList<>();
 
+   /**
+    * Initialize the hud for an observer displaying the level and scoreboard.
+    *
+    * @param player
+    * @param scoretable
+    * @param firstTo
+    */
    public ObserverHud(Player player, ArrayList<Player> scoretable, int firstTo) {
       super(player);
       this.scoretable = scoretable;
       this.firstTo = firstTo;
    }
 
+   /**
+    * Render this hud.
+    * @param g
+    */
    @Override
    public void render(Graphic g) {
       g.setScreenCoordinates(true); //Camera position is of no concern when drawing UI
@@ -47,6 +60,10 @@ public class ObserverHud extends Hud {
       g.setScreenCoordinates(false);
    }
 
+   /**
+    * Render the scoreboard in the top right corner
+    * @param g
+    */
    private void renderScoretable(Graphic g) {
       int x = g.getScreenWidth() - (SCORETABLE_OFFSETX + SCORETABLE_WIDTH / 2 - TEXTPADDING);
       int y = g.getScreenHeight() - (SCORETABLE_OFFSETY - SCORETABLE_HEIGHT / 2 + TEXTPADDING);
@@ -65,6 +82,10 @@ public class ObserverHud extends Hud {
       }
    }
 
+   /**
+    * Render any messages the play phase wishes to display
+    * @param g
+    */
    private void renderMessages(Graphic g) {
       int y = MESSAGE_OFFSETY;
       for (int i = messages.size() - 1; i >= 0; i--) {
@@ -73,6 +94,10 @@ public class ObserverHud extends Hud {
       }
    }
 
+   /**
+    * Update messages, remove them when they have expired
+    * @param dt
+    */
    @Override
    public void update(double dt) {
       for (int i = messages.size() - 1; i >= 0; i--) {
@@ -84,6 +109,10 @@ public class ObserverHud extends Hud {
       }
    }
 
+   /**
+    * Add a message to display to the hud
+    * @param text
+    */
    public void addMessage(String text) {
       messages.add(new Message(text, MESSAGE_TIME));
    }

@@ -1,13 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.level.GroundType.java
+ *
+ * An enumeration for ground types in the game. Moderately useful at the moment, but future gamemodes
+ * and levels might include different tiles.
  */
 package warlock.level;
 
-/**
- *
- * @author Focusrite
- */
 public enum GroundType {
    GROUND, LAVA
 }

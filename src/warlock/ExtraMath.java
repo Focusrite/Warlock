@@ -1,6 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.ExtraMath.java
+ *
+ * Some extra utility functions related to math, notably random.
  */
 package warlock;
 

@@ -1,12 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: warlock.spell.Shield.java
+ *
+ * A spell that provides a brief shield that reflects any projectile spell back the way it came as
+ * well as claims the ownership of it.
  */
+
 package warlock.spell;
 
-import warlock.object.character.AttributeHandler;
-import warlock.object.character.StatusEffectType;
-import warlock.object.character.Warlock;
+import warlock.attribute.AttributeHandler;
+import warlock.attribute.StatusEffectType;
+import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 
 /**
@@ -15,10 +18,14 @@ import warlock.phys.Vector;
  */
 public class Shield extends Spell {
 
-   private static final double cooldown[] = {10, 9, 8, 7, 6};
-   private static final double duration[] = {0.5, 0.7, 0.9, 1.1, 1.3};
-   private static final double maxReflects[] = {1, 1, 2, 2, 3};
+   private static final double cooldown[] = {10, 10, 10, 10, 8};
+   private static final double duration[] = {1, 1.3, 1.6, 1.9, 2.2};
+   private static final double maxReflects[] = {1, 1, 2, 2, 2};
 
+   /**
+    * Create a new Shield spell
+    * @param owner
+    */
    public Shield(Warlock owner) {
       super(owner, "Shield", SpellTarget.SELF, SpellShortcut.E, 5);
       setCooldown(cooldown[0]);
@@ -36,12 +43,19 @@ public class Shield extends Spell {
       rebuildDescription();
    }
 
+   /**
+    * Override the levelup to lower the cooldown
+    */
    @Override
    public void levelUp() {
       super.levelUp();
       setCooldown(cooldown[getSpellLevel() - 1]);
    }
 
+   /**
+    * Cast the spell.
+    * @param castVector
+    */
    @Override
    public void cast(Vector castVector) {
       for (int i = 0; i < maxReflects[getSpellLevel() - 1]; i++) {
@@ -50,6 +64,9 @@ public class Shield extends Spell {
       }
    }
 
+   /**
+    * @return a "copy" of the spell
+    */
    @Override
    public Shield clone() {
       Shield spell = new Shield(null);
