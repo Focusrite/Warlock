@@ -1,5 +1,5 @@
 /**
- * File: warlock.spell.GameState.java
+ * File: warlock.state.GameState.java
  *
  * An abstract class representing the state the game currently is in.
  *
@@ -33,7 +33,7 @@ import warlock.camera.Camera;
 import warlock.graphic.Graphic;
 import warlock.input.InputHandler;
 
-public abstract class GameState {
+public abstract class GameState implements Updateable, Renderable, InputEnabled{
    private static GameState instance;
    private static boolean exitRequested = false;
    private Camera camera;
@@ -93,12 +93,15 @@ public abstract class GameState {
       return GameState.instance;
    }
 
+   @Override
    public abstract void handleInput(InputHandler input);
 
    public abstract void init();
 
+   @Override
    public abstract void update(double dt);
 
+   @Override
    public abstract void render(Graphic g);
 
    public abstract void destroy();

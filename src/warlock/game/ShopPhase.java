@@ -14,11 +14,8 @@ import warlock.graphic.Graphic;
 import warlock.hud.ShopHud;
 import warlock.input.InputHandler;
 import warlock.shop.Shop;
+import warlock.state.InputEnabled;
 
-/**
- *
- * @author Focusrite
- */
 public class ShopPhase extends GamePhase {
    private Shop shop;
    private ShopHud hud;

@@ -63,7 +63,7 @@ public class Warlock extends LevelObject {
       momentum = new Vector();
       dead = false;
       facingAngle = 0;
-      addSpell(SpellShortcut.MB, new Fireball(this));
+      addSpell(SpellShortcut.RMB, new Fireball(this));
       addSpell(SpellShortcut.R, new Explosion(this));
       init();
    }
@@ -102,6 +102,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Add a death listener to notify when the warlock gets KO'd
+    *
     * @param listener
     */
    public void addDeathListener(DeathListener listener) {
@@ -110,6 +111,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Notify all listener this warlock just passed away/got torched
+    *
     * @param killer
     */
    public void notifyDeath(Player killer) {
@@ -137,6 +139,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Returns the current value of an attribute
+    *
     * @param tag of the attribute
     * @return current value if tag is valid, else null
     */
@@ -147,6 +150,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Return the base value of an attribute
+    *
     * @param tag
     * @return base value if tag is valid, else null
     */
@@ -157,6 +161,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Set the position of the warlock in (x,y) coordinates
+    *
     * @param x
     * @param y
     */
@@ -187,7 +192,9 @@ public class Warlock extends LevelObject {
    }
 
    /**
-    * Sets the position the warlock moves towards, he must first turn to face that angle before moving
+    * Sets the position the warlock moves towards, he must first turn to face that angle before
+    * moving
+    *
     * @param moveTo position
     */
    public void setMoveTo(Vector moveTo) {
@@ -203,6 +210,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Inflict a status effect on the warlock. These can both be positive and negative.
+    *
     * @param type the type of status effect, ie what attribute it targets
     * @param secondsLasting
     * @param inflicter the inflicting player
@@ -211,16 +219,18 @@ public class Warlock extends LevelObject {
    public void inflictStatusEffect(StatusEffectType type, double secondsLasting, Player inflicter,
       StatusEffectListener listener) {
 
-      StatusEffect effect = StatusEffect.newInstance(this.attr(type.getAffectedTag()), type);
-      effect.setInflicter(inflicter).setTemporary((secondsLasting > 0)).
+      StatusEffect effect = StatusEffect.newInstance(this.attr(type.getAffectedTag())).
+         setMagnitude(type.getMagnitude()).
+         setInflicter(inflicter).setTemporary((secondsLasting > 0)).
          setExprStamp((secondsLasting > 0) ? Time.relativetime(secondsLasting) : 0);
 
       effect.onset(); //"start" status effect
-      if(listener != null) {
+      if (listener != null) {
          effect.addListener(listener);
       }
       statusEffects.add(effect);
    }
+
    public void inflictStatusEffect(StatusEffectType type, double secondsLasting, Player inflicter) {
       inflictStatusEffect(type, secondsLasting, inflicter, null);
    }
@@ -235,6 +245,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Add momentum to this warlock
+    *
     * @param v force to add
     */
    public void applyForce(Vector v) {
@@ -243,6 +254,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Update the status effects this warlock has inflicted on him, and cure any expired ones
+    *
     * @param dt
     */
    private void updateStatusEffects(double dt) {
@@ -257,6 +269,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Turn towards the angle
+    *
     * @param angle
     * @param dAngle
     */
@@ -275,6 +288,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Move towards moveTo if warlock is able to.
+    *
     * @param dt
     */
    public void steer(double dt) {
@@ -304,6 +318,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Do movement updates, both applied force and player controlled movement
+    *
     * @param dt
     */
    private void updateMovement(double dt) {
@@ -313,6 +328,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Move the warlock if it has any momentum force.
+    *
     * @param dt
     */
    private void doForce(double dt) {
@@ -329,6 +345,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Updates spell cooldowns
+    *
     * @param dt
     */
    private void updateSpells(double dt) {
@@ -342,6 +359,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Checks the groundtype and damages the warlock if on lava
+    *
     * @param dt
     */
    private void updateGround(double dt) {
@@ -366,8 +384,8 @@ public class Warlock extends LevelObject {
    }
 
    /**
-    * Check whether the warlcok is dead or not, and kills it if it is, with a nifty particle explosion
-    * to boot.
+    * Check whether the warlcok is dead or not, and kills it if it is, with a nifty particle
+    * explosion to boot.
     */
    private void checkDeath() {
       if (attr("hp").getValue() <= 0) {
@@ -386,6 +404,7 @@ public class Warlock extends LevelObject {
 
    /**
     * The last inflicted status effect of the attribute type "tag"
+    *
     * @param tag attribute tag
     * @return the last inflicted status effect if any inflicted, else null
     */
@@ -400,6 +419,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Update the warlock
+    *
     * @param dt
     */
    @Override
@@ -413,17 +433,18 @@ public class Warlock extends LevelObject {
 
    /**
     * Cause the warlock to cast a spell
+    *
     * @param shorcut
     * @param castingPoint
     */
    public void castSpell(SpellShortcut shorcut, Vector castingPoint) {
-      if(isStunned()) {
+      if (isStunned()) {
          return;
       }
       Spell spell = this.spells.get(shorcut);
       if (spell != null && spell.canCast()) {
          spell.preCast();
-         if(castingPoint != null) {
+         if (castingPoint != null) {
             spell.cast(castingPoint.subtract(getPosition())); //Vector from position to casting point
          }
          else {
@@ -442,6 +463,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Add spell to shortcut
+    *
     * @param shortcut
     * @param spell to add
     */
@@ -452,6 +474,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Checks whether the warlock knows how to cast a spell or not
+    *
     * @param spell
     * @return true if able, else false
     */
@@ -463,6 +486,7 @@ public class Warlock extends LevelObject {
    /**
     * Checks whether a warlock can learn a nes spell, or if he already knows one that occupies that
     * shortcut slot. Returns false if warlocks knows the same spell.
+    *
     * @param spell
     * @return true if able to learn, else false
     */
@@ -488,6 +512,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Render the warlock
+    *
     * @param g
     */
    @Override
@@ -496,7 +521,7 @@ public class Warlock extends LevelObject {
       g.drawRectangle((int) getPosition().getX(), (int) getPosition().getY(), ZLayers.ON_GROUND,
          WARLOCK_SIZE, WARLOCK_SIZE, getFacingAngle(), getOwningPlayer().getPrimaryColor());
       drawHPbar(g, (int) getPosition().getX(), (int) getPosition().getY() + HPBAR_OFFSET, ZLayers.ABOVE_LEVEL, HPBAR_WIDTH, HPBAR_HEIGHT);
-      if(attrVal("shield") > 0) {
+      if (attrVal("shield") > 0) {
          g.drawTexture(ResourceHandler.getTexture("fx-shield"),
             (int) getPosition().getX(), (int) getPosition().getY(), ZLayers.OBJECT,
             WARLOCK_SIZE + 20, WARLOCK_SIZE + 20, 0, getOwningPlayer().getPrimaryColor());
@@ -505,6 +530,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Draw the hp-bar for a warlock
+    *
     * @param g
     * @param x
     * @param y
@@ -519,7 +545,9 @@ public class Warlock extends LevelObject {
    }
 
    /**
-    * Get the color the healthbar should have based on damage taken (green full health, red damaged).
+    * Get the color the healthbar should have based on damage taken (green full health, red
+    * damaged).
+    *
     * @return color
     */
    public Color getHealthColor() {
@@ -529,6 +557,7 @@ public class Warlock extends LevelObject {
 
    /**
     * Handle collision with other objects
+    *
     * @param collidingObject
     */
    @Override
@@ -547,6 +576,7 @@ public class Warlock extends LevelObject {
 
    /**
     * The particle effect played when the warlock is hit by an projectile
+    *
     * @param angle
     */
    public void hitFX(double angle) {

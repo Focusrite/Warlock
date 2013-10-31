@@ -13,8 +13,11 @@ import warlock.graphic.Graphic;
 import warlock.hud.Hud;
 import warlock.input.InputHandler;
 import warlock.player.Player;
+import warlock.state.InputEnabled;
+import warlock.state.Renderable;
+import warlock.state.Updateable;
 
-public abstract class GamePhase {
+public abstract class GamePhase implements InputEnabled, Updateable, Renderable {
    private Game owner;
    private Hud hud;
 
@@ -56,10 +59,13 @@ public abstract class GamePhase {
       this.owner = owner;
    }
 
+   @Override
    public abstract void render(Graphic g);
+   @Override
    public abstract void update(double dt);
    public abstract void init();
    public void notifyDeath(Player p, Player killer) {}
+   @Override
    public void handleInput(InputHandler input) {}
    //overidable terminate action for cleanup
    public void terminate() { }

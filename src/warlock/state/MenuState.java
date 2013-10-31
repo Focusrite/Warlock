@@ -1,5 +1,5 @@
 /**
- * File: warlock.spell.MenuState.java
+ * File: warlock.state.MenuState.java
  *
  * The state which takes care of the menu part of the game
  */
@@ -36,7 +36,7 @@ public class MenuState extends GameState {
     */
    @Override
    public void init() {
-      menu = new Menu(this);
+      menu = new Menu();
       getCamera().reset();
    }
 

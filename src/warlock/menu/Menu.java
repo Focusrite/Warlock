@@ -16,13 +16,16 @@ import warlock.hud.interactable.InteractableTextureButton;
 import warlock.input.InputHandler;
 import warlock.resource.ResourceHandler;
 import warlock.state.GameState;
+import warlock.state.InputEnabled;
 import warlock.state.LobbyState;
+import warlock.state.Renderable;
+import warlock.state.Updateable;
 
 /**
  *
  * @author Focusrite
  */
-public class Menu {
+public class Menu implements InputEnabled, Renderable, Updateable {
 
    private static final int BUTTON_OFFSETX = 10;
    private static final int BUTTON_PLAY_OFFSETY = 60;
@@ -34,14 +37,12 @@ public class Menu {
    private static final int LOGO_WIDTH = 512;
    private static final int LOGO_HEIGHT = 256;
    private ArrayList<Interactable> interactables = new ArrayList<>();
-   private GameState owner;
 
    /**
     * Create a start menu with the menu buttons
     * @param owner
     */
-   public Menu(GameState owner) {
-      this.owner = owner;
+   public Menu() {
       init();
    }
 
@@ -72,7 +73,7 @@ public class Menu {
       exit.addListener(new InteractableListenerSlim() {
          @Override
          public void clicked(InteractableInfo info) {
-            owner.exit();
+            GameState.getInstance().exit();
          }
       });
       addInteractable(exit);
@@ -82,6 +83,7 @@ public class Menu {
     * Render the menu
     * @param g
     */
+   @Override
    public void render(Graphic g) {
       g.setScreenCoordinates(true);
       g.drawTexture(ResourceHandler.getTexture("ui-logo"),
@@ -97,6 +99,7 @@ public class Menu {
     * Update all interactables
     * @param dt
     */
+   @Override
    public void update(double dt) {
       for (int i = 0; i < interactables.size(); i++) {
          interactables.get(i).update(dt);
@@ -107,6 +110,7 @@ public class Menu {
     * Handle input for all interactables
     * @param input
     */
+   @Override
    public void handleInput(InputHandler input) {
       for (int i = 0; i < interactables.size(); i++) {
          interactables.get(i).handleInput(input);

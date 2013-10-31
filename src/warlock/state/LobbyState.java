@@ -1,5 +1,5 @@
 /**
- * File: warlock.spell.LobbyState.java
+ * File: warlock.state.LobbyState.java
  *
  * The state which takes care of the lobby part of the game.
  */

@@ -11,12 +11,13 @@ import warlock.ExtraMath;
 import warlock.font.Font;
 import warlock.graphic.Color;
 import warlock.graphic.Graphic;
+import warlock.state.Updateable;
 
 /**
  *
  * @author Focusrite
  */
-public class Message {
+public class Message implements Updateable{
    private String message;
    private static final String FONT = Font.STYLE_NORMAL;
    private static final double FADEOUT_START = 1;
@@ -74,6 +75,7 @@ public class Message {
     * Update the lifetime of the message
     * @param dt
     */
+   @Override
    public void update(double dt) {
       lifetime -= dt;
    }

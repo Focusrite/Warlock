@@ -13,6 +13,7 @@ import warlock.player.Player;
 import warlock.time.Time;
 
 public class StatusEffect {
+
    private ArrayList<StatusEffectListener> listeners = new ArrayList<>();
    private Attribute affectedAttr;
    private StatusEffectType type;
@@ -32,8 +33,10 @@ public class StatusEffect {
     */
    public StatusEffect(Attribute affectedAttr, StatusEffectType type) {
       this.affectedAttr = affectedAttr;
-      this.type = type;
-      this.magnitude = type.getMagnitude();
+      if (type != null) {
+         this.type = type;
+         this.magnitude = type.getMagnitude();
+      }
       this.timestamp = Time.millitime();
    }
 
@@ -44,12 +47,15 @@ public class StatusEffect {
     * @param type
     * @return created StatusEffect
     */
-   public static StatusEffect newInstance(Attribute affectedAttr, StatusEffectType type) {
-      return new StatusEffect(affectedAttr, type);
+   public static StatusEffect newInstance(Attribute affectedAttr) {
+      return new StatusEffect(affectedAttr, null);
    }
+
+
 
    /**
     * Get the attribute this status effect is inflicted on
+    *
     * @return Attribute
     */
    public Attribute getAttr() {
@@ -64,7 +70,8 @@ public class StatusEffect {
    }
 
    /**
-    * @return double, the magnitude of this status effect (ie how much it modifies the attribute value)
+    * @return double, the magnitude of this status effect (ie how much it modifies the attribute
+    * value)
     */
    public double getMagnitude() {
       return magnitude;
@@ -73,10 +80,11 @@ public class StatusEffect {
    /**
     * Sets new magnitude. Returns self for metohd call chaining. Notice that magnitude is negative
     * as default, ie a positive number x removes x from attribute. For buffing use a negative value.
+    *
     * @param magnitude new magnitude
     * @return this
     */
-   public StatusEffect setMagnitude(int magnitude) {
+   public StatusEffect setMagnitude(double magnitude) {
       this.magnitude = magnitude;
       return this;
    }
@@ -90,6 +98,7 @@ public class StatusEffect {
 
    /**
     * Sets inflicter, returns self for method call chaining.
+    *
     * @param inflicter
     * @return this
     */
@@ -107,6 +116,7 @@ public class StatusEffect {
 
    /**
     * Sets if this status effect is temporary or not, returns self for chaining.
+    *
     * @param temporary
     * @return this
     */
@@ -124,6 +134,7 @@ public class StatusEffect {
 
    /**
     * Sets expiration timestamp, returns self for method call chaining
+    *
     * @param exprStamp
     * @return this
     */
@@ -134,6 +145,7 @@ public class StatusEffect {
 
    /**
     * Returns the time left on this status effect. Always 1 the status effect never expires
+    *
     * @return integer milliseconds
     */
    public long getTimeLeft() {
@@ -148,8 +160,8 @@ public class StatusEffect {
    }
 
    /**
-    * Modify the attribute with the magnitude of the status effect. This removes magnitude from value,
-    * buffs should be negative to give a increase in attribute.
+    * Modify the attribute with the magnitude of the status effect. This removes magnitude from
+    * value, buffs should be negative to give a increase in attribute.
     */
    public void onset() {
       this.getAttr().modValue(-this.getMagnitude());
@@ -168,17 +180,19 @@ public class StatusEffect {
 
    /**
     * Add a statusEffectListener that listens to when status effect ends.
+    *
     * @param listener
     */
-   public void addListener(StatusEffectListener listener) {
+   public StatusEffect addListener(StatusEffectListener listener) {
       listeners.add(listener);
+      return this;
    }
 
    /**
     * Notify all listeners this status effect has expired.
     */
    private void notifyExpired() {
-      for(int i = 0; i < listeners.size(); i++) {
+      for (int i = 0; i < listeners.size(); i++) {
          listeners.get(i).expired();
       }
    }
@@ -195,7 +209,6 @@ public class StatusEffect {
       hash = 97 * hash + (int) (this.exprStamp ^ (this.exprStamp >>> 32));
       return hash;
    }
-
 
    @Override
    public boolean equals(Object obj) {
@@ -229,5 +242,4 @@ public class StatusEffect {
       }
       return true;
    }
-
 }

@@ -2,8 +2,8 @@
  * File: warlock.level.Level.java
  *
  * A level, aka Deadly Death Plateau, where the warlocks fight. Handles keeping track of all the
- * objects on the level (and runs their update/render), level settings, camera position in the level,
- * as well as other goody methods for getting data from the level.
+ * objects on the level (and runs their update/render), level settings, camera position in the
+ * level, as well as other goody methods for getting data from the level.
  */
 package warlock.level;
 
@@ -18,12 +18,15 @@ import warlock.object.projectile.Projectile;
 import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 import warlock.player.Player;
+import warlock.state.Renderable;
+import warlock.state.Updateable;
 
 /**
  *
  * @author Focusrite
  */
-public class Level {
+public class Level implements Updateable, Renderable {
+
    private static final double RANDOM_POSITION_SCALING = 0.9;
    private ArrayList<LevelObject> objects = new ArrayList<>();
    private ArrayList<Warlock> warlocks = new ArrayList<>();
@@ -35,6 +38,7 @@ public class Level {
 
    /**
     * Create a new rectangular level
+    *
     * @param camera
     * @param size
     */
@@ -44,10 +48,12 @@ public class Level {
       ParticleHandler.clear();
    }
 
-   public void newRound() { }
+   public void newRound() {
+   }
 
    /**
     * Add an object at a random position on the level inside solid ground area.
+    *
     * @param o object
     * @param owner
     */
@@ -59,6 +65,7 @@ public class Level {
 
    /**
     * Return the ground type enumeration at position (x, y)
+    *
     * @param x
     * @param y
     * @return the ground type
@@ -69,6 +76,7 @@ public class Level {
 
    /**
     * Add an object to the level
+    *
     * @param o
     */
    public void addObject(LevelObject o) {
@@ -77,6 +85,7 @@ public class Level {
 
    /**
     * Add an object to the level, and set owner of the object to "owner"
+    *
     * @param o
     * @param owner
     */
@@ -87,59 +96,63 @@ public class Level {
          o.setOwningPlayer(owner);
       }
       if (o instanceof Warlock) {
-         warlocks.add((Warlock)o);
+         warlocks.add((Warlock) o);
       }
    }
 
    /**
-    * Remove an object from the level, notice that the actual removal of objects from the level happens
-    * next update.
+    * Remove an object from the level, notice that the actual removal of objects from the level
+    * happens next update.
+    *
     * @param o the object to remove
     */
    public void removeObject(LevelObject o) {
       removingObjects.add(o);
       if (o instanceof Warlock) {
-         warlocks.remove((Warlock)o);
+         warlocks.remove((Warlock) o);
       }
    }
 
    /**
-    * Update scrolling and all objects on the level. Also does removing of objects marked for delete.
+    * Update scrolling and all objects on the level. Also does removing of objects marked for
+    * delete.
+    *
     * @param dt
     */
+   @Override
    public void update(double dt) {
       scroll(dt);
 
-      for (LevelObject o : objects) {
-         o.update(dt);
-      }
       while (removingObjects.size() > 0) {
          objects.remove(removingObjects.get(0));
          removingObjects.remove(0);
       }
-      collisionCheck();
+      for (int i = 0; i < objects.size(); i++) {
+         objects.get(i).update(dt);
+         collisionCheck(objects.get(i), i);
+      }
       ParticleHandler.update(dt);
    }
 
    /**
-    * Iterate all objects and checks if they collide with any other, if they do run both objects
-    * handleCollision method.
+    * Iterate the rest of the objects and checks if they collide with any other, if they do run both
+    * objects handleCollision method.
     */
-   private void collisionCheck() {
-      for (int i = 0; i < objects.size(); i++) {
-         for (int j = i + 1; j < objects.size(); j++) {
-            if (objects.get(i).collides(objects.get(j))) {
-               objects.get(i).handleCollision(objects.get(j));
-               objects.get(j).handleCollision(objects.get(i));
-            }
+   private void collisionCheck(LevelObject current, int currentPosition) {
+      for (int j = currentPosition + 1; j < objects.size(); j++) {
+         if (current.collides(objects.get(j))) {
+            current.handleCollision(objects.get(j));
+            objects.get(j).handleCollision(current);
          }
       }
    }
 
    /**
     * Render the level, particles and all objects on the level
+    *
     * @param g
     */
+   @Override
    public void render(Graphic g) {
       g.drawRectangle(0, 0, (int) groundSize.getX(), (int) groundSize.getY(), 0, new Color(100, 25, 25));
       for (LevelObject o : objects) {
@@ -151,6 +164,7 @@ public class Level {
    /**
     * Add the mouse (x,y) to the current camera lookAt (x,y) to get what point was clicked in world
     * coordinates.
+    *
     * @param x
     * @param y
     * @return Vector in world coordinates
@@ -168,6 +182,7 @@ public class Level {
 
    /**
     * Set the amount of scroll in x should be done per second in each scroll call.
+    *
     * @param scrollX
     */
    public void setScrollX(double scrollX) {
@@ -176,6 +191,7 @@ public class Level {
 
    /**
     * Set the amount of scroll in y should be done per second in each scroll call.
+    *
     * @param scrollY
     */
    public void setScrollY(double scrollY) {
@@ -184,6 +200,7 @@ public class Level {
 
    /**
     * Scroll the camera in the direction it's supposed to, but constrain camera to world bounds.
+    *
     * @param dt
     */
    private void scroll(double dt) {
@@ -209,6 +226,7 @@ public class Level {
 
    /**
     * Center the camera on an object in the world
+    *
     * @param obj to center around
     */
    public void centerCameraOn(LevelObject obj) {
@@ -218,6 +236,7 @@ public class Level {
 
    /**
     * Return the closest warlock to another.
+    *
     * @param self
     * @return closest warlock, or null if no other warlocks on the level
     */
@@ -236,6 +255,7 @@ public class Level {
 
    /**
     * Returns the closest projectile to a warlock.
+    *
     * @param self
     * @return closest projectile, or null if no projectile close
     */
@@ -261,6 +281,7 @@ public class Level {
 
    /**
     * Returns a ArrayList of warlocks in a circular distance of a point (vector), bar from self.
+    *
     * @param position
     * @param self
     * @param radius
@@ -269,13 +290,11 @@ public class Level {
    public ArrayList<Warlock> getWarlocksInDistance(Vector position, Warlock self, double radius) {
       ArrayList<Warlock> inDistance = new ArrayList<>();
       for (int i = 0; i < warlocks.size(); i++) {
-         if(warlocks.get(i).getOwningPlayer() != self.getOwningPlayer() &&
-            position.distance(warlocks.get(i).getPosition()) <= radius) {
+         if (warlocks.get(i).getOwningPlayer() != self.getOwningPlayer()
+            && position.distance(warlocks.get(i).getPosition()) <= radius) {
             inDistance.add(warlocks.get(i));
          }
       }
       return inDistance;
    }
-
-
 }

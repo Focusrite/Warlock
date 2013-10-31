@@ -11,12 +11,14 @@ package warlock.hud;
 
 import warlock.graphic.Graphic;
 import warlock.player.Player;
+import warlock.state.Renderable;
+import warlock.state.Updateable;
 
 /**
  *
  * @author Focusrite
  */
-public abstract class Hud {
+public abstract class Hud implements Updateable, Renderable {
    private Player player;
 
    /**
@@ -41,6 +43,8 @@ public abstract class Hud {
       this.player = player;
    }
 
+   @Override
    public abstract void render(Graphic g);
+   @Override
    public abstract void update(double dt);
 }

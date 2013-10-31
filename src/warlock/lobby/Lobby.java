@@ -21,36 +21,33 @@ import warlock.input.InputHandler;
 import warlock.player.Player;
 import warlock.player.ai.AIPlayer;
 import warlock.state.GameState;
+import warlock.state.InputEnabled;
 import warlock.state.PlayState;
+import warlock.state.Renderable;
+import warlock.state.Updateable;
 
 /**
  *
  * @author Focusrite
  */
-public class Lobby {
+public class Lobby implements InputEnabled, Updateable, Renderable {
 
    private static final int MAX_PLAYERS = Player.PRIMARY_COLORS.length;
    private static final int MIN_FIRST_TO = 20;
    private static final int MAX_FIRST_TO = 100;
-
    private static final int MIN_STARTING_GOLD = 0;
    private static final int MAX_STARTING_GOLD = 30;
-
    private static final int MIN_GROUND_SIZE = 200;
    private static final int MAX_GROUND_SIZE = 1000;
-
    private static final int MIN_SHOP_TIME = 5;
    private static final int MAX_SHOP_TIME = 30;
-
    private static final int FIRST_ROW_OFFSETX = 10;
    private static final int STEPSIZE_SMALL = 5;
    private static final int STEPSIZE_BIG = 100;
-
    private static final int SETTINGS_OFFSETY = 20;
    private static final int SETTING_WIDTH = 84;
    private static final int SETTING_HEIGHT = SETTING_WIDTH / 4;
    private static final int SETTING_ROW_HEIGHT = SETTING_HEIGHT + 5;
-
    private static final int LOBBY_LINEHEIGHT = 20;
    private static final int LOBBY_PADDING = 5;
    private static final int LOBBY_OFFSETY = 50;
@@ -60,9 +57,7 @@ public class Lobby {
    private static final int PLAY_WIDTH = 64;
    private static final int PLAY_HEIGHT = 25;
    private static final String EMPTY_SLOT = " Empty slot";
-
    private int currentPlayerId = 0;
-
    private Player[] lobbyList = new Player[MAX_PLAYERS];
    private ArrayList<Player> observers = new ArrayList<>();
    private InteractableTextureButton[] removeButtons = new InteractableTextureButton[MAX_PLAYERS];
@@ -84,6 +79,7 @@ public class Lobby {
 
    /**
     * Get the array of players that's on player slots
+    *
     * @return
     */
    public Player[] getLobbyList() {
@@ -113,6 +109,7 @@ public class Lobby {
 
    /**
     * Add an interactable to the lobby
+    *
     * @param i interactable
     */
    public void addInteractable(Interactable i) {
@@ -202,7 +199,8 @@ public class Lobby {
    }
 
    /**
-    * Initiializes the list of players and the buttons to join a slot, add computer and clear a slot.
+    * Initiializes the list of players and the buttons to join a slot, add computer and clear a
+    * slot.
     */
    private void initPlayerList() {
       int x = FIRST_ROW_OFFSETX;
@@ -219,7 +217,7 @@ public class Lobby {
          joinSlot.addListener(new InteractableListenerSlim() {
             @Override
             public void clicked(InteractableInfo source) {
-               if(lobbyList[j] != null) {
+               if (lobbyList[j] != null) {
                   return; //Cant join an already occupied slot
                }
                if (selfPlayer != null) { //Remove if player had previous position
@@ -240,7 +238,7 @@ public class Lobby {
          addComputer.addListener(new InteractableListenerSlim() {
             @Override
             public void clicked(InteractableInfo source) {
-               if(lobbyList[j] != null) {
+               if (lobbyList[j] != null) {
                   return; //Cant join an already occupied slot
                }
                lobbyList[j] = new AIPlayer(j + 1, Player.PRIMARY_COLORS[j], Player.SECONDARY_COLORS[j]);
@@ -256,10 +254,10 @@ public class Lobby {
          remove.addListener(new InteractableListenerSlim() {
             @Override
             public void clicked(InteractableInfo source) {
-               if(lobbyList[j] == getSelfPlayer()) {
+               if (lobbyList[j] == getSelfPlayer()) {
                   selfPlayer = null;
                }
-               if(lobbyList[j] != null) {
+               if (lobbyList[j] != null) {
                   lobbyList[j] = null;
                   field.setText(EMPTY_SLOT);
                }
@@ -279,8 +277,10 @@ public class Lobby {
 
    /**
     * Render the Lobby
+    *
     * @param g
     */
+   @Override
    public void render(Graphic g) {
       g.setScreenCoordinates(true);
 
@@ -292,8 +292,10 @@ public class Lobby {
 
    /**
     * Update interactables
+    *
     * @param dt
     */
+   @Override
    public void update(double dt) {
       for (int i = 0; i < interactables.size(); i++) {
          interactables.get(i).update(dt);
@@ -302,8 +304,10 @@ public class Lobby {
 
    /**
     * Handle the input of all the interactables
+    *
     * @param input
     */
+   @Override
    public void handleInput(InputHandler input) {
       for (int i = 0; i < interactables.size(); i++) {
          interactables.get(i).handleInput(input);
@@ -326,6 +330,7 @@ public class Lobby {
 
    /**
     * Add a new player to the lobby as an observer (newly connected)
+    *
     * @return the newly created Player
     */
    public Player addPlayerToLobby() {

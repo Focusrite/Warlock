@@ -7,5 +7,5 @@
 package warlock.spell;
 
 public enum SpellShortcut {
-   MB, Q, E, R, SPC
+   RMB, Q, E, R, SPC
 }

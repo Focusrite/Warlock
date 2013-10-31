@@ -22,6 +22,7 @@ import warlock.message.Message;
 import warlock.player.ObserverPlayer;
 import warlock.player.Player;
 import warlock.player.ai.AIPlayer;
+import warlock.state.InputEnabled;
 
 /**
  *

@@ -99,8 +99,9 @@ public class Vector {
    /**
     * @param d angle in radian to rotate with
     */
-   public void rotate(double d) {
+   public Vector rotate(double d) {
       setAngle(this.angle + d);
+      return this;
    }
 
    /**

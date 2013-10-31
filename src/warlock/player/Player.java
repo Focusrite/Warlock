@@ -10,13 +10,16 @@ package warlock.player;
 import org.lwjgl.input.Keyboard;
 import warlock.camera.Camera;
 import warlock.graphic.Color;
+import warlock.graphic.Graphic;
 import warlock.input.InputHandler;
 import warlock.level.Level;
 import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
 import warlock.spell.SpellShortcut;
+import warlock.state.InputEnabled;
+import warlock.state.Updateable;
 
-public class Player implements Comparable<Player> {
+public class Player implements Comparable<Player>, InputEnabled, Updateable {
    public static final Color[] PRIMARY_COLORS = {
       Color.RED,
       Color.BLUE,
@@ -253,7 +256,7 @@ public class Player implements Comparable<Player> {
       handleScrolling(input);
 
       if (input.isMouseDown(0)) {
-         getWarlock().castSpell(SpellShortcut.MB, windowToLevelXY(input.getMouseX(), input.getMouseY()));
+         getWarlock().castSpell(SpellShortcut.RMB, windowToLevelXY(input.getMouseX(), input.getMouseY()));
       }
       if (input.isMouseDown(1)) {
          getWarlock().setMoveTo(windowToLevelXY(input.getMouseX(), input.getMouseY()));
@@ -272,8 +275,8 @@ public class Player implements Comparable<Player> {
       }
    }
 
-   public void update(double dt) {
-   }
+   @Override
+   public void update(double dt) { }
 
    /**
     * Compares the score of two players

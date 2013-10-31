@@ -10,12 +10,13 @@ import java.util.Locale;
 import warlock.graphic.Color;
 import warlock.object.warlock.Warlock;
 import warlock.phys.Vector;
+import warlock.state.Updateable;
 
 /**
  *
  * @author Focusrite
  */
-public abstract class Spell {
+public abstract class Spell implements Updateable {
 
    private SpellTarget target;
    private SpellShortcut shortcut;
@@ -220,6 +221,7 @@ public abstract class Spell {
     * Decrease current cooldown if it's on it
     * @param dt
     */
+   @Override
    public void update(double dt) {
       if (getCurrentCooldown() > 0) {
          modifyCurrentCooldown(-dt);

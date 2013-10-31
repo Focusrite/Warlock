@@ -23,12 +23,15 @@ import warlock.lobby.Lobby;
 import warlock.object.warlock.DeathListener;
 import warlock.player.ObserverPlayer;
 import warlock.player.Player;
+import warlock.state.InputEnabled;
+import warlock.state.Renderable;
+import warlock.state.Updateable;
 
 /**
  *
  * @author Focusrite
  */
-public class Game implements DeathListener {
+public class Game implements DeathListener, InputEnabled, Updateable, Renderable {
 
    private static final double TRANSITION_TIME = 2;
    private double transition = 0;
@@ -222,6 +225,7 @@ public class Game implements DeathListener {
     * Run phase's update function and check for phase change.
     * @param dt
     */
+   @Override
    public void update(double dt) {
       if (changedPhase()) {
          return;
@@ -236,6 +240,7 @@ public class Game implements DeathListener {
     * Call phase's render and if transitioning, draw transition effect
     * @param g
     */
+   @Override
    public void render(Graphic g) {
       if (transition > 0) {
          drawTransition(g);
@@ -267,6 +272,7 @@ public class Game implements DeathListener {
     * Call phase's handleInput
     * @param input
     */
+   @Override
    public void handleInput(InputHandler input) {
       this.phase.handleInput(input);
    }

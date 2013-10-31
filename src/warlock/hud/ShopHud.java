@@ -25,12 +25,13 @@ import warlock.shop.Shop;
 import warlock.shop.ShopColumn;
 import warlock.shop.ShopItem;
 import warlock.shop.ShopItemSpell;
+import warlock.state.InputEnabled;
 
 /**
  *
  * @author Focusrite
  */
-public class ShopHud extends Hud {
+public class ShopHud extends Hud implements InputEnabled {
 
    private static final int TIMER_OFFSETX = 220;
    private static final int LOGO_OFFSETX = 10;
@@ -165,6 +166,7 @@ public class ShopHud extends Hud {
     *
     * @param input
     */
+   @Override
    public void handleInput(InputHandler input) {
       for (int i = 0; i < interactables.size(); i++) {
          interactables.get(i).handleInput(input);

@@ -11,11 +11,8 @@ import warlock.font.Font;
 import warlock.graphic.Color;
 import warlock.graphic.Graphic;
 import warlock.player.Player;
+import warlock.state.InputEnabled;
 
-/**
- *
- * @author Focusrite
- */
 public class GameOverPhase extends GamePhase {
    private static final int TEXT_OFFSETY = 100;
 

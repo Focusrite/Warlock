@@ -9,12 +9,15 @@ package warlock.hud.interactable;
 import java.util.ArrayList;
 import warlock.graphic.Graphic;
 import warlock.input.InputHandler;
+import warlock.state.InputEnabled;
+import warlock.state.Renderable;
+import warlock.state.Updateable;
 
 /**
  *
  * @author Focusrite
  */
-public abstract class Interactable {
+public abstract class Interactable implements InputEnabled, Renderable, Updateable {
 
    private ArrayList<InteractableListenerSlim> listeners = new ArrayList<>();
    private boolean mouseInside = false;
@@ -146,6 +149,7 @@ public abstract class Interactable {
     * Checks if any event should be triggered.
     * @param input
     */
+   @Override
    public void handleInput(InputHandler input) {
       updateWithin(isWithin(input.getMouseX(), input.getMouseY()));
 
@@ -177,7 +181,9 @@ public abstract class Interactable {
       return mouseInside;
    }
 
+   @Override
    public abstract void update(double dt);
 
+   @Override
    public abstract void render(Graphic g);
 }

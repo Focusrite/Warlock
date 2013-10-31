@@ -22,7 +22,7 @@ public class Fireball extends Spell {
     * @param owner
     */
    public Fireball(Warlock owner) {
-      super(owner, "Fireball", SpellTarget.GROUND, SpellShortcut.MB, 2);
+      super(owner, "Fireball", SpellTarget.GROUND, SpellShortcut.RMB, 2);
       setCooldown(cooldown[0]);
       setSpellIcon("spell-fireball");
       setMaxLevel(5);

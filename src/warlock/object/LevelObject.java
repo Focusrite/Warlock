@@ -6,17 +6,14 @@
 package warlock.object;
 
 import warlock.graphic.Graphic;
-import warlock.input.InputHandler;
 import warlock.level.GroundType;
 import warlock.level.Level;
 import warlock.phys.Vector;
 import warlock.player.Player;
+import warlock.state.Renderable;
+import warlock.state.Updateable;
 
-/**
- *
- * @author Focusrite
- */
-public abstract class LevelObject {
+public abstract class LevelObject implements Renderable, Updateable {
    private Vector position = new Vector();
    private Level level;
    private double size = 10; //radius of collision check
@@ -135,8 +132,10 @@ public abstract class LevelObject {
       return (getPosition().distance(o.getPosition()) < getSize() + o.getSize());
    }
 
-   public void handleInput(double dt, InputHandler input) { }
+
+   @Override
    public abstract void update(double dt);
+   @Override
    public abstract void render(Graphic g);
    public abstract void handleCollision(LevelObject collidingObject);
 }

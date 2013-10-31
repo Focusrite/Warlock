@@ -1,5 +1,5 @@
 /**
- * File: warlock.spell.PlayState.java
+ * File: warlock.state.PlayState.java
  *
  * The state taking care of the actual gameplay part of the game.
  */
@@ -46,7 +46,7 @@ public class PlayState extends GameState {
       quitButton.addListener(new InteractableListenerSlim() {
          @Override
          public void clicked(InteractableInfo source) {
-            quit = true;
+            quit = true; //Exiting mid update loop can cause issues when in the middle of a loop
          }
       });
       this.game.init();
