@@ -61,8 +61,7 @@ public class Seekerorb extends Spell {
     */
    @Override
    public Seekerorb clone() {
-      Seekerorb spell = new Seekerorb(null);
-      return spell;
+      return new Seekerorb(null);
    }
 
 }

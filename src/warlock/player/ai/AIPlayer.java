@@ -49,6 +49,7 @@ public class AIPlayer extends Player {
          return;
       }
       brain(dt);
+      aiMode.updateCooldowns(dt);
       aiMode.execute(dt);
    }
 

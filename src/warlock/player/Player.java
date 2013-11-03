@@ -10,7 +10,6 @@ package warlock.player;
 import org.lwjgl.input.Keyboard;
 import warlock.camera.Camera;
 import warlock.graphic.Color;
-import warlock.graphic.Graphic;
 import warlock.input.InputHandler;
 import warlock.level.Level;
 import warlock.object.warlock.Warlock;
@@ -40,7 +39,7 @@ public class Player implements Comparable<Player>, InputEnabled, Updateable {
    private int score;
    private int killingblows;
    private String name;
-   private double scrollSpeed = 300.0f;
+   private double scrollSpeed = 300.0f; //Add to settings later
    private Warlock warlock;
    private Color primaryColor;
    private Color secondaryColor;
@@ -131,10 +130,7 @@ public class Player implements Comparable<Player>, InputEnabled, Updateable {
          return false;
       }
       final Player other = (Player) obj;
-      if (this.playerId != other.playerId) {
-         return false;
-      }
-      return true;
+      return this.playerId == other.playerId;
    }
 
    /**
@@ -252,13 +248,14 @@ public class Player implements Comparable<Player>, InputEnabled, Updateable {
     * Handle the input, it takes care of scrolling the map and cast spells
     * @param input
     */
+   @Override
    public void handleInput(InputHandler input) {
       handleScrolling(input);
 
-      if (input.isMouseDown(0)) {
-         getWarlock().castSpell(SpellShortcut.RMB, windowToLevelXY(input.getMouseX(), input.getMouseY()));
+      if (input.isMouseDown(InputHandler.MOUSE_LMB)) {
+         getWarlock().castSpell(SpellShortcut.LMB, windowToLevelXY(input.getMouseX(), input.getMouseY()));
       }
-      if (input.isMouseDown(1)) {
+      if (input.isMouseDown(InputHandler.MOUSE_RMB)) {
          getWarlock().setMoveTo(windowToLevelXY(input.getMouseX(), input.getMouseY()));
       }
       if (input.keyHeld(Keyboard.KEY_Q)) {

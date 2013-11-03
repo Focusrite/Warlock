@@ -44,6 +44,9 @@ public abstract class AIMode {
     */
    public void updateCooldowns(double dt) {
       for (int i = 0; i < spellDelay.length; i++) {
+         if(spellDelay[i] <= 0) {
+            continue;
+         }
          spellDelay[i] -= dt;
       }
    }
@@ -70,7 +73,7 @@ public abstract class AIMode {
    }
 
    /**
-    * @return the warlock this AI controlls
+    * @return the warlock this AI controls
     */
    public Warlock getWarlock() {
       return warlock;
@@ -79,7 +82,7 @@ public abstract class AIMode {
    public abstract void execute(double dt);
 
    /**
-    * Calulates the angle it takes for a spell projectile moving at speed s to hit A moving at V
+    * Calculates the angle it takes for a spell projectile moving at speed s to hit A moving at V
     * velocity when B fires it. It's a standard square equation (ax^2 + bx + c = 0)
     *
     * Assumes constant V

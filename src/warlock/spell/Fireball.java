@@ -22,7 +22,7 @@ public class Fireball extends Spell {
     * @param owner
     */
    public Fireball(Warlock owner) {
-      super(owner, "Fireball", SpellTarget.GROUND, SpellShortcut.RMB, 2);
+      super(owner, "Fireball", SpellTarget.GROUND, SpellShortcut.LMB, 2);
       setCooldown(cooldown[0]);
       setSpellIcon("spell-fireball");
       setMaxLevel(5);
@@ -58,7 +58,6 @@ public class Fireball extends Spell {
     */
    @Override
    public Fireball clone() {
-      Fireball spell = new Fireball(null);
-      return spell;
+      return new Fireball(null);
    }
 }

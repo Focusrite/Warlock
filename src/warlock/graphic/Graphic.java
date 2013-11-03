@@ -98,9 +98,8 @@ public abstract class Graphic {
    public abstract void resize();
 
    public abstract void preRender();
-   public abstract void postRender();
 
-   public abstract void drawRectangle(int x, int y, int w, int h, double rot, Color color);
+    public abstract void drawRectangle(int x, int y, int w, int h, double rot, Color color);
    public abstract void drawRectangle(int x, int y, int z, int w, int h, double rot, Color color);
    public abstract void drawUnfilledRectangle(int x, int y, int w, int h, int thickness, double rot, Color color);
    public abstract void drawUnfilledRectangle(int x, int y, int z, int w, int h, int thickness, double rot, Color color);

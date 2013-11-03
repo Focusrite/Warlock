@@ -24,9 +24,9 @@ public class Font {
    public static int SIZE_NORMAL = 14;
    public static int SIZE_BIG = 16;
    public static int SIZE_HUGE = 20;
+   private static final int MARGIN = 1;
    private Map<Character, FontDefinition> characters = new HashMap<>();
    private Texture texture;
-   private int margin = 1;
    private int size;
 
    /**
@@ -59,7 +59,7 @@ public class Font {
          String[] offsets = node.getAttribute("offset").split(" "); //offset "x y"
          int offset = Integer.parseInt(offsets[1]);
          char c = node.getAttribute("code").charAt(0);
-         characters.put(new Character(c), new FontDefinition(tex, x, y, w, h, offset));
+         characters.put(c, new FontDefinition(tex, x, y, w, h, offset));
       }
    }
 
@@ -117,7 +117,7 @@ public class Font {
          }
          g.drawCharacter(arr[i], this, tX, tY, z, size, inlineColor);
          FontDefinition f = getDefinition(arr[i]); //It's either this or make drawCharacter return int characterWidth;
-         tX += f.getWidth() + (int) (margin * ((float) size / this.size));
+         tX += f.getWidth() + (int) (MARGIN * ((float) size / this.size));
       }
    }
 

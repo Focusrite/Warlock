@@ -17,6 +17,8 @@ import warlock.Main;
  * @author Focusrite
  */
 public class InputHandler {
+   public static final int MOUSE_LMB = 0;
+   public static final int MOUSE_RMB = 1;
 
    Map<Integer, Boolean> keys = new HashMap<>();
 
@@ -26,7 +28,7 @@ public class InputHandler {
    public void readKeyboard() {
       while (Keyboard.next()) {
          int key = Keyboard.getEventKey();
-         keys.put(new Integer(key), Keyboard.getEventKeyState());
+         keys.put(key, Keyboard.getEventKeyState());
       }
    }
 
@@ -36,7 +38,7 @@ public class InputHandler {
     * @return boolean
     */
    public boolean keyHeld(int key) {
-      return (keys.containsKey(new Integer(key)) && keys.get(key).booleanValue());
+      return (keys.containsKey(key) && keys.get(key).booleanValue());
    }
 
    /**

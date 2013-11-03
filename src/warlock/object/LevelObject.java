@@ -126,10 +126,7 @@ public abstract class LevelObject implements Renderable, Updateable {
     * @return true if it collides, else false
     */
    public boolean collides(LevelObject o) {
-      if(o.getOwningPlayer() == getOwningPlayer()) {
-         return false; //Can't collide with your own objects
-      }
-      return (getPosition().distance(o.getPosition()) < getSize() + o.getSize());
+       return o.getOwningPlayer() != getOwningPlayer() && (getPosition().distance(o.getPosition()) < getSize() + o.getSize());
    }
 
 

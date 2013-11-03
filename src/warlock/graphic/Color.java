@@ -67,8 +67,7 @@ public class Color {
     * @return array [r,g,b,a]
     */
    public float[] toFloatArray() {
-      float[] t = {(float) r / 256, (float) g / 256, (float) b / 256, (float) a / 256};
-      return t;
+      return new float[] {(float) r / 256, (float) g / 256, (float) b / 256, (float) a / 256};
    }
 
    /**

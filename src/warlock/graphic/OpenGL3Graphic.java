@@ -434,13 +434,7 @@ public class OpenGL3Graphic extends Graphic {
       setShaderMode(SHADERMODE_COLOR);
    }
 
-   /**
-    * Unused currently
-    */
-   @Override
-   public void postRender() { }
-
-   /**
+    /**
     * Load a shader program.
     * @param vertexPath
     * @param fragmentPath

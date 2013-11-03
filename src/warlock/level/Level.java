@@ -48,10 +48,7 @@ public class Level implements Updateable, Renderable {
       ParticleHandler.clear();
    }
 
-   public void newRound() {
-   }
-
-   /**
+    /**
     * Add an object at a random position on the level inside solid ground area.
     *
     * @param o object

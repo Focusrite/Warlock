@@ -58,7 +58,4 @@ public class LobbyState extends GameState {
       lobby.render(g);
    }
 
-   @Override
-   public void destroy() { }
-
 }

@@ -13,7 +13,6 @@ public class AIModeCircleTarget extends AIMode {
 
    private static final int RADIUS = 350;
    private Warlock target;
-   private double radians;
    private double wholeLength;
    private double reachedLength;
    private double radius;
@@ -41,7 +40,7 @@ public class AIModeCircleTarget extends AIMode {
    @Override
    public void execute(double dt) {
       reachedLength = (reachedLength + getWarlock().attrVal("ms") * dt * mod) % wholeLength; // add ds * dt
-      radians = (reachedLength / wholeLength) * 2 * Math.PI; // Update radian to how far the unit got
+      double radians = (reachedLength / wholeLength) * 2 * Math.PI;
       getWarlock().setMoveTo(target.getPosition().add(new Vector(radius, radians)).add(getVectorToCenter().scale(0.1 * dt)));
       useSpells();
    }

@@ -45,7 +45,7 @@ public class Warlock extends LevelObject {
    private static final int HPBAR_OFFSET = 25;
    private static final int HPBAR_WIDTH = 35;
    private static final int HPBAR_HEIGHT = 5;
-   private static double FRICTION = 200;
+   private static final double FRICTION = 200;
    private double lavaCounter = 0.0f;
    private Map<String, Attribute> attributes = new HashMap<>();
    private Map<SpellShortcut, Spell> spells = new EnumMap<>(SpellShortcut.class);
@@ -54,16 +54,14 @@ public class Warlock extends LevelObject {
    private Vector momentum; //The dMovement done per sec
    private Vector moveTo;
    private double facingAngle;
-   private boolean dead;
 
    /**
     * Create a new fresh warlock!
     */
    public Warlock() {
       momentum = new Vector();
-      dead = false;
       facingAngle = 0;
-      addSpell(SpellShortcut.RMB, new Fireball(this));
+      addSpell(SpellShortcut.LMB, new Fireball(this));
       addSpell(SpellShortcut.R, new Explosion(this));
       init();
    }
@@ -71,7 +69,7 @@ public class Warlock extends LevelObject {
    /**
     * Initializes all the attributes set up by the attributehandler to be available on this warlock.
     */
-   private final void initAttr() {
+   private void initAttr() {
       Iterator<AttributeType> iter = AttributeHandler.iterator();
       while (iter.hasNext()) {
          AttributeType attr = iter.next();
@@ -90,7 +88,6 @@ public class Warlock extends LevelObject {
     * Cure the warlock, resetting all attributes to their default base value
     */
    public void cure() {
-      dead = false;
       statusEffects = new ArrayList<>();
       this.momentum = new Vector();
       this.moveTo = null;
@@ -255,9 +252,8 @@ public class Warlock extends LevelObject {
    /**
     * Update the status effects this warlock has inflicted on him, and cure any expired ones
     *
-    * @param dt
     */
-   private void updateStatusEffects(double dt) {
+   private void updateStatusEffects() {
       for (int i = statusEffects.size() - 1; i >= 0; i--) {
          StatusEffect e = statusEffects.get(i);
          if (e.isTemporary() && e.hasExpired()) {
@@ -390,7 +386,6 @@ public class Warlock extends LevelObject {
    private void checkDeath() {
       if (attr("hp").getValue() <= 0) {
          kill();
-         dead = true;
          StatusEffect lastDamageInstance = getLastStatusEffect("hp");
          notifyDeath(lastDamageInstance.getInflicter());
          ParticleHandler.spawn(40, getPosition(), ParticleHandler.SIZE_NORMAL, //Positional and size
@@ -424,7 +419,7 @@ public class Warlock extends LevelObject {
     */
    @Override
    public void update(double dt) {
-      this.updateStatusEffects(dt);
+      this.updateStatusEffects();
       this.updateMovement(dt);
       this.updateSpells(dt);
       this.updateGround(dt);

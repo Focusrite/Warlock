@@ -139,7 +139,7 @@ public abstract class Interactable implements InputEnabled, Renderable, Updateab
       if (within != mouseInside && within) {
          notifyMouseEntered();
       }
-      else if (within != mouseInside && !within) {
+      else if (within != mouseInside) {
          notifyMouseExited();
       }
       mouseInside = within;

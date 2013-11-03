@@ -79,11 +79,7 @@ public class PlayState extends GameState {
       this.game.render(g);
    }
 
-   @Override
-   public void destroy() {
-   }
-
-   /**
+    /**
     * Handle input of game
     * @param input
     */

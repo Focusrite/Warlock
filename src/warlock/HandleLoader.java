@@ -11,7 +11,6 @@ package warlock;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class HandleLoader {
    private static ArrayList<Class> handles = new ArrayList<>();
@@ -21,18 +20,15 @@ public class HandleLoader {
     * re-initialize handles.
     */
    public static void initAll() {
-      Iterator<Class> iter = handles.listIterator();
-      while (iter.hasNext()) {
-         Class c = iter.next();
-         Method m = getMethod(c, "init", null);
-         try {
-            m.invoke(null);
-         }
-         catch (Exception e) {
-            System.out.println(e.getCause().toString());
-            e.getCause().printStackTrace();
-         }
-      }
+       for (Class c : handles) {
+           Method m = getMethod(c, "init");
+           try {
+               m.invoke(null);
+           } catch (Exception e) {
+               System.out.println(e.getCause().toString());
+               e.getCause().printStackTrace();
+           }
+       }
    }
 
    /**
@@ -41,7 +37,7 @@ public class HandleLoader {
     * @param c Class
     */
    public static void register(Class c) {
-      if (getMethod(c, "init", null) != null && Handle.class.isAssignableFrom(c)) {
+      if (getMethod(c, "init") != null && Handle.class.isAssignableFrom(c)) {
          handles.add(c);
       }
    }

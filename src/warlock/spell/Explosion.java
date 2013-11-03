@@ -58,8 +58,7 @@ public class Explosion extends Spell implements StatusEffectListener {
     */
    @Override
    public Explosion clone() {
-      Explosion spell = new Explosion(null);
-      return spell;
+      return new Explosion(null);
    }
 
    /**

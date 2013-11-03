@@ -9,10 +9,6 @@ import warlock.lobby.Lobby;
 import warlock.network.FlowController;
 import warlock.player.Player;
 
-/**
- *
- * @author Focusrite
- */
 public class ServerClient {
    private Player player;
    private FlowController controller;

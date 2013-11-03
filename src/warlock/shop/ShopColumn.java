@@ -42,7 +42,7 @@ public class ShopColumn {
    /**
     * @return an iterator for all the shop items in this column
     */
-   public ListIterator iterator() {
+   public ListIterator<ShopItem> iterator() {
       return items.listIterator();
    }
 }

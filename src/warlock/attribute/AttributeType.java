@@ -95,9 +95,6 @@ public class AttributeType {
       if (!Objects.equals(this.name, other.name)) {
          return false;
       }
-      if (!Objects.equals(this.tag, other.tag)) {
-         return false;
-      }
-      return true;
+      return Objects.equals(this.tag, other.tag);
    }
 }

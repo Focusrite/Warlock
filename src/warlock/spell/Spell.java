@@ -204,10 +204,7 @@ public abstract class Spell implements Updateable {
     * @return whether this spell can be cast or is on cooldown
     */
    public boolean canCast() {
-      if (getCurrentCooldown() > 0) {
-         return false; //later send notify message to HUD too, hence if statement
-      }
-      return true;
+      return getCurrentCooldown() <= 0;
    }
 
    /**
@@ -259,7 +256,7 @@ public abstract class Spell implements Updateable {
       Color currentLevel = Color.GOLD;
       Color otherLevels = Color.DARK_GREY;
       for (int i = 0; i < levelDataNames.length; i++) {
-         builder.append(levelDataNames[i] + ": \n");
+         builder.append(levelDataNames[i]).append(": \n");
          for (int j = 0; j < levelData[i].length; j++) {
             if (j == getSpellLevel() - 1) {
                builder.append(currentLevel.toString());

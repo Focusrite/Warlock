@@ -237,9 +237,6 @@ public class StatusEffect {
       if (this.temporary != other.temporary) {
          return false;
       }
-      if (this.exprStamp != other.exprStamp) {
-         return false;
-      }
-      return true;
+      return this.exprStamp == other.exprStamp;
    }
 }

@@ -66,8 +66,7 @@ public class Teleport extends Spell {
     */
    @Override
    public Teleport clone() {
-      Teleport tp = new Teleport(null);
-      return tp;
+      return new Teleport(null);
    }
 
    /**

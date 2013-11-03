@@ -17,7 +17,6 @@ import warlock.shop.Shop;
 import warlock.state.InputEnabled;
 
 public class ShopPhase extends GamePhase {
-   private Shop shop;
    private ShopHud hud;
    private int shopTime;
 
@@ -64,7 +63,7 @@ public class ShopPhase extends GamePhase {
       });
       t.setRepeats(false);
       t.start();
-      shop = new Shop(getOwner().getPlayer());
+      Shop shop = new Shop(getOwner().getPlayer());
       hud = new ShopHud(shop, getOwner().getScoreTable(), getOwner().getFirstTo(), shopTime);
       getOwner().getCamera().reset();
    }

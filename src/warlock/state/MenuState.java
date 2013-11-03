@@ -58,7 +58,4 @@ public class MenuState extends GameState {
       menu.render(g);
    }
 
-   @Override
-   public void destroy() { }
-
 }

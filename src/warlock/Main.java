@@ -143,9 +143,8 @@ public class Main {
 
    /**
     * The handleInput method that's cascaded down the hierarchy to other classes.
-    * @param dt
     */
-   public void handleInput(double dt) {
+   public void handleInput() {
       input.readKeyboard(); //Update status of keys for every keypress
       GameState.getInstance().handleInput(input);
    }
@@ -201,6 +200,6 @@ public class Main {
       double dt = Time.secondsBetween(lastUpdate, curTime);
       lastUpdate = curTime;
       GameState.getInstance().update(dt);
-      handleInput(dt);
+      handleInput();
    }
 }

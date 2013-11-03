@@ -191,7 +191,7 @@ public class Camera {
    }
 
    /**
-    * Rebuilds the projection matrix
+    * Rebuilds the (orthogonal) projection matrix
     */
    public final void buildProjectionMatrix() {
       //orthogonal projection matrix

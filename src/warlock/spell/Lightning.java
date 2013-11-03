@@ -61,8 +61,7 @@ public class Lightning extends Spell {
     */
    @Override
    public Lightning clone() {
-      Lightning spell = new Lightning(null);
-      return spell;
+      return new Lightning(null);
    }
 
 }

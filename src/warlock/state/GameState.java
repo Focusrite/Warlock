@@ -55,12 +55,10 @@ public abstract class GameState implements Updateable, Renderable, InputEnabled{
    /**
     * Set the singleton instance.
     * @param g
-    * @return the newly set instance
     */
-   public static GameState setInstance(GameState g) {
+   public static void setInstance(GameState g) {
       Camera cam;
       if (instance != null) {
-         getInstance().destroy();
          cam = getInstance().getCamera();
       }
       else {
@@ -69,7 +67,6 @@ public abstract class GameState implements Updateable, Renderable, InputEnabled{
       GameState.instance = g;
       g.setCamera(cam);
       g.init();
-      return g;
    }
 
    /**
@@ -104,5 +101,4 @@ public abstract class GameState implements Updateable, Renderable, InputEnabled{
    @Override
    public abstract void render(Graphic g);
 
-   public abstract void destroy();
 }

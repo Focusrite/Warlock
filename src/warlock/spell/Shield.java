@@ -69,7 +69,6 @@ public class Shield extends Spell {
     */
    @Override
    public Shield clone() {
-      Shield spell = new Shield(null);
-      return spell;
+      return new Shield(null);
    }
 }
