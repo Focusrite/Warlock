@@ -34,12 +34,13 @@ public class Player implements Comparable<Player>, InputEnabled, Updateable {
       Color.PINK
    };
 
+   private static final double SCROLL_SPEED = 300.0f; //Add to settings later
+
    private int playerId;
    private int gold;
    private int score;
    private int killingblows;
    private String name;
-   private double scrollSpeed = 300.0f; //Add to settings later
    private Warlock warlock;
    private Color primaryColor;
    private Color secondaryColor;
@@ -221,11 +222,11 @@ public class Player implements Comparable<Player>, InputEnabled, Updateable {
    public void handleScrolling(InputHandler input) {
       int mouseX = input.getMouseX();
       if (mouseX < Camera.SCROLL_ZONE_SIZE && mouseX > 0 || input.keyHeld(Keyboard.KEY_A)) {
-         getLevel().setScrollX(-scrollSpeed);
+         getLevel().setScrollX(-SCROLL_SPEED);
       }
       else if (input.windowWidth() - input.getMouseX() < Camera.SCROLL_ZONE_SIZE && mouseX > 0
          || input.keyHeld(Keyboard.KEY_D)) {
-         getLevel().setScrollX(scrollSpeed);
+         getLevel().setScrollX(SCROLL_SPEED);
       }
       else {
          getLevel().setScrollX(0);
@@ -233,11 +234,11 @@ public class Player implements Comparable<Player>, InputEnabled, Updateable {
 
       int mouseY = input.getMouseY();
       if (mouseY < Camera.SCROLL_ZONE_SIZE && mouseY > 0 || input.keyHeld(Keyboard.KEY_S)) {
-         getLevel().setScrollY(-scrollSpeed);
+         getLevel().setScrollY(-SCROLL_SPEED);
       }
       else if (input.windowHeight() - input.getMouseY() < Camera.SCROLL_ZONE_SIZE && mouseY > 0
          || input.keyHeld(Keyboard.KEY_W)) {
-         getLevel().setScrollY(scrollSpeed);
+         getLevel().setScrollY(SCROLL_SPEED);
       }
       else {
          getLevel().setScrollY(0);

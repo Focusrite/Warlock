@@ -294,8 +294,7 @@ public abstract class Spell implements Updateable {
       this.maxLevel = maxLevel;
    }
 
-   @Override
-   public abstract Spell clone();
+   public abstract Spell newInstance();
 
    /**
     * @return return the spell name colored
@@ -324,4 +323,5 @@ public abstract class Spell implements Updateable {
       }
       return 0;
    }
+
 }

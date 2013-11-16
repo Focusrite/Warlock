@@ -60,7 +60,7 @@ public class Seekerorb extends Spell {
     * @return a "copy" of the spell
     */
    @Override
-   public Seekerorb clone() {
+   public Seekerorb newInstance() {
       return new Seekerorb(null);
    }
 

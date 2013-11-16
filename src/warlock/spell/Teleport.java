@@ -65,7 +65,7 @@ public class Teleport extends Spell {
     * @return a "copy" of the spell
     */
    @Override
-   public Teleport clone() {
+   public Teleport newInstance() {
       return new Teleport(null);
    }
 

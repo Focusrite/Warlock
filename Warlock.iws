@@ -1,54 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="2" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="417005ea-2037-4ef9-a3d2-710938928808" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/warlock/state/GameState.class" afterPath="$PROJECT_DIR$/build/classes/warlock/state/GameState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/warlock/graphic/Graphic.class" afterPath="$PROJECT_DIR$/build/classes/warlock/graphic/Graphic.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/warlock/input/InputHandler.class" afterPath="$PROJECT_DIR$/build/classes/warlock/input/InputHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/warlock/level/Level.class" afterPath="$PROJECT_DIR$/build/classes/warlock/level/Level.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/warlock/object/LevelObject.class" afterPath="$PROJECT_DIR$/build/classes/warlock/object/LevelObject.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/warlock/Main.class" afterPath="$PROJECT_DIR$/build/classes/warlock/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/warlock/state/PlayState.class" afterPath="$PROJECT_DIR$/build/classes/warlock/state/PlayState.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/player/ai/AIMode.java" afterPath="$PROJECT_DIR$/src/warlock/player/ai/AIMode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/player/ai/AIModeCircleTarget.java" afterPath="$PROJECT_DIR$/src/warlock/player/ai/AIModeCircleTarget.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/player/ai/AIPlayer.java" afterPath="$PROJECT_DIR$/src/warlock/player/ai/AIPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/attribute/AttributeType.java" afterPath="$PROJECT_DIR$/src/warlock/attribute/AttributeType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/graphic/Color.java" afterPath="$PROJECT_DIR$/src/warlock/graphic/Color.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/spell/Explosion.java" afterPath="$PROJECT_DIR$/src/warlock/spell/Explosion.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/spell/Fireball.java" afterPath="$PROJECT_DIR$/src/warlock/spell/Fireball.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/font/Font.java" afterPath="$PROJECT_DIR$/src/warlock/font/Font.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/state/GameState.java" afterPath="$PROJECT_DIR$/src/warlock/state/GameState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/graphic/Graphic.java" afterPath="$PROJECT_DIR$/src/warlock/graphic/Graphic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/HandleLoader.java" afterPath="$PROJECT_DIR$/src/warlock/HandleLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/input/InputHandler.java" afterPath="$PROJECT_DIR$/src/warlock/input/InputHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/hud/interactable/Interactable.java" afterPath="$PROJECT_DIR$/src/warlock/hud/interactable/Interactable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/level/Level.java" afterPath="$PROJECT_DIR$/src/warlock/level/Level.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/object/LevelObject.java" afterPath="$PROJECT_DIR$/src/warlock/object/LevelObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/game/Game.java" afterPath="$PROJECT_DIR$/src/warlock/game/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/spell/Lightning.java" afterPath="$PROJECT_DIR$/src/warlock/spell/Lightning.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/state/LobbyState.java" afterPath="$PROJECT_DIR$/src/warlock/state/LobbyState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/Main.java" afterPath="$PROJECT_DIR$/src/warlock/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/state/MenuState.java" afterPath="$PROJECT_DIR$/src/warlock/state/MenuState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/graphic/OpenGL3Graphic.java" afterPath="$PROJECT_DIR$/src/warlock/graphic/OpenGL3Graphic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/state/PlayState.java" afterPath="$PROJECT_DIR$/src/warlock/state/PlayState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/lobby/Lobby.java" afterPath="$PROJECT_DIR$/src/warlock/lobby/Lobby.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/player/Player.java" afterPath="$PROJECT_DIR$/src/warlock/player/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/spell/Seekerorb.java" afterPath="$PROJECT_DIR$/src/warlock/spell/Seekerorb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/network/server/ServerClient.java" afterPath="$PROJECT_DIR$/src/warlock/network/server/ServerClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/spell/Shield.java" afterPath="$PROJECT_DIR$/src/warlock/spell/Shield.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/shop/ShopColumn.java" afterPath="$PROJECT_DIR$/src/warlock/shop/ShopColumn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/game/ShopPhase.java" afterPath="$PROJECT_DIR$/src/warlock/game/ShopPhase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/shop/ShopItemSpell.java" afterPath="$PROJECT_DIR$/src/warlock/shop/ShopItemSpell.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/spell/Spell.java" afterPath="$PROJECT_DIR$/src/warlock/spell/Spell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/attribute/StatusEffect.java" afterPath="$PROJECT_DIR$/src/warlock/attribute/StatusEffect.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/spell/Teleport.java" afterPath="$PROJECT_DIR$/src/warlock/spell/Teleport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/warlock/object/warlock/Warlock.java" afterPath="$PROJECT_DIR$/src/warlock/object/warlock/Warlock.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Warlock.ipr" afterPath="$PROJECT_DIR$/Warlock.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Warlock.iws" afterPath="$PROJECT_DIR$/Warlock.iws" />
     </list>
     <ignored path="Warlock.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383399912332" ignored="false" />
+    <file path="/Dummy.txt" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1384610731809" ignored="false" />
     <file path="/Font.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383388832440" ignored="false" />
-    <file path="/Player.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383388931521" ignored="false" />
+    <file path="/Player.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1384610292540" ignored="false" />
     <file path="/ShopPhase.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383389015887" ignored="false" />
     <file path="/Warlock.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383389035964" ignored="false" />
     <file path="/Color.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383389279105" ignored="false" />
@@ -56,7 +28,10 @@
     <file path="/AIMode.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383389993410" ignored="false" />
     <file path="/GameState.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383390220561" ignored="false" />
     <file path="/ShopColumn.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383390317049" ignored="false" />
-    <file path="/Spell.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1383390745962" ignored="false" />
+    <file path="/Spell.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1384610414415" ignored="false" />
+    <file path="/a.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1384610078137" ignored="false" />
+    <file path="/sample.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1384610206438" ignored="false" />
+    <file path="/Explosion.java" changelist="417005ea-2037-4ef9-a3d2-710938928808" time="1384610344430" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +46,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -107,7 +83,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -116,135 +91,7 @@
     <favorites_list name="Warlock" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="JAVA/warlock.state.GameState" pinned="false" current="true" current-in-tab="true">
-        <entry file="uml://JAVA/warlock.state.GameState">
-          <provider selected="true" editor-type-id="UmlEditorProvider">
-            <state>
-              <ID>JAVA</ID>
-              <OriginalElement>warlock.state.GameState</OriginalElement>
-              <nodes>
-                <node x="-48.0" y="181.0">warlock.state.LobbyState</node>
-                <node x="-130.0" y="108.0">warlock.menu.Menu</node>
-                <node x="-144.0" y="234.0">warlock.state.MenuState</node>
-                <node x="218.0" y="0.0">warlock.state.InputEnabled</node>
-                <node x="312.0" y="88.0">warlock.game.Game</node>
-                <node x="-130.0" y="321.0">warlock.Main</node>
-                <node x="13.0" y="120.0">warlock.lobby.Lobby</node>
-                <node x="110.0" y="234.0">warlock.state.GameState</node>
-                <node x="109.0" y="0.0">warlock.state.Updateable</node>
-                <node x="213.0" y="159.0">warlock.state.PlayState</node>
-                <node x="0.0" y="0.0">warlock.state.Renderable</node>
-              </nodes>
-              <notes />
-              <edges>
-                <edge source="warlock.lobby.Lobby" target="warlock.state.PlayState">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.PlayState" target="warlock.lobby.Lobby">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.PlayState" target="warlock.game.Game">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.lobby.Lobby" target="warlock.state.InputEnabled">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.PlayState" target="warlock.state.MenuState">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.LobbyState" target="warlock.lobby.Lobby">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.menu.Menu" target="warlock.state.InputEnabled">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.MenuState" target="warlock.state.GameState">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.game.Game" target="warlock.state.Updateable">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.menu.Menu" target="warlock.state.Updateable">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.game.Game" target="warlock.state.Renderable">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.Main" target="warlock.state.MenuState">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.GameState" target="warlock.state.InputEnabled">
-                  <point x="29.0" y="-14.0" />
-                  <point x="182.5" y="53.0" />
-                  <point x="267.0" y="53.0" />
-                  <point x="0.0" y="14.0" />
-                </edge>
-                <edge source="warlock.menu.Menu" target="warlock.state.LobbyState">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.lobby.Lobby" target="warlock.state.Renderable">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.lobby.Lobby" target="warlock.state.Updateable">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.menu.Menu" target="warlock.state.Renderable">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.GameState" target="warlock.state.Updateable">
-                  <point x="0.0" y="-14.0" />
-                  <point x="0.0" y="14.0" />
-                </edge>
-                <edge source="warlock.state.PlayState" target="warlock.state.GameState">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.LobbyState" target="warlock.state.GameState">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.game.Game" target="warlock.state.InputEnabled">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.MenuState" target="warlock.menu.Menu">
-                  <point x="0.0" y="0.0" />
-                  <point x="0.0" y="0.0" />
-                </edge>
-                <edge source="warlock.state.GameState" target="warlock.state.Renderable">
-                  <point x="-29.0" y="-14.0" />
-                  <point x="124.5" y="53.0" />
-                  <point x="44.5" y="53.0" />
-                  <point x="0.0" y="14.0" />
-                </edge>
-              </edges>
-              <settings layout="Hierarchic Group" zoom="1.0" x="158.0" y="53.0" />
-              <SelectedNodes />
-              <Categories />
-              <SCOPE>All</SCOPE>
-              <VISIBILITY>private</VISIBILITY>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -262,10 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/warlock/spell/Seekerorb.java" />
-        <option value="$PROJECT_DIR$/src/warlock/spell/Shield.java" />
-        <option value="$PROJECT_DIR$/src/warlock/spell/Teleport.java" />
-        <option value="$PROJECT_DIR$/src/warlock/graphic/Graphic.java" />
         <option value="$PROJECT_DIR$/src/warlock/player/ai/AIPlayer.java" />
         <option value="$PROJECT_DIR$/src/warlock/player/ai/AIMode.java" />
         <option value="$PROJECT_DIR$/src/warlock/Main.java" />
@@ -275,9 +118,13 @@
         <option value="$PROJECT_DIR$/src/warlock/object/LevelObject.java" />
         <option value="$PROJECT_DIR$/src/warlock/font/Font.java" />
         <option value="$PROJECT_DIR$/src/warlock/input/InputHandler.java" />
-        <option value="$PROJECT_DIR$/src/warlock/spell/Spell.java" />
         <option value="$PROJECT_DIR$/src/warlock/HandleLoader.java" />
         <option value="$PROJECT_DIR$/src/warlock/hud/interactable/Interactable.java" />
+        <option value="$PROJECT_DIR$/src/warlock/game/Game.java" />
+        <option value="$PROJECT_DIR$/src/warlock/lobby/Lobby.java" />
+        <option value="$PROJECT_DIR$/src/warlock/player/Player.java" />
+        <option value="$PROJECT_DIR$/src/warlock/spell/Explosion.java" />
+        <option value="$PROJECT_DIR$/src/warlock/spell/Spell.java" />
       </list>
     </option>
   </component>
@@ -313,6 +160,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -403,6 +252,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="spell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Warlock" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Warlock" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="warlock" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="lobby" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -431,20 +302,22 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -459,6 +332,19 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -487,19 +373,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -571,33 +444,33 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1934" height="1054" extended-state="0" />
+    <frame x="-7" y="-7" width="1934" height="1054" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497332" sideWeight="0.60044396" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39955604" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39955604" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -665,9 +538,32 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/warlock/lobby/Lobby.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="19" selection-start="2864" selection-end="2864" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/warlock/player/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="43" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/warlock/spell/Explosion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="14" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.36504856" />
+        <state line="59" column="21" selection-start="1914" selection-end="1914" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/warlock/spell/Spell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="297" column="28" selection-start="7208" selection-end="7208" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/warlock/level/Level.java">
@@ -678,11 +574,6 @@
     <entry file="file://$PROJECT_DIR$/src/warlock/hud/interactable/InteractableIntCounter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="53" selection-start="1105" selection-end="1105" vertical-scroll-proportion="0.33203885" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/warlock/lobby/Lobby.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="29" selection-start="2485" selection-end="2485" vertical-scroll-proportion="0.33203885" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/warlock/object/warlock/Warlock.java">
@@ -700,114 +591,9 @@
         <state line="24" column="47" selection-start="770" selection-end="774" vertical-scroll-proportion="0.33203885" />
       </provider>
     </entry>
-    <entry file="uml://JAVA/warlock.level">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>warlock.level</OriginalElement>
-          <nodes>
-            <node x="" y="">warlock.level.GroundType</node>
-            <node x="" y="">warlock.level.Level</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="46.5" y="50.5" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/warlock.object">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>warlock.object</OriginalElement>
-          <nodes>
-            <node x="" y="">warlock.object.LevelObject</node>
-            <node x="" y="">warlock.object.projectile</node>
-            <node x="" y="">warlock.object.particle</node>
-            <node x="" y="">warlock.object.warlock</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="127.0" y="89.5" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/warlock">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>warlock</OriginalElement>
-          <nodes>
-            <node x="" y="">warlock.time</node>
-            <node x="" y="">warlock.network</node>
-            <node x="" y="">warlock.message</node>
-            <node x="" y="">warlock.camera</node>
-            <node x="" y="">warlock.lobby</node>
-            <node x="" y="">warlock.Main</node>
-            <node x="" y="">warlock.ExtraMath</node>
-            <node x="" y="">warlock.Test</node>
-            <node x="" y="">warlock.game</node>
-            <node x="" y="">warlock.font</node>
-            <node x="" y="">warlock.resource</node>
-            <node x="" y="">warlock.object</node>
-            <node x="" y="">warlock.state</node>
-            <node x="" y="">warlock.HandleLoader</node>
-            <node x="" y="">warlock.shop</node>
-            <node x="" y="">warlock.player</node>
-            <node x="" y="">warlock.graphic</node>
-            <node x="" y="">warlock.menu</node>
-            <node x="" y="">warlock.attribute</node>
-            <node x="" y="">warlock.constant</node>
-            <node x="" y="">warlock.Handle</node>
-            <node x="" y="">warlock.hud</node>
-            <node x="" y="">warlock.spell</node>
-            <node x="" y="">warlock.input</node>
-            <node x="" y="">warlock.level</node>
-            <node x="" y="">warlock.phys</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="689.0" y="252.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/warlock/object/projectile/Projectile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="52" selection-start="441" selection-end="441" vertical-scroll-proportion="0.18085106">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://JAVA/warlock.level.Level">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>warlock.level.Level</OriginalElement>
-          <nodes>
-            <node x="" y="">warlock.state.Updateable</node>
-            <node x="" y="">warlock.level.Level</node>
-            <node x="" y="">warlock.state.Renderable</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="99.0" y="53.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
+        <state line="17" column="52" selection-start="441" selection-end="441" vertical-scroll-proportion="0.18085106" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/warlock/game/ShopPhase.java">
@@ -819,320 +605,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="uml://JAVA/warlock.game.ShopPhase">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>warlock.game.ShopPhase</OriginalElement>
-          <nodes>
-            <node x="" y="">warlock.shop.ShopColumn</node>
-            <node x="" y="">warlock.game.ShopPhase</node>
-            <node x="" y="">warlock.hud.Hud</node>
-            <node x="" y="">warlock.hud.ShopHud</node>
-            <node x="" y="">warlock.player.Player</node>
-            <node x="" y="">warlock.shop.ShopItem</node>
-            <node x="" y="">warlock.shop.Shop</node>
-            <node x="" y="">warlock.game.GamePhase</node>
-            <node x="" y="">warlock.state.Updateable</node>
-            <node x="" y="">warlock.shop.ShopItemSpell</node>
-            <node x="" y="">warlock.state.Renderable</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="45.0" y="93.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
+    <entry file="file://$PROJECT_DIR$/src/warlock/spell/Spell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="295" column="28" selection-start="7166" selection-end="7166" vertical-scroll-proportion="0.288">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="uml://JAVA/warlock.object.warlock.Warlock">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>warlock.object.warlock.Warlock</OriginalElement>
-          <nodes>
-            <node x="55.5" y="-107.0">warlock.spell.Spell</node>
-            <node x="122.5" y="-232.0">warlock.spell.Shield</node>
-            <node x="-110.5" y="-267.0">warlock.object.projectile.OrbProjectile</node>
-            <node x="103.5" y="-68.0">warlock.attribute.StatusEffectType</node>
-            <node x="-232.5" y="-222.0">warlock.object.projectile.LightningProjectile</node>
-            <node x="-388.0" y="-161.0">warlock.object.LevelObject</node>
-            <node x="-34.5" y="-191.0">warlock.spell.Fireball</node>
-            <node x="-286.5" y="-332.0">warlock.state.Updateable</node>
-            <node x="-191.5" y="-332.0">warlock.state.Renderable</node>
-            <node x="-378.5" y="42.0">warlock.object.warlock.Warlock</node>
-            <node x="232.5" y="-108.0">warlock.spell.Teleport</node>
-            <node x="-216.5" y="-129.0">warlock.object.projectile.Projectile</node>
-            <node x="66.5" y="-266.0">warlock.spell.Seekerorb</node>
-            <node x="-293.5" y="-190.0">warlock.object.projectile.FireballProjectile</node>
-            <node x="175.5" y="-196.0">warlock.spell.Explosion</node>
-            <node x="111.5" y="43.0">warlock.attribute.AttributeType</node>
-            <node x="33.5" y="-2.0">warlock.attribute.StatusEffect</node>
-            <node x="13.5" y="-222.0">warlock.spell.Lightning</node>
-            <node x="-132.5" y="43.0">warlock.attribute.Attribute</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="warlock.object.warlock.Warlock" target="warlock.spell.Explosion">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Spell" target="warlock.object.warlock.Warlock">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Spell" target="warlock.state.Updateable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.warlock.Warlock" target="warlock.spell.Spell">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Shield" target="warlock.spell.Spell">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Teleport" target="warlock.spell.Spell">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Fireball" target="warlock.spell.Spell">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.LevelObject" target="warlock.state.Renderable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Fireball" target="warlock.object.projectile.FireballProjectile">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.attribute.StatusEffectType" target="warlock.attribute.AttributeType">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Explosion" target="warlock.attribute.StatusEffectType">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Explosion" target="warlock.spell.Spell">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Seekerorb" target="warlock.spell.Spell">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.projectile.OrbProjectile" target="warlock.object.projectile.Projectile">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.warlock.Warlock" target="warlock.spell.Fireball">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Seekerorb" target="warlock.object.projectile.OrbProjectile">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.projectile.Projectile" target="warlock.attribute.StatusEffectType">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.LevelObject" target="warlock.state.Updateable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Lightning" target="warlock.object.projectile.LightningProjectile">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.warlock.Warlock" target="warlock.attribute.StatusEffectType">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.attribute.StatusEffect" target="warlock.attribute.Attribute">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.warlock.Warlock" target="warlock.attribute.Attribute">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Shield" target="warlock.attribute.StatusEffectType">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.attribute.Attribute" target="warlock.attribute.AttributeType">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.warlock.Warlock" target="warlock.object.LevelObject">
-              <point x="0.0" y="-14.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-            <edge source="warlock.object.projectile.Projectile" target="warlock.object.LevelObject">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.spell.Lightning" target="warlock.spell.Spell">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.attribute.StatusEffect" target="warlock.attribute.StatusEffectType">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.projectile.FireballProjectile" target="warlock.object.projectile.Projectile">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.warlock.Warlock" target="warlock.attribute.StatusEffect">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.object.projectile.LightningProjectile" target="warlock.object.projectile.Projectile">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="46.0" y="13.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
+    <entry file="file://$PROJECT_DIR$/src/warlock/spell/Explosion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="21" selection-start="1914" selection-end="1914" vertical-scroll-proportion="0.08685714">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="uml://JAVA/warlock.state.GameState">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>warlock.state.GameState</OriginalElement>
-          <nodes>
-            <node x="-48.0" y="181.0">warlock.state.LobbyState</node>
-            <node x="-130.0" y="108.0">warlock.menu.Menu</node>
-            <node x="-144.0" y="234.0">warlock.state.MenuState</node>
-            <node x="218.0" y="0.0">warlock.state.InputEnabled</node>
-            <node x="312.0" y="88.0">warlock.game.Game</node>
-            <node x="-130.0" y="321.0">warlock.Main</node>
-            <node x="13.0" y="120.0">warlock.lobby.Lobby</node>
-            <node x="110.0" y="234.0">warlock.state.GameState</node>
-            <node x="109.0" y="0.0">warlock.state.Updateable</node>
-            <node x="213.0" y="159.0">warlock.state.PlayState</node>
-            <node x="0.0" y="0.0">warlock.state.Renderable</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="warlock.lobby.Lobby" target="warlock.state.PlayState">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.PlayState" target="warlock.lobby.Lobby">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.PlayState" target="warlock.game.Game">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.lobby.Lobby" target="warlock.state.InputEnabled">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.PlayState" target="warlock.state.MenuState">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.LobbyState" target="warlock.lobby.Lobby">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.menu.Menu" target="warlock.state.InputEnabled">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.MenuState" target="warlock.state.GameState">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.game.Game" target="warlock.state.Updateable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.menu.Menu" target="warlock.state.Updateable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.game.Game" target="warlock.state.Renderable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.Main" target="warlock.state.MenuState">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.GameState" target="warlock.state.InputEnabled">
-              <point x="29.0" y="-14.0" />
-              <point x="182.5" y="53.0" />
-              <point x="267.0" y="53.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-            <edge source="warlock.menu.Menu" target="warlock.state.LobbyState">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.lobby.Lobby" target="warlock.state.Renderable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.lobby.Lobby" target="warlock.state.Updateable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.menu.Menu" target="warlock.state.Renderable">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.GameState" target="warlock.state.Updateable">
-              <point x="0.0" y="-14.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-            <edge source="warlock.state.PlayState" target="warlock.state.GameState">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.LobbyState" target="warlock.state.GameState">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.game.Game" target="warlock.state.InputEnabled">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.MenuState" target="warlock.menu.Menu">
-              <point x="0.0" y="0.0" />
-              <point x="0.0" y="0.0" />
-            </edge>
-            <edge source="warlock.state.GameState" target="warlock.state.Renderable">
-              <point x="-29.0" y="-14.0" />
-              <point x="124.5" y="53.0" />
-              <point x="44.5" y="53.0" />
-              <point x="0.0" y="14.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="1.0" x="158.0" y="53.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
+    <entry file="file://$PROJECT_DIR$/src/warlock/player/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="43" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.019428572">
+          <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/warlock/lobby/Lobby.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="19" selection-start="2864" selection-end="2864" vertical-scroll-proportion="0.019428572">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/warlock/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="111" column="20" selection-start="3138" selection-end="3138" vertical-scroll-proportion="0.019428572">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
 

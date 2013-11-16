@@ -45,8 +45,7 @@ public class Game implements DeathListener, InputEnabled, Updateable, Renderable
    private Camera camera;
    private boolean lastPhaseChange = false;
    private int firstTo;
-   private int startingGold;
-   private int groundSize;
+    private int groundSize;
    private int shopTime;
 
    /**
@@ -106,7 +105,7 @@ public class Game implements DeathListener, InputEnabled, Updateable, Renderable
     * @param lobby
     */
    private void readFromLobby(Lobby lobby) {
-      startingGold = lobby.getStartingGold();
+      int startingGold = lobby.getStartingGold();
       groundSize = lobby.getGroundSize();
       shopTime = lobby.getShopTime();
       if (lobby.getSelfPlayer() == null) {

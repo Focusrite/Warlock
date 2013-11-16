@@ -45,7 +45,7 @@ public class ShopItemSpell extends ShopItem {
       }
       Warlock w = purchaser.getWarlock();
       if(w.canLearn(item)) {
-         w.addSpell(item.getShortcut(), item.clone());
+         w.addSpell(item.getShortcut(), item.newInstance());
       }
       else if (w.knowsSpell(item) && w.getSpell(item.getShortcut()).getSpellLevel() < item.getMaxLevel()) {
          w.getSpell(item.getShortcut()).levelUp();

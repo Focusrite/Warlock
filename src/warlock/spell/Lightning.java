@@ -60,7 +60,7 @@ public class Lightning extends Spell {
     * @return a "copy" of the spell
     */
    @Override
-   public Lightning clone() {
+   public Lightning newInstance() {
       return new Lightning(null);
    }
 

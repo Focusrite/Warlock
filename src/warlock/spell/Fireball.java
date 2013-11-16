@@ -57,7 +57,7 @@ public class Fireball extends Spell {
     * @return a "copy" of the spell
     */
    @Override
-   public Fireball clone() {
+   public Fireball newInstance() {
       return new Fireball(null);
    }
 }

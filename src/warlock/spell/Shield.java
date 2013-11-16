@@ -68,7 +68,7 @@ public class Shield extends Spell {
     * @return a "copy" of the spell
     */
    @Override
-   public Shield clone() {
+   public Shield newInstance() {
       return new Shield(null);
    }
 }

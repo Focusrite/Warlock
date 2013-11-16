@@ -57,11 +57,9 @@ public class Lobby implements InputEnabled, Updateable, Renderable {
    private static final int PLAY_WIDTH = 64;
    private static final int PLAY_HEIGHT = 25;
    private static final String EMPTY_SLOT = " Empty slot";
-   private int currentPlayerId = 0;
    private Player[] lobbyList = new Player[MAX_PLAYERS];
    private ArrayList<Player> observers = new ArrayList<>();
    private InteractableTextureButton[] removeButtons = new InteractableTextureButton[MAX_PLAYERS];
-   private LobbyStatus status;
    private ArrayList<Interactable> interactables = new ArrayList<>();
    private Player selfPlayer;
    private int firstTo = 50;
@@ -73,7 +71,6 @@ public class Lobby implements InputEnabled, Updateable, Renderable {
     * Create a new lobby
     */
    public Lobby() {
-      status = LobbyStatus.HOST;
       init();
    }
 
@@ -334,6 +331,7 @@ public class Lobby implements InputEnabled, Updateable, Renderable {
     * @return the newly created Player
     */
    public Player addPlayerToLobby() {
+      int currentPlayerId = 0;
       Player p = new Player(currentPlayerId, Color.NONE, Color.NONE);
       observers.add(p);
       return p;
